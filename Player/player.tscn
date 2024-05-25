@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://7b4lgevh5krm"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_03nri"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfkup"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_igm17"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_03nri")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rfkup")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_igm17")
+
+[node name="CameraPivotYaw" type="Node3D" parent="."]
+
+[node name="CameraPivotPitch" type="Node3D" parent="CameraPivotYaw"]
+
+[node name="Camera" type="Camera3D" parent="CameraPivotYaw/CameraPivotPitch"]
