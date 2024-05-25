@@ -65,5 +65,5 @@ func cast_for_interactable() -> void:
 func update_game_UI() -> void:
 	if !ui_updated:
 		game_ui.set_visible(true)
-		interact_label.text = str("'E' to interact with ", object_to_interact_with.string_name)
+		interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
 		ui_updated = true

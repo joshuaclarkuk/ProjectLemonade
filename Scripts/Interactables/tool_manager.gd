@@ -22,6 +22,7 @@ enum LemonadeState {
 var serving_stand_empty: bool = true
 var glass_real_original_position: Vector3 = Vector3.ZERO
 var current_lemonade_state: int = 0
+var ingredients_in_glass: Array = []
 # Glass colours
 var stage_1_colour_value: float = 0.2
 var stage_2_colour_value: float = 0.4
@@ -74,10 +75,10 @@ func handle_ice() -> void:
 func handle_jug() -> void:
 	print("Interacted with: Jug")
 	if !serving_stand_empty:
-		if current_lemonade_state != LemonadeState.ICE:
+		if current_lemonade_state != LemonadeState.ICE: # Need to work on this so that ice is optional
 			spill_drink()
 		else:
-			print("Ice added")
+			print("Lemonade added")
 			update_glass_state(LemonadeState.LEMONADE, stage_3_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
@@ -85,10 +86,10 @@ func handle_jug() -> void:
 func handle_sugar() -> void:
 	print("Interacted with: Sugar")
 	if !serving_stand_empty:
-		if current_lemonade_state != LemonadeState.LEMONADE:
+		if current_lemonade_state < LemonadeState.LEMONADE:
 			spill_drink()
 		else:
-			print("Ice added")
+			print("Sugar added")
 			update_glass_state(LemonadeState.SUGAR, stage_4_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
@@ -97,10 +98,10 @@ func handle_sugar() -> void:
 func handle_lemons() -> void:
 	print("Interacted with: Lemons")
 	if !serving_stand_empty:
-		if current_lemonade_state != LemonadeState.SUGAR:
+		if current_lemonade_state < LemonadeState.LEMONADE:
 			spill_drink()
 		else:
-			print("Ice added")
+			print("Lemon slices added")
 			update_glass_state(LemonadeState.LEMON, stage_5_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
@@ -116,26 +117,31 @@ func handle_serving_stand() -> void:
 
 func handle_bin() -> void:
 	print("Interacted with: Bin")
+	reset_drink()
 
 
 func serve_drink() -> void:
 	print("DRINK SERVED")
 	# Handle zombie code here
-	
+	print("Drink contained: ", str(ingredients_in_glass))
 	# Reset values
-	glass_real.global_position = glass_real_original_position
-	serving_stand_empty = true
-	current_lemonade_state = LemonadeState.NOT_STARTED
+	reset_drink()
 
 
 func spill_drink() -> void:
 	print("DRINK SPILLED")
 	# Play spilled animation
-	glass_real.global_position = glass_real_original_position
-	serving_stand_empty = true
-	current_lemonade_state = LemonadeState.NOT_STARTED
+	reset_drink()
 
 
 func update_glass_state(lemonade_state: LemonadeState, glass_colour: float) -> void:
 	glass_real.get_material_override().albedo_color = Color(glass_colour, glass_colour, glass_colour)
 	current_lemonade_state = lemonade_state
+	ingredients_in_glass.append(lemonade_state)
+
+
+func reset_drink() -> void:
+	glass_real.global_position = glass_real_original_position
+	serving_stand_empty = true
+	current_lemonade_state = LemonadeState.NOT_STARTED
+	ingredients_in_glass.clear()
