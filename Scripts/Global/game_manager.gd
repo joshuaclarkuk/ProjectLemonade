@@ -13,8 +13,8 @@ enum ToolType {
 enum LemonadeState {
 	NOT_STARTED,
 	EMPTY,
-	ICE,
 	LEMONADE,
+	ICE,
 	SUGAR,
 	LEMON
 }

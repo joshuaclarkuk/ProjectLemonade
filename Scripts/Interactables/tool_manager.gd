@@ -51,22 +51,23 @@ func handle_glasses() -> void:
 		spill_drink()
 
 
-func handle_ice() -> void:
-	print("Interacted with: Ice")
-	if !serving_stand_empty:
-		print("Ice added")
-		update_glass_state(GameManager.LemonadeState.ICE, stage_2_colour_value)
-	else:
-		print("Serving Stand empty. Grab a glass!")
-
-
 func handle_jug() -> void:
 	print("Interacted with: Jug")
 	if !serving_stand_empty:
 		print("Lemonade added")
-		update_glass_state(GameManager.LemonadeState.LEMONADE, stage_3_colour_value)
+		update_glass_state(GameManager.LemonadeState.LEMONADE, stage_2_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
+
+
+func handle_ice() -> void:
+	print("Interacted with: Ice")
+	if !serving_stand_empty:
+		print("Ice added")
+		update_glass_state(GameManager.LemonadeState.ICE, stage_3_colour_value)
+	else:
+		print("Serving Stand empty. Grab a glass!")
+
 
 func handle_sugar() -> void:
 	print("Interacted with: Sugar")

@@ -50,6 +50,7 @@ func spawn_zombie() -> void:
 	# Assign recipe
 	zombie_instance.requested_ingredient_list.append(GameManager.LemonadeState.EMPTY)
 	zombie_instance.requested_ingredient_list.append(GameManager.LemonadeState.LEMONADE)
+	# NEED TO FIGURE OUT HOW TO ASSIGN RANDOM INGREDIENTS TO REQUEST HEREAFTER
 	
 	
 	# Get first available queue point
