@@ -406,6 +406,11 @@ material_override = ExtResource("7_cdq56")
 radius = 0.08
 height = 0.3
 
+[node name="Handle" type="CSGTorus3D" parent="Jug/LemonadeJug"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.1, 0.05, 0)
+inner_radius = 0.025
+outer_radius = 0.05
+
 [node name="Lemons" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.7, 6.8)
 collision_layer = 4

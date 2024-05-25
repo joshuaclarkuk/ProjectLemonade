@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=10 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="1_tusvb"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="4_os8h6"]
+[ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
+[ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://queue_point.tscn" id="6_clnmg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,6 +22,7 @@ glow_enabled = true
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
+zombie = ExtResource("5_1hf5j")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vqltd")
@@ -29,17 +32,85 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 7)
 
 [node name="OverviewCam" type="Camera3D" parent="."]
-transform = Transform3D(-4.10753e-08, 0.34202, -0.939693, 1.49502e-08, 0.939693, 0.34202, 1, 0, -4.37114e-08, -2.25, 2.15, 6.65)
+transform = Transform3D(1, -1.40486e-08, -5.11327e-09, 1.49502e-08, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0.1, 4.2, 9.15)
+
+[node name="LemonadeStand" parent="." instance=ExtResource("4_os8h6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 6.425)
 
 [node name="Level" type="Node3D" parent="."]
 
-[node name="Floor" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+[node name="Roadside" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.25, 5)
 material_override = ExtResource("1_tusvb")
-use_collision = true
-size = Vector3(20, 0.5, 20)
+size = Vector3(110, 0.5, 10)
 
-[node name="LemonadeStand" parent="Level" instance=ExtResource("4_os8h6")]
+[node name="Roadside2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -15)
+material_override = ExtResource("1_tusvb")
+size = Vector3(110, 0.5, 10)
+
+[node name="Road" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, -5)
+material_override = ExtResource("1_tusvb")
+size = Vector3(110, 0.25, 10)
+
+[node name="Houses" type="Node3D" parent="Level"]
+
+[node name="House1" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="House2" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="House3" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="House4" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="House5" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="House6" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3.75, -26)
+size = Vector3(9, 7.5, 12)
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPointA" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1, 1, -2.5)
+
+[node name="SpawnPointB" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, 1, -2.5)
+
+[node name="QueuePoints" type="Node3D" parent="."]
+
+[node name="QueuePointA" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 5)
+
+[node name="QueuePoinB" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 1, 4.25)
+
+[node name="QueuePointC" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 3.8)
+
+[node name="QueuePointD" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 1, 2.5)
+
+[node name="QueuePointE" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 1, 2.5)
+
+[node name="ZombieSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ZombieManager" type="Node3D" parent="."]
+
+[connection signal="timeout" from="ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]

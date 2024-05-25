@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy5djbhk8fxak"]
+
+[ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
+[ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="1_xx0i1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vt3mw"]
+
+[node name="Zombie" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_bxugx")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uhe8y")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_xx0i1")
+mesh = SubResource("CapsuleMesh_vt3mw")

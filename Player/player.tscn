@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://7b4lgevh5krm"]
+[gd_scene load_steps=6 format=3 uid="uid://7b4lgevh5krm"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xuf3f"]
 [ext_resource type="Script" path="res://Scripts/Player/smooth_camera.gd" id="2_vw5h8"]
+[ext_resource type="Texture2D" uid="uid://dy1hydavrxcs0" path="res://Assets/Textures/crosshair001.png" id="3_2ch81"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfkup"]
 radius = 0.4
@@ -58,3 +59,15 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ReticleContainer" type="CenterContainer" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReticleTexture" type="TextureRect" parent="GameUI/ReticleContainer"]
+layout_mode = 2
+texture = ExtResource("3_2ch81")
