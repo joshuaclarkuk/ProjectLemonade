@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://coh81ds7kdwf3"]
+[gd_scene load_steps=17 format=3 uid="uid://coh81ds7kdwf3"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/tool_manager.gd" id="1_mnp3l"]
 [ext_resource type="Script" path="res://Scripts/Interactables/interactable.gd" id="2_of71m"]
 [ext_resource type="Material" uid="uid://droq1rxkjkq5p" path="res://Materials/Prototyping/prototyping_orange.tres" id="3_3ebr1"]
+[ext_resource type="Material" uid="uid://cx72jblfdswgf" path="res://Materials/Prototyping/glass_real_orange.tres" id="3_o1713"]
 [ext_resource type="Material" uid="uid://dstbifqaok2u4" path="res://Materials/Prototyping/prototyping_purple.tres" id="4_fttbq"]
 [ext_resource type="Material" uid="uid://b2ccgyqmfsw0x" path="res://Materials/Prototyping/prototyping_blue.tres" id="5_8i6qt"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="6_taey8"]
@@ -14,7 +15,7 @@
 size = Vector3(0.7, 0.35, 0.55)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3217i"]
-size = Vector3(0.4, 0.25, 0.2)
+size = Vector3(0.4, 0.35, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7p7l"]
 size = Vector3(0.45, 0.1, 0.2)
@@ -37,6 +38,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 2
+string_name = "Glasses"
 
 [node name="Collider" type="CollisionShape3D" parent="Glasses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.075, 0.225)
@@ -44,7 +46,7 @@ shape = SubResource("BoxShape3D_1clw8")
 
 [node name="GlassReal" type="CSGCylinder3D" parent="Glasses"]
 transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, -0.05, 0, 0.15)
-material_override = ExtResource("3_3ebr1")
+material_override = ExtResource("3_o1713")
 radius = 0.05
 height = 0.2
 
@@ -174,9 +176,10 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 5
+string_name = "Serving Stand"
 
 [node name="Collider" type="CollisionShape3D" parent="ServingStand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 0.025, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 0.075, 0)
 shape = SubResource("BoxShape3D_3217i")
 
 [node name="Mesh" type="CSGBox3D" parent="ServingStand"]
@@ -193,6 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.55, 6.3)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
+string_name = "Ice Cubes"
 
 [node name="Collider" type="CollisionShape3D" parent="Ice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.05, 0.0500002)
@@ -369,6 +373,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 3
+string_name = "Bin"
 
 [node name="Collider" type="CollisionShape3D" parent="Bin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.025, 0.0250001)
@@ -390,6 +395,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 1
+string_name = "Jug"
 
 [node name="Collider" type="CollisionShape3D" parent="Jug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, -2.98023e-08, -2.23517e-08)
@@ -406,6 +412,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 6
+string_name = "Lemons"
 
 [node name="Collider" type="CollisionShape3D" parent="Lemons"]
 shape = SubResource("BoxShape3D_3m73v")
@@ -437,6 +444,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_of71m")
 ToolName = 4
+string_name = "Sugar"
 
 [node name="Collider" type="CollisionShape3D" parent="Sugar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, -2.98023e-08, -2.98023e-08)
