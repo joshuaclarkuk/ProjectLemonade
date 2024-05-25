@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://book6dvavvejh"]
+
+[ext_resource type="Material" uid="uid://wbtkidhmbpv6" path="res://Materials/Prototyping/prototyping_light.tres" id="1_u1hs3"]
+[ext_resource type="PackedScene" uid="uid://coh81ds7kdwf3" path="res://Interactables/object_manager.tscn" id="2_sqden"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h0ihq"]
+size = Vector3(0.3, 0.6, 0.02)
+
+[node name="LemonadeStand" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6.425)
+material_override = ExtResource("1_u1hs3")
+size = Vector3(2, 1, 1.1)
+
+[node name="PillarRight" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0.9, -0.35)
+radius = 0.06
+height = 0.8
+
+[node name="PillarLeft" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.9, -0.35)
+radius = 0.06
+height = 0.8
+
+[node name="Sign" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -0.35)
+size = Vector3(2, 0.5, 0.25)
+
+[node name="InteriorCutout" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, 0.15)
+operation = 2
+size = Vector3(1.55, 1, 0.8)
+
+[node name="Shelf" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, -0.0999999)
+size = Vector3(1.55, 0.1, 0.3)
+
+[node name="Shelf9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.025, 0.4)
+size = Vector3(0.2, 0.05, 0.3)
+
+[node name="Shelf8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, 0, 0.4)
+size = Vector3(0.15, 0.1, 0.3)
+
+[node name="Shelf2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.45, -0.0999999)
+size = Vector3(0.75, 0.1, 0.3)
+
+[node name="Shelf3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, -0.225, -0.0999999)
+size = Vector3(0.1, 0.35, 0.3)
+
+[node name="Shelf4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.45, -0.0999999)
+size = Vector3(0.8, 0.1, 0.3)
+
+[node name="Shelf6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, -0.45, 0.3)
+size = Vector3(0.3, 0.1, 0.5)
+
+[node name="Shelf7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, -0.3, 0.5)
+size = Vector3(0.3, 0.2, 0.1)
+
+[node name="Shelf5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, -0.225, -0.0999999)
+size = Vector3(0.1, 0.35, 0.3)
+
+[node name="FrontCutout" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.475, -0.375)
+operation = 2
+size = Vector3(1.15, 0.15, 0.35)
+
+[node name="InstructionBoard" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, -0.4, 1.05, -0.2)
+mesh = SubResource("BoxMesh_h0ihq")
+
+[node name="ObjectManager" parent="." instance=ExtResource("2_sqden")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -6.425)

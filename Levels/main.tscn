@@ -1,19 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=8 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
+[ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="1_tusvb"]
+[ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="4_os8h6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ii1wc"]
+sky_material = SubResource("ProceduralSkyMaterial_5sd3x")
+
+[sub_resource type="Environment" id="Environment_vqltd"]
+background_mode = 2
+sky = SubResource("Sky_ii1wc")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_t6mj7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vqltd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_ddeo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
+
+[node name="OverviewCam" type="Camera3D" parent="."]
+transform = Transform3D(-4.10753e-08, 0.34202, -0.939693, 1.49502e-08, 0.939693, 0.34202, 1, 0, -4.37114e-08, -2.25, 2.15, 6.65)
 
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Floor" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+material_override = ExtResource("1_tusvb")
 use_collision = true
 size = Vector3(20, 0.5, 20)
 
-[node name="LemonadeStand" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
-size = Vector3(2, 1, 0.25)
-
-[node name="Player" parent="." instance=ExtResource("1_ddeo3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7.5)
+[node name="LemonadeStand" parent="Level" instance=ExtResource("4_os8h6")]

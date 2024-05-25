@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://7b4lgevh5krm"]
+[gd_scene load_steps=5 format=3 uid="uid://7b4lgevh5krm"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_03nri"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xuf3f"]
+[ext_resource type="Script" path="res://Scripts/Player/smooth_camera.gd" id="2_vw5h8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfkup"]
 radius = 0.4
@@ -11,7 +12,7 @@ radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_03nri")
+script = ExtResource("1_xuf3f")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rfkup")
@@ -19,8 +20,40 @@ shape = SubResource("CapsuleShape3D_rfkup")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_igm17")
 
-[node name="CameraPivotYaw" type="Node3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
 
-[node name="CameraPivotPitch" type="Node3D" parent="CameraPivotYaw"]
+[node name="SmoothCamera" type="Camera3D" parent="CameraPivot"]
+top_level = true
+script = ExtResource("2_vw5h8")
+snap_speed = 15.0
 
-[node name="Camera" type="Camera3D" parent="CameraPivotYaw/CameraPivotPitch"]
+[node name="VisionCast" type="RayCast3D" parent="CameraPivot"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="GameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="InteractLabel" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = 160.0
+offset_right = 51.5
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem Ipsum"

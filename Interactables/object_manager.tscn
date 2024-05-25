@@ -1,0 +1,448 @@
+[gd_scene load_steps=16 format=3 uid="uid://coh81ds7kdwf3"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/tool_manager.gd" id="1_mnp3l"]
+[ext_resource type="Script" path="res://Scripts/Interactables/interactable.gd" id="2_of71m"]
+[ext_resource type="Material" uid="uid://droq1rxkjkq5p" path="res://Materials/Prototyping/prototyping_orange.tres" id="3_3ebr1"]
+[ext_resource type="Material" uid="uid://dstbifqaok2u4" path="res://Materials/Prototyping/prototyping_purple.tres" id="4_fttbq"]
+[ext_resource type="Material" uid="uid://b2ccgyqmfsw0x" path="res://Materials/Prototyping/prototyping_blue.tres" id="5_8i6qt"]
+[ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="6_taey8"]
+[ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="7_cdq56"]
+[ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="8_1xttu"]
+[ext_resource type="Material" uid="uid://c87q21e65qann" path="res://Materials/Prototyping/prototyping_yellow.tres" id="8_2eaq5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1clw8"]
+size = Vector3(0.7, 0.35, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3217i"]
+size = Vector3(0.4, 0.25, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7p7l"]
+size = Vector3(0.45, 0.1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nq6xd"]
+size = Vector3(0.45, 0.35, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3m73v"]
+size = Vector3(0.2, 0.3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4q7gm"]
+size = Vector3(0.1, 0.3, 0.2)
+
+[node name="Objects" type="Node3D"]
+script = ExtResource("1_mnp3l")
+
+[node name="Glasses" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 0.2, 6.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 2
+
+[node name="Collider" type="CollisionShape3D" parent="Glasses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.075, 0.225)
+shape = SubResource("BoxShape3D_1clw8")
+
+[node name="GlassReal" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, -0.05, 0, 0.15)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass1" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0.0500002)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass12" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -0.05, 0, -0.0499997)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass13" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0.25)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass2" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, -0.05, 0, 0.15)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass3" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0.3)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass4" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0.0999999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass5" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, 0.906308, 0.05, 0, 0.2)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass6" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.45, 0, -0.0999999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass7" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.35, 0, -0.0999999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass20" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-0.573577, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573577, -0.35, 0, -0.2)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass8" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, -0.15, 0, -0.0999999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass9" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.45, 0, -0.25)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass10" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.25, 0, -0.15)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass11" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 0.05, 0, 0)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass14" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.05, 0, -0.0999999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass15" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0.05, 0, -0.2)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass16" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -0.05, 0, -0.15)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass17" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.05, 0, -0.25)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass18" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, 0.422618, -0.15, 0, -0.199999)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="Glass19" type="CSGCylinder3D" parent="Glasses"]
+transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, -0.25, 0, -0.25)
+material_override = ExtResource("3_3ebr1")
+radius = 0.05
+height = 0.2
+
+[node name="ServingStand" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 6.35)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 5
+
+[node name="Collider" type="CollisionShape3D" parent="ServingStand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 0.025, 0)
+shape = SubResource("BoxShape3D_3217i")
+
+[node name="Mesh" type="CSGBox3D" parent="ServingStand"]
+material_override = ExtResource("4_fttbq")
+size = Vector3(0.5, 0.1, 0.25)
+
+[node name="CupHolder" type="CSGCylinder3D" parent="ServingStand/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+radius = 0.08
+height = 0.01
+
+[node name="Ice" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.55, 6.3)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+
+[node name="Collider" type="CollisionShape3D" parent="Ice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.05, 0.0500002)
+shape = SubResource("BoxShape3D_u7p7l")
+
+[node name="Ice1" type="CSGBox3D" parent="Ice"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.15, 0, 0.0499997)
+material_override = ExtResource("5_8i6qt")
+size = Vector3(0.25, 0.05, 0.1)
+
+[node name="Cutout1" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout2" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout3" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout4" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout5" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout6" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout7" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout8" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout9" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout10" type="CSGBox3D" parent="Ice/Ice1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Ice3" type="CSGBox3D" parent="Ice"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -0.05, 0, 0)
+material_override = ExtResource("5_8i6qt")
+size = Vector3(0.25, 0.05, 0.1)
+
+[node name="Cutout1" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout2" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout3" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout4" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout5" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout6" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout7" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout8" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout9" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout10" type="CSGBox3D" parent="Ice/Ice3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Ice2" type="CSGBox3D" parent="Ice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+material_override = ExtResource("5_8i6qt")
+size = Vector3(0.25, 0.025, 0.1)
+
+[node name="Cutout1" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout2" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.01, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout3" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout4" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout5" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout6" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout7" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout8" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout9" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, 0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Cutout10" type="CSGBox3D" parent="Ice/Ice2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, -0.02)
+operation = 2
+size = Vector3(0.03, 0.04, 0.03)
+
+[node name="Bin" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.25, 6.6)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 3
+
+[node name="Collider" type="CollisionShape3D" parent="Bin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.025, 0.0250001)
+shape = SubResource("BoxShape3D_nq6xd")
+
+[node name="Exterior" type="CSGBox3D" parent="Bin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0, 0)
+material_override = ExtResource("6_taey8")
+size = Vector3(0.4, 0.3, 0.3)
+
+[node name="Interior" type="CSGBox3D" parent="Bin/Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+operation = 2
+size = Vector3(0.34, 0.25, 0.24)
+
+[node name="Jug" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.7, 6.35)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 1
+
+[node name="Collider" type="CollisionShape3D" parent="Jug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, -2.98023e-08, -2.23517e-08)
+shape = SubResource("BoxShape3D_3m73v")
+
+[node name="LemonadeJug" type="CSGCylinder3D" parent="Jug"]
+material_override = ExtResource("7_cdq56")
+radius = 0.08
+height = 0.3
+
+[node name="Lemons" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.7, 6.8)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 6
+
+[node name="Collider" type="CollisionShape3D" parent="Lemons"]
+shape = SubResource("BoxShape3D_3m73v")
+
+[node name="Lemon" type="CSGSphere3D" parent="Lemons"]
+transform = Transform3D(0.984808, 0.173648, -7.5904e-09, 0, -4.37114e-08, -1, -0.173648, 0.984808, -4.30473e-08, 0.05, -0.125, 0.0500002)
+material_override = ExtResource("8_2eaq5")
+radius = 0.03
+radial_segments = 4
+rings = 3
+
+[node name="Lemon2" type="CSGSphere3D" parent="Lemons"]
+transform = Transform3D(0.906308, -0.422618, 1.84732e-08, 0, -4.37114e-08, -1, 0.422618, 0.906308, -3.9616e-08, 0, -0.125, 0)
+material_override = ExtResource("8_2eaq5")
+radius = 0.03
+radial_segments = 4
+rings = 3
+
+[node name="Lemon3" type="CSGSphere3D" parent="Lemons"]
+transform = Transform3D(0.707107, 0.707107, -3.09086e-08, -1.50144e-15, -4.37114e-08, -1, -0.707107, 0.707107, -3.09086e-08, 0.05, -0.125, -0.0500002)
+material_override = ExtResource("8_2eaq5")
+radius = 0.03
+radial_segments = 4
+rings = 3
+
+[node name="Sugar" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0.7, 6.8)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_of71m")
+ToolName = 4
+
+[node name="Collider" type="CollisionShape3D" parent="Sugar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, -2.98023e-08, -2.98023e-08)
+shape = SubResource("BoxShape3D_4q7gm")
+
+[node name="Mesh" type="CSGBox3D" parent="Sugar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+material_override = ExtResource("8_1xttu")
+size = Vector3(0.05, 0.25, 0.15)
