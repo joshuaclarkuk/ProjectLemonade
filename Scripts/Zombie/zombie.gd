@@ -6,6 +6,8 @@ var queue_point: QueuePoint = null
 var queue_point_location: Vector3 = Vector3.ZERO
 var queue_point_index: int = 0
 var is_moving_to_queue_point: bool = false
+var is_moving_to_leave_point: bool = false
+var point_to_leave: Vector3 = Vector3.ZERO
 
 var requested_ingredient_list: Array[GameManager.LemonadeState] = []
 var requested_ingredient_list_dict = {}
@@ -30,10 +32,19 @@ func _physics_process(delta: float) -> void:
 	if is_moving_to_queue_point:
 		var direction_to_travel = (queue_point_location - global_position).normalized()
 		velocity = direction_to_travel * walk_speed
-	
+		
 		move_and_slide()
 		
 		if global_position.distance_squared_to(queue_point_location) < 0.01:
+			is_moving_to_queue_point = false
+	
+	if is_moving_to_leave_point:
+		var direction_to_travel = (point_to_leave - global_position).normalized()
+		velocity = direction_to_travel * walk_speed
+		
+		move_and_slide()
+		
+		if global_position.distance_squared_to(point_to_leave) < 0.01:
 			is_moving_to_queue_point = false
 
 
@@ -84,6 +95,8 @@ func be_served_drink(ingredients_in_drink: Array[GameManager.LemonadeState]) -> 
 func drink_and_move_on(drink_correct: bool) -> void:
 	if drink_correct:
 		print("Drink correct, points awarded")
+		is_moving_to_leave_point = true
 	else:
 		print("Drink NOT correct, docking points")
+		is_moving_to_leave_point = true
 	
