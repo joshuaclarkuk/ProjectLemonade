@@ -12,10 +12,10 @@
 [ext_resource type="Material" uid="uid://c87q21e65qann" path="res://Materials/Prototyping/prototyping_yellow.tres" id="8_2eaq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1clw8"]
-size = Vector3(0.7, 0.35, 0.55)
+size = Vector3(0.45, 0.35, 0.55)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3217i"]
-size = Vector3(0.4, 0.35, 0.2)
+size = Vector3(0.35, 0.6, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7p7l"]
 size = Vector3(0.45, 0.1, 0.2)
@@ -41,7 +41,7 @@ ToolName = 2
 string_name = "Glasses"
 
 [node name="Collider" type="CollisionShape3D" parent="Glasses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.075, 0.225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325, 0.075, 0.225)
 shape = SubResource("BoxShape3D_1clw8")
 
 [node name="GlassReal" type="CSGCylinder3D" parent="Glasses"]
@@ -179,7 +179,7 @@ ToolName = 5
 string_name = "Serving Stand"
 
 [node name="Collider" type="CollisionShape3D" parent="ServingStand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 0.075, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.225, 0)
 shape = SubResource("BoxShape3D_3217i")
 
 [node name="Mesh" type="CSGBox3D" parent="ServingStand"]

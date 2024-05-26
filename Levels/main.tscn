@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=13 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="1_tusvb"]
+[ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_dp8sl"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="4_os8h6"]
+[ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
-[ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://queue_point.tscn" id="6_clnmg"]
+[ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
+[ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="7_xslve"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,6 +26,15 @@ glow_enabled = true
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("3_dp8sl")
+volume_db = -6.0
+autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vqltd")
@@ -44,12 +56,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 6.425)
 
 [node name="Roadside" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.25, 5)
-material_override = ExtResource("1_tusvb")
+material_override = ExtResource("5_0d6hp")
 size = Vector3(110, 0.5, 10)
 
 [node name="Roadside2" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -15)
-material_override = ExtResource("1_tusvb")
+material_override = ExtResource("5_0d6hp")
 size = Vector3(110, 0.5, 10)
 
 [node name="Road" type="CSGBox3D" parent="Level"]
@@ -61,26 +73,32 @@ size = Vector3(110, 0.25, 10)
 
 [node name="House1" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="House2" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="House3" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="House4" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="House5" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="House6" type="CSGBox3D" parent="Level/Houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3.75, -26)
+material_override = ExtResource("7_xslve")
 size = Vector3(9, 7.5, 12)
 
 [node name="SpawnPoints" type="Node3D" parent="."]
@@ -117,8 +135,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -1, 4.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -1, 4.5)
 
 [node name="ZombieSpawnTimer" type="Timer" parent="."]
+wait_time = 6.0
 autostart = true
 
 [node name="ZombieManager" type="Node3D" parent="."]
 
+[node name="IncreaseSpawnTimeTimer" type="Timer" parent="."]
+wait_time = 12.0
+autostart = true
+
 [connection signal="timeout" from="ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
+[connection signal="timeout" from="IncreaseSpawnTimeTimer" to="." method="_on_increase_spawn_time_timer_timeout"]

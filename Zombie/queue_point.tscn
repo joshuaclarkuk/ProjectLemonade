@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj3sf7s4cywbv"]
 
-[ext_resource type="Script" path="res://queue_point.gd" id="1_5o2s4"]
+[ext_resource type="Script" path="res://Scripts/Zombie/queue_point.gd" id="1_5o2s4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rsqp1"]
 

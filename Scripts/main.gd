@@ -10,6 +10,7 @@ extends Node3D
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
 
 @export var zombie: PackedScene
+@export var zombie_spawn_timer_wait_time: float = 15.0
 
 var tool_manager: ToolManager
 var spawn_points_array: Array = []
@@ -43,6 +44,7 @@ func _ready() -> void:
 		point.queue_point_index = index
 		print(point.name, " queue point index: ", str(point.queue_point_index))
 	
+	zombie_spawn_timer.wait_time = zombie_spawn_timer_wait_time
 	max_zombies_to_spawn = queue_points_array.size()
 	print("Max zombies to spawn: ", str(max_zombies_to_spawn))
 	
@@ -106,3 +108,9 @@ func shuffle_zombies_forward(served_zombie: Zombie) -> void:
 				point.is_occupied = true # Will need to remember to set this to false once zombie leaves
 				break
 		zombie.is_moving_to_queue_point = true
+
+
+func _on_increase_spawn_time_timer_timeout() -> void:
+	zombie_spawn_timer_wait_time -= 1
+	zombie_spawn_timer.wait_time = clamp(zombie_spawn_timer_wait_time, 3.0, 12.0)
+	print("Zombie spawn timer is now: ", str(zombie_spawn_timer_wait_time), " seconds")
