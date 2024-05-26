@@ -12,6 +12,8 @@ var point_to_leave: Vector3 = Vector3.ZERO
 var requested_ingredient_list: Array[GameManager.LemonadeState] = []
 var requested_ingredient_list_dict = {}
 
+signal drink_has_been_served(zombie: Zombie)
+
 
 func _ready() -> void:
 	# Create ingredient list (Note first two options always have to be true
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 		if global_position.distance_squared_to(point_to_leave) < 0.01:
-			is_moving_to_queue_point = false
+			is_moving_to_leave_point = false
 
 
 func create_ingredient_request(state_to_add_if_true: GameManager.LemonadeState) -> void:
@@ -71,6 +73,7 @@ func set_is_moving_to_queue_point(is_moving: bool) -> void:
 
 func be_served_drink(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
 	if queue_point_index == 0:
+		var all_ingredients_correct = true
 		# ABSOLUTELY NOT SURE HOW THIS IS GOING TO WORK
 		# Reset the dictionary to all false values before checking to stop repeat checks
 		for key in requested_ingredient_list_dict.keys():
@@ -83,20 +86,29 @@ func be_served_drink(ingredients_in_drink: Array[GameManager.LemonadeState]) -> 
 				print(str(requested_ingredient_list_dict[ingredient_in_drink]), ": changed to TRUE")
 			else:
 				print(name, ": Ingredient: ", str(ingredient_in_drink), " should not be in drink")
+				all_ingredients_correct = false
+				drink_and_move_on(false)
+				return # Exit early since there is an extra ingredient
 		
 		# Check if any requested ingredients are still false
 		for dict_ingredient in requested_ingredient_list_dict.keys():
-			if requested_ingredient_list_dict[dict_ingredient]:
-				pass
-			else:
+			if not requested_ingredient_list_dict[dict_ingredient]:
 				printerr(name, ": Ingredient not found: ", dict_ingredient)
+				all_ingredients_correct = false
+				drink_and_move_on(false)
+				return  # Exit early since an ingredient is missing
+
+		# If no issues were found, all ingredients are correct
+		if all_ingredients_correct:
+			drink_and_move_on(true)
 
 
 func drink_and_move_on(drink_correct: bool) -> void:
 	if drink_correct:
 		print("Drink correct, points awarded")
-		is_moving_to_leave_point = true
 	else:
 		print("Drink NOT correct, docking points")
-		is_moving_to_leave_point = true
 	
+	is_moving_to_leave_point = true
+	is_moving_to_queue_point = false
+	drink_has_been_served.emit(self)

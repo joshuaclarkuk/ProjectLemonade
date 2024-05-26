@@ -84,3 +84,16 @@ func spawn_zombie() -> void:
 			point.is_occupied = true # Will need to remember to set this to false once zombie leaves
 			break
 	zombie_instance.set_is_moving_to_queue_point(true)
+	
+	# Connect zombie's signal
+	zombie_instance.drink_has_been_served.connect(shuffle_zombies_forward)
+
+
+func shuffle_zombies_forward(current_zombie: Zombie) -> void:
+	if current_zombie.queue_point_index == 0:
+		current_zombie.is_moving_to_queue_point = false
+		current_zombie.is_moving_to_leave_point = true
+	else:
+		current_zombie.queue_point_index -= 1
+		current_zombie.is_moving_to_queue_point = true
+		current_zombie.is_moving_to_leave_point = false
