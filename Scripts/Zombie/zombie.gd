@@ -12,8 +12,6 @@ var point_to_leave: Vector3 = Vector3.ZERO
 var requested_ingredient_list: Array[GameManager.LemonadeState] = []
 var requested_ingredient_list_dict = {}
 
-signal drink_has_been_served(zombie: Zombie)
-
 
 func _ready() -> void:
 	# Create ingredient list (Note first two options always have to be true
@@ -62,17 +60,12 @@ func set_queue_point_location(point: QueuePoint) -> void:
 	queue_point = point
 	queue_point_location = point.global_position
 	queue_point_index = point.queue_point_index
-	print("Queue point index: ", str(queue_point_index))
+	print(name, ": QPI: ", str(queue_point_index))
 	point.occupying_zombie = self
 	print(point.name, " is occupied by: ", self.name)
 
 
-func set_is_moving_to_queue_point(is_moving: bool) -> void:
-	is_moving_to_queue_point = is_moving
-
-
 func be_served_drink(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
-	if queue_point_index == 0:
 		var all_ingredients_correct = true
 		# ABSOLUTELY NOT SURE HOW THIS IS GOING TO WORK
 		# Reset the dictionary to all false values before checking to stop repeat checks
@@ -109,6 +102,6 @@ func drink_and_move_on(drink_correct: bool) -> void:
 	else:
 		print("Drink NOT correct, docking points")
 	
-	is_moving_to_leave_point = true
+	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
-	drink_has_been_served.emit(self)
+	is_moving_to_leave_point = true
