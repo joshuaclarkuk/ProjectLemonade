@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy5djbhk8fxak"]
+[gd_scene load_steps=8 format=3 uid="uid://cy5djbhk8fxak"]
 
 [ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="1_xx0i1"]
+[ext_resource type="Texture2D" uid="uid://dl84uby2t8gld" path="res://Assets/Textures/ZombieUI/IceCubeSprite.png" id="3_vpgqq"]
+[ext_resource type="Texture2D" uid="uid://buvm2wwtpmlf2" path="res://Assets/Textures/ZombieUI/SugarSprite.png" id="4_o0tst"]
+[ext_resource type="Texture2D" uid="uid://b5m2meaq67fs" path="res://Assets/Textures/ZombieUI/Lemon.png" id="5_g4q8f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
 
@@ -18,3 +21,57 @@ shape = SubResource("CapsuleShape3D_uhe8y")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_xx0i1")
 mesh = SubResource("CapsuleMesh_vt3mw")
+
+[node name="IngredientRequestUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="IngredientRequestUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="IngredientRequestUI/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IngredientRequestUI/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="IngredientRequestUI/CenterContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="IceSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_vpgqq")
+
+[node name="IceTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="SugarSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2
+texture = ExtResource("4_o0tst")
+
+[node name="SugarTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="LemonSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_g4q8f")
+
+[node name="LemonTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+layout_mode = 2

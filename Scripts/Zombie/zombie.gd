@@ -1,5 +1,12 @@
 class_name Zombie extends CharacterBody3D
 
+const CROSS = preload("res://Assets/Textures/ZombieUI/cross.png")
+const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
+@onready var ingredient_request_ui: Control = $IngredientRequestUI
+@onready var ice_tick: TextureRect = $IngredientRequestUI/CenterContainer/Panel/GridContainer/IceTick
+@onready var sugar_tick: TextureRect = $IngredientRequestUI/CenterContainer/Panel/GridContainer/SugarTick
+@onready var lemon_tick: TextureRect = $IngredientRequestUI/CenterContainer/Panel/GridContainer/LemonTick
+
 @export var walk_speed: float = 5.0
 
 var queue_point: QueuePoint = null
@@ -26,6 +33,8 @@ func _ready() -> void:
 	#Initialise recipe dictionary
 	for ingredient in requested_ingredient_list:
 		requested_ingredient_list_dict[ingredient] = false
+	
+	ingredient_request_ui.set_visible(false)
 
 
 func _physics_process(delta: float) -> void:
@@ -46,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		
 		if global_position.distance_squared_to(point_to_leave) < 0.01:
 			is_moving_to_leave_point = false
+			print(name, ": leaving map")
+			queue_free()
 
 
 func create_ingredient_request(state_to_add_if_true: GameManager.LemonadeState) -> void:
@@ -63,6 +74,8 @@ func set_queue_point_location(point: QueuePoint) -> void:
 	print(name, ": QPI: ", str(queue_point_index))
 	point.occupying_zombie = self
 	print(point.name, " is occupied by: ", self.name)
+	if queue_point_index == 0:
+		display_recipe_request()
 
 
 func be_served_drink(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
@@ -105,3 +118,19 @@ func drink_and_move_on(drink_correct: bool) -> void:
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
 	is_moving_to_leave_point = true
+	ingredient_request_ui.set_visible(false)
+
+
+func display_recipe_request() -> void:
+	assign_tick_or_cross(GameManager.LemonadeState.ICE, ice_tick)
+	assign_tick_or_cross(GameManager.LemonadeState.SUGAR, sugar_tick)
+	assign_tick_or_cross(GameManager.LemonadeState.LEMON, lemon_tick)
+	
+	ingredient_request_ui.set_visible(true)
+
+
+func assign_tick_or_cross(ingredient: GameManager.LemonadeState, tick_texture: TextureRect) -> void:
+	if requested_ingredient_list.has(ingredient):
+		tick_texture.texture = TICK
+	else:
+		tick_texture.texture = CROSS
