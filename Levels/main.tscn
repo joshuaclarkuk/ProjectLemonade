@@ -96,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, 1, -2.5)
 [node name="QueuePointA" parent="QueuePoints" instance=ExtResource("6_clnmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 5)
 
-[node name="QueuePoinB" parent="QueuePoints" instance=ExtResource("6_clnmg")]
+[node name="QueuePointB" parent="QueuePoints" instance=ExtResource("6_clnmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 1, 4.25)
 
 [node name="QueuePointC" parent="QueuePoints" instance=ExtResource("6_clnmg")]
@@ -107,6 +107,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 1, 2.5)
 
 [node name="QueuePointE" parent="QueuePoints" instance=ExtResource("6_clnmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 1, 2.5)
+
+[node name="LeavePoints" type="Node3D" parent="."]
+
+[node name="LeavePointA" type="Marker3D" parent="LeavePoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 4.5)
+
+[node name="LeavePointB" type="Marker3D" parent="LeavePoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0, 4.5)
 
 [node name="ZombieSpawnTimer" type="Timer" parent="."]
 autostart = true

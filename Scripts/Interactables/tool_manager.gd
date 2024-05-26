@@ -1,4 +1,4 @@
-extends Node3D
+class_name ToolManager extends Node3D
 
 @onready var glasses: Interactable = $Glasses
 @onready var serving_stand: Interactable = $ServingStand
@@ -20,6 +20,8 @@ var stage_2_colour_value: float = 0.4
 var stage_3_colour_value: float = 0.6
 var stage_4_colour_value: float = 0.8
 var stage_5_colour_value: float = 1.0
+
+signal drink_served(ingredients_served)
 
 
 func _ready() -> void:
@@ -102,6 +104,7 @@ func handle_bin() -> void:
 
 func serve_drink() -> void:
 	print("DRINK SERVED")
+	drink_served.emit(ingredients_in_glass)
 	# Handle zombie code here
 	print("Drink contained: ", str(ingredients_in_glass))
 	# Reset values
