@@ -176,3 +176,9 @@ func assign_tick_or_cross(ingredient: GameManager.LemonadeState, tick_texture: T
 
 func _on_time_until_money_ticks_down_timeout() -> void:
 	is_losing_money = true
+
+
+func end_day() -> void:
+	if ingredient_request_ui.is_visible():
+		ingredient_request_ui.set_visible(false)
+	set_physics_process(false)

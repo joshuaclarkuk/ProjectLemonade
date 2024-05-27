@@ -165,6 +165,7 @@ func spawn_zombie() -> void:
 	zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
 	zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
 	zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
+	day_has_ended.connect(zombie_instance.end_day)
 
 
 func serve_zombie_at_front_of_queue(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:

@@ -6,8 +6,9 @@ class_name Player extends CharacterBody3D
 @onready var interact_label: Label = $GameUI/InteractLabel
 @onready var money_made_label: Label = $GameUI/MoneyMadeLabel
 @onready var combo_label: Label = $GameUI/MoneyMadeLabel/ComboLabel
-@onready var day_timer_label_hours: Label = $GameUI/DayTimerLabelContainer/DayTimerLabelHours
-@onready var day_timer_label_minutes: Label = $GameUI/DayTimerLabelContainer/DayTimerLabelMinutes
+@onready var day_timer_label_hours: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelHours
+@onready var day_timer_label_minutes: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelMinutes
+
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2

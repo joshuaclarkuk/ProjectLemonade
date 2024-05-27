@@ -33,6 +33,7 @@ font_size = 72
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
+max_time_in_day = 270.0
 
 [node name="AudioPlayers" type="Node" parent="."]
 
