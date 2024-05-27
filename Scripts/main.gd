@@ -8,6 +8,11 @@ extends Node3D
 @onready var leave_points: Node3D = $LeavePoints
 @onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
+@onready var end_day_screen: Control = $EndDayScreen
+@onready var s_texture: TextureRect = $EndDayScreen/sTexture
+@onready var display_s_timer: Timer = $EndDayScreen/DisplaySTimer
+@onready var money_earned_label: Label = $EndDayScreen/MoneyEarnedLabel
+@onready var display_money_earned_timer: Timer = $EndDayScreen/DisplayMoneyEarnedTimer
 
 @export_category("Spawn Variables")
 @export var zombie: PackedScene
@@ -29,10 +34,14 @@ var spawn_timer_increased: bool = false
 @export_range(6.0, 360.0) var max_time_in_day: float = 180.0
 var time_left_in_day: float = 0.0
 var is_time_running: bool = false
+var hours
+var minutes
 # Start and end times in minutes since midnight
 const START_TIME = 7 * 60  # 07:00
 const END_TIME = 19 * 60   # 19:00
 const TOTAL_GAME_MINUTES = END_TIME - START_TIME
+
+signal day_has_ended()
 
 
 func _ready() -> void:
@@ -67,38 +76,20 @@ func _ready() -> void:
 	time_left_in_day = max_time_in_day
 	is_time_running = true
 	
+	# Initialise UI
+	end_day_screen.set_visible(false)
+	
 	# Connect signals
 	tool_manager.drink_served.connect(serve_zombie_at_front_of_queue)
+	day_has_ended.connect(player.end_day)
 
 
 func _process(delta: float) -> void:
 	if is_time_running:
-		time_left_in_day -= delta
+		pass_time_and_update_game_clock(delta)
+		decrease_spawn_time_throughout_day() # Decreases the spawn time every hour
 		if time_left_in_day <= 0.0:
-			is_time_running = false
-			time_left_in_day = 0.0 # End of day
-		
-		# Calculate the elapsed fraction of the game day
-		var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
-		
-		# Calculate the current in-game time in minutes since midnight
-		var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
-		
-		# Convert to hours and minutes
-		var hours = int(current_game_minutes) / 60
-		var minutes = int(current_game_minutes) % 60
-		
-		# Update the labels
-		player.day_timer_label_minutes.text = "%02d" % minutes
-		player.day_timer_label_hours.text = "%02d" % hours
-		
-		if minutes == 0.0 and !spawn_timer_increased:
-			spawn_timer_increased = true
-			zombie_spawn_timer.wait_time -= 1
-			print("New spawn delay: ", str(zombie_spawn_timer.wait_time))
-		elif minutes > 1.0 and spawn_timer_increased:
-			spawn_timer_increased = false
-			print("Spawn timer ready to be increased again. Spawn time is now: ", str(zombie_spawn_timer.wait_time))
+			end_day()
 
 
 func _input(event: InputEvent) -> void:
@@ -110,6 +101,37 @@ func toggle_debug_cam() -> void:
 			player.get_node("CameraPivot/SmoothCamera").set_current(true)
 	else:
 		overview_cam.set_current(true)
+
+
+func pass_time_and_update_game_clock(delta: float) -> void:
+	time_left_in_day -= delta
+	if time_left_in_day <= 0.0:
+		is_time_running = false
+		time_left_in_day = 0.0 # End of day
+	
+	# Calculate the elapsed fraction of the game day
+	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
+	
+	# Calculate the current in-game time in minutes since midnight
+	var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
+	
+	# Convert to hours and minutes
+	hours = int(current_game_minutes) / 60
+	minutes = int(current_game_minutes) % 60
+	
+	# Update the labels
+	player.day_timer_label_minutes.text = "%02d" % minutes
+	player.day_timer_label_hours.text = "%02d" % hours
+
+
+func decrease_spawn_time_throughout_day() -> void:
+	if minutes == 0.0 and !spawn_timer_increased:
+		spawn_timer_increased = true
+		zombie_spawn_timer.wait_time -= 1
+		print("New spawn delay: ", str(zombie_spawn_timer.wait_time))
+	elif minutes > 1.0 and spawn_timer_increased:
+		spawn_timer_increased = false
+		print("Spawn timer ready to be increased again. Spawn time is now: ", str(zombie_spawn_timer.wait_time))
 
 
 func _on_zombie_spawn_timer_timeout() -> void:
@@ -141,11 +163,14 @@ func spawn_zombie() -> void:
 	
 	# Connect payment signal with player
 	zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
+	zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
+	zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
 
 
 func serve_zombie_at_front_of_queue(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
-	queue_points_array[0].occupying_zombie.be_served_drink(ingredients_in_drink)
-	shuffle_zombies_forward(queue_points_array[0].occupying_zombie)
+	if queue_points_array[0].occupying_zombie:
+		queue_points_array[0].occupying_zombie.be_served_drink(ingredients_in_drink)
+		shuffle_zombies_forward(queue_points_array[0].occupying_zombie)
 
 
 func shuffle_zombies_forward(served_zombie: Zombie) -> void:
@@ -161,3 +186,21 @@ func shuffle_zombies_forward(served_zombie: Zombie) -> void:
 				point.is_occupied = true # Will need to remember to set this to false once zombie leaves
 				break
 		each_zombie.is_moving_to_queue_point = true
+
+
+func end_day() -> void:
+	day_has_ended.emit()
+	display_s_timer.start()
+	display_money_earned_timer.start()
+	s_texture.set_visible(false)
+	money_earned_label.set_visible(false)
+	end_day_screen.set_visible(true)
+
+
+func _on_display_s_timer_timeout() -> void:
+	s_texture.set_visible(true)
+
+
+func _on_display_money_earned_timer_timeout() -> void:
+	money_earned_label.text = "$%.2f" % player.money_made
+	money_earned_label.set_visible(true)

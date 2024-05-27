@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var vision_cast: RayCast3D = $CameraPivot/VisionCast
+@onready var game_ui: Control = $GameUI
 @onready var interact_label: Label = $GameUI/InteractLabel
 @onready var money_made_label: Label = $GameUI/MoneyMadeLabel
 @onready var combo_label: Label = $GameUI/MoneyMadeLabel/ComboLabel
@@ -101,3 +102,9 @@ func get_paid_and_update_UI(amount: float, was_perfect: bool) -> void:
 		
 	money_made += amount * current_multiplier
 	update_money_UI()
+
+
+func end_day() -> void:
+	game_ui.set_visible(false)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	set_physics_process(false)

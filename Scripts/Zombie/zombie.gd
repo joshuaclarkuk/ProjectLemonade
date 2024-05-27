@@ -27,6 +27,8 @@ var is_losing_money: bool = false
 var final_reward: float = 0.0
 
 signal pay_player(amount_to_pay: float, perfect_order: bool)
+signal is_at_front_of_queue
+signal is_leaving_front_of_queue
 
 
 func _ready() -> void:
@@ -71,6 +73,7 @@ func move_to_queue_point_and_display_recipe() -> void:
 	if global_position.distance_squared_to(queue_point_location) < 0.01:
 		is_moving_to_queue_point = false
 		if queue_point_index == 0:
+			is_at_front_of_queue.emit()
 			display_recipe_request()
 			time_until_money_ticks_down.start()
 
@@ -148,6 +151,7 @@ func drink_and_move_on(drink_correct: bool) -> void:
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
 	is_moving_to_leave_point = true
+	is_leaving_front_of_queue.emit()
 	ingredient_request_ui.set_visible(false)
 	
 	is_losing_money = false

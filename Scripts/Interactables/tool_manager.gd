@@ -11,6 +11,7 @@ class_name ToolManager extends Node3D
 @onready var cup_holder: CSGCylinder3D = $ServingStand/Mesh/CupHolder
 
 var serving_stand_empty: bool = true
+var can_serve_zombie: bool = false
 var glass_real_original_position: Vector3 = Vector3.ZERO
 var current_lemonade_state: int = 0
 var ingredients_in_glass: Array[GameManager.LemonadeState] = []
@@ -103,12 +104,13 @@ func handle_bin() -> void:
 
 
 func serve_drink() -> void:
-	print("DRINK SERVED")
-	drink_served.emit(ingredients_in_glass)
-	# Handle zombie code here
-	print("Drink contained: ", str(ingredients_in_glass))
-	# Reset values
-	reset_drink()
+	if can_serve_zombie:
+		print("DRINK SERVED")
+		drink_served.emit(ingredients_in_glass)
+		# Handle zombie code here
+		print("Drink contained: ", str(ingredients_in_glass))
+		# Reset values
+		reset_drink()
 
 
 func spill_drink() -> void:
@@ -132,3 +134,8 @@ func reset_drink() -> void:
 	serving_stand_empty = true
 	current_lemonade_state = GameManager.LemonadeState.NOT_STARTED
 	ingredients_in_glass.clear()
+
+
+func set_can_serve_zombie(can_serve: bool) -> void:
+	can_serve_zombie = can_serve
+	print("Can serve zombie: ", str(can_serve_zombie))
