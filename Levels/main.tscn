@@ -26,6 +26,7 @@ glow_enabled = true
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
+max_time_in_day = 360.0
 
 [node name="AudioPlayers" type="Node" parent="."]
 
@@ -142,9 +143,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -1, 4.5)
 wait_time = 15.0
 autostart = true
 
-[node name="IncreaseSpawnTimeTimer" type="Timer" parent="Timers"]
-wait_time = 2.0
-autostart = true
-
 [connection signal="timeout" from="Timers/ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
-[connection signal="timeout" from="Timers/IncreaseSpawnTimeTimer" to="." method="_on_increase_spawn_time_timer_timeout"]
