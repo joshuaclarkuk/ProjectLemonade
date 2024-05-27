@@ -13,6 +13,7 @@ extends Node3D
 @onready var display_s_timer: Timer = $EndDayScreen/DisplaySTimer
 @onready var money_earned_label: Label = $EndDayScreen/MoneyEarnedLabel
 @onready var display_money_earned_timer: Timer = $EndDayScreen/DisplayMoneyEarnedTimer
+@onready var sun: DirectionalLight3D = $Environment/Sun
 
 @export_category("Spawn Variables")
 @export var zombie: PackedScene
@@ -40,6 +41,9 @@ var minutes
 const START_TIME = 7 * 60  # 07:00
 const END_TIME = 19 * 60   # 19:00
 const TOTAL_GAME_MINUTES = END_TIME - START_TIME
+const TOTAL_SUN_ROTATION: float = 180.0
+var sun_current_rotation: float = 180.0
+var sun_rotation_increment: float = 0.0
 
 signal day_has_ended()
 
@@ -75,6 +79,8 @@ func _ready() -> void:
 	#Initialise day/night variables
 	time_left_in_day = max_time_in_day
 	is_time_running = true
+	sun_rotation_increment = TOTAL_SUN_ROTATION / max_time_in_day
+	sun.rotation_degrees.x = sun_current_rotation
 	
 	# Initialise UI
 	end_day_screen.set_visible(false)
@@ -90,6 +96,13 @@ func _process(delta: float) -> void:
 		decrease_spawn_time_throughout_day() # Decreases the spawn time every hour
 		if time_left_in_day <= 0.0:
 			end_day()
+	
+	# Rotate sun
+	sun_current_rotation += sun_rotation_increment * delta
+	if sun_current_rotation > 360.0:
+		sun_current_rotation = 360.0
+	
+	sun.rotation_degrees.x = sun_current_rotation
 
 
 func _input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=18 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -11,18 +11,22 @@
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="7_xslve"]
 [ext_resource type="Texture2D" uid="uid://bser51axymuul" path="res://Assets/Textures/GameOverScreen/End of Days.png" id="10_fpe8g"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="Gradient" id="Gradient_0pw7q"]
+colors = PackedColorArray(0.00810631, 0.00743411, 0.130104, 1, 0.00351917, 0.00351917, 0.00351917, 1)
 
-[sub_resource type="Sky" id="Sky_ii1wc"]
-sky_material = SubResource("ProceduralSkyMaterial_5sd3x")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_um5r8"]
+gradient = SubResource("Gradient_0pw7q")
+fill_from = Vector2(1, 0.505495)
 
-[sub_resource type="Environment" id="Environment_vqltd"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_uacxk"]
+night_sky = SubResource("GradientTexture2D_um5r8")
+
+[sub_resource type="Sky" id="Sky_cnt8i"]
+sky_material = SubResource("PhysicalSkyMaterial_uacxk")
+
+[sub_resource type="Environment" id="Environment_6w4mx"]
 background_mode = 2
-sky = SubResource("Sky_ii1wc")
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_cnt8i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_p0r04"]
 font_size = 72
@@ -35,6 +39,14 @@ script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
 max_time_in_day = 270.0
 
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_6w4mx")
+
+[node name="Sun" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.866026, -7.57103e-08, 0.5, -8.74228e-08, -1, 0, 0.5, -4.37114e-08, -0.866026, 0, 0, 0)
+
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
@@ -43,13 +55,6 @@ max_time_in_day = 270.0
 stream = ExtResource("3_dp8sl")
 volume_db = -6.0
 autoplay = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vqltd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 7)
