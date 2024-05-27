@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl333wp7sb2nk"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/splash_screen.gd" id="1_lawjl"]
+[ext_resource type="Texture2D" uid="uid://iphtya7xy1kr" path="res://Assets/Textures/SplashScreens/Godot Splash.png" id="2_5f1gf"]
+[ext_resource type="Texture2D" uid="uid://pjb6mfubypqc" path="res://Assets/Textures/SplashScreens/Waiting Games Splash.png" id="3_qa1px"]
+[ext_resource type="Texture2D" uid="uid://b21mav71ydfuq" path="res://Assets/Textures/SplashScreens/Blank Splash.png" id="4_ooqyi"]
+[ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="5_vuqt8"]
+[ext_resource type="AudioStream" uid="uid://c6y6xe61eyv45" path="res://Assets/SFX/CrowdNoiseClip.ogg" id="6_hlqu0"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lawjl")
+
+[node name="BlankSplash" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ooqyi")
+
+[node name="GodotSplash" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5f1gf")
+
+[node name="GodotTimer" type="Timer" parent="GodotSplash"]
+wait_time = 3.0
+one_shot = true
+
+[node name="WaitingGamesSplash" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qa1px")
+
+[node name="WaitingTimer" type="Timer" parent="WaitingGamesSplash"]
+wait_time = 3.0
+one_shot = true
+
+[node name="BlackSplash" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vuqt8")
+
+[node name="BlackTimer" type="Timer" parent="BlackSplash"]
+one_shot = true
+
+[node name="FinalTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CrowdAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hlqu0")
+volume_db = -21.549
+autoplay = true
+
+[connection signal="timeout" from="GodotSplash/GodotTimer" to="." method="_on_godot_timer_timeout"]
+[connection signal="timeout" from="WaitingGamesSplash/WaitingTimer" to="." method="_on_waiting_timer_timeout"]
+[connection signal="timeout" from="BlackSplash/BlackTimer" to="." method="_on_black_timer_timeout"]
+[connection signal="timeout" from="FinalTimer" to="." method="_on_final_timer_timeout"]
