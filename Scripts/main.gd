@@ -6,7 +6,7 @@ extends Node3D
 @onready var queue_points: Node3D = $QueuePoints
 @onready var spawn_points: Node3D = $SpawnPoints
 @onready var leave_points: Node3D = $LeavePoints
-@onready var zombie_spawn_timer: Timer = $ZombieSpawnTimer
+@onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
 
 @export var zombie: PackedScene
@@ -44,10 +44,12 @@ func _ready() -> void:
 		point.queue_point_index = index
 		print(point.name, " queue point index: ", str(point.queue_point_index))
 	
+	# Spawn zombie to queue position
 	zombie_spawn_timer.wait_time = zombie_spawn_timer_wait_time
 	max_zombies_to_spawn = queue_points_array.size()
 	print("Max zombies to spawn: ", str(max_zombies_to_spawn))
 	
+	# Connect signals
 	tool_manager.drink_served.connect(serve_zombie_at_front_of_queue)
 
 
@@ -88,6 +90,9 @@ func spawn_zombie() -> void:
 	
 	# Populate array
 	zombie_array.append(zombie_instance)
+	
+	# Connect payment signal with player
+	zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
 
 
 func serve_zombie_at_front_of_queue(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
@@ -112,5 +117,7 @@ func shuffle_zombies_forward(served_zombie: Zombie) -> void:
 
 func _on_increase_spawn_time_timer_timeout() -> void:
 	zombie_spawn_timer_wait_time -= 1
-	zombie_spawn_timer.wait_time = clamp(zombie_spawn_timer_wait_time, 3.0, 12.0)
-	print("Zombie spawn timer is now: ", str(zombie_spawn_timer_wait_time), " seconds")
+	if zombie_spawn_timer_wait_time < 6.0:
+		zombie_spawn_timer_wait_time = 6.0
+	zombie_spawn_timer.wait_time = zombie_spawn_timer_wait_time
+	print("Zombie spawn timer is now: ", str(zombie_spawn_timer.wait_time), " seconds")

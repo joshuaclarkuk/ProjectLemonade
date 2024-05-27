@@ -30,48 +30,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="IngredientRequestUI"]
+[node name="Panel" type="Panel" parent="IngredientRequestUI"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -520.0
+offset_top = 100.0
+offset_right = -520.0
+offset_bottom = 100.0
+grow_horizontal = 0
 
-[node name="Panel" type="Panel" parent="IngredientRequestUI/CenterContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="IngredientRequestUI/CenterContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="IngredientRequestUI/CenterContainer/Panel"]
+[node name="GridContainer" type="GridContainer" parent="IngredientRequestUI/Panel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 columns = 2
 
-[node name="IceSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="IceSprite" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
 texture = ExtResource("3_vpgqq")
 
-[node name="IceTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="IceTick" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
 
-[node name="SugarSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="SugarSprite" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
 texture = ExtResource("4_o0tst")
 
-[node name="SugarTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="SugarTick" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
 
-[node name="LemonSprite" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="LemonSprite" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
 texture = ExtResource("5_g4q8f")
 
-[node name="LemonTick" type="TextureRect" parent="IngredientRequestUI/CenterContainer/Panel/GridContainer"]
+[node name="LemonTick" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]
 layout_mode = 2
+
+[node name="TimeUntilMoneyTicksDown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="TimeUntilMoneyTicksDown" to="." method="_on_time_until_money_ticks_down_timeout"]

@@ -1,15 +1,20 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var vision_cast: RayCast3D = $CameraPivot/VisionCast
-@onready var game_ui: Control = $GameUI
 @onready var interact_label: Label = $GameUI/InteractLabel
+@onready var money_made_label: Label = $GameUI/MoneyMadeLabel
+@onready var combo_label: Label = $GameUI/MoneyMadeLabel/ComboLabel
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
+@export var combo_multiplier_to_add: float = 0.2
 
 var mouse_motion: Vector2 = Vector2.ZERO
 var object_to_interact_with: Interactable = null
-var ui_updated: bool = false
+var interact_ui_updated: bool = false
+var money_made: float = 0.0
+var current_multiplier: float = 1.0
+var perfect_orders_in_a_row: int = 0
 
 
 func _ready() -> void:
@@ -18,7 +23,10 @@ func _ready() -> void:
 	# Needs changing to be set via UI
 	GameManager.is_mouse_inverted = true
 	
-	game_ui.set_visible(false)
+	interact_label.set_visible(false)
+	money_made = 0.0
+	combo_label.set_visible(false)
+	update_money_UI()
 
 
 func _physics_process(delta: float) -> void:
@@ -54,16 +62,40 @@ func handle_camera_rotation() -> void:
 func cast_for_interactable() -> void:
 	if vision_cast.get_collider() is Interactable:
 		object_to_interact_with = vision_cast.get_collider()
-		update_game_UI()
+		update_interact_UI()
 	else:
 		# This works but needs refactoring so it's not closing the UI every frame
-		game_ui.set_visible(false)
-		ui_updated = false
+		interact_label.set_visible(false)
+		interact_ui_updated = false
 		object_to_interact_with = null
 
 
-func update_game_UI() -> void:
-	if !ui_updated:
-		game_ui.set_visible(true)
+func update_interact_UI() -> void:
+	if !interact_ui_updated:
+		interact_label.set_visible(true)
 		interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
-		ui_updated = true
+		interact_ui_updated = true
+
+
+func update_money_UI() -> void:
+	money_made_label.text = "$%.2f" % money_made
+
+
+func update_combo_UI() -> void:
+	combo_label.text = "x%.2f " % current_multiplier
+
+
+func get_paid_and_update_UI(amount: float, was_perfect: bool) -> void:
+	if was_perfect:
+		perfect_orders_in_a_row += 1
+		if perfect_orders_in_a_row > 1:
+			current_multiplier += combo_multiplier_to_add
+			update_combo_UI()
+			combo_label.set_visible(true)
+	else:
+		combo_label.set_visible(false)
+		perfect_orders_in_a_row = 0
+		current_multiplier = 1.0
+		
+	money_made += amount * current_multiplier
+	update_money_UI()
