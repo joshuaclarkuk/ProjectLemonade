@@ -76,4 +76,4 @@ func go_to_main_menu() -> void:
 
 
 func _on_final_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://Levels/main.tscn")
+	get_tree().change_scene_to_file("res://Levels/main_menu.tscn")

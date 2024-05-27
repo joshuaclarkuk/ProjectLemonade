@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://deuwvni3krd5j"]
+
+[ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_6i5v1"]
+[ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="5_w0rjq"]
+[ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="6_77kav"]
+[ext_resource type="Script" path="res://Scripts/Menu/main_menu_ui.gd" id="6_bkjke"]
+[ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="6_w3q0d"]
+[ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="7_it1xm"]
+[ext_resource type="Theme" uid="uid://ckgfmtm4f8akv" path="res://Themes/menu_theme.tres" id="7_k102j"]
+[ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="8_l0v2y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ii1wc"]
+sky_material = SubResource("ProceduralSkyMaterial_5sd3x")
+
+[sub_resource type="Environment" id="Environment_vqltd"]
+background_mode = 2
+sky = SubResource("Sky_ii1wc")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("3_6i5v1")
+volume_db = -6.0
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vqltd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainMenuCam" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74227e-08, 0, -1, 1.3, 1.1, 3.6)
+
+[node name="LemonadeStand" parent="." instance=ExtResource("5_w0rjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 6.425)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Roadside" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.25, 5)
+material_override = ExtResource("6_w3q0d")
+size = Vector3(110, 0.5, 10)
+
+[node name="Roadside2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -15)
+material_override = ExtResource("6_w3q0d")
+size = Vector3(110, 0.5, 10)
+
+[node name="Road" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, -5)
+material_override = ExtResource("7_it1xm")
+size = Vector3(110, 0.25, 10)
+
+[node name="Houses" type="Node3D" parent="Level"]
+
+[node name="House1" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="House2" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="House3" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="House4" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="House5" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="House6" type="CSGBox3D" parent="Level/Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3.75, -26)
+material_override = ExtResource("8_l0v2y")
+size = Vector3(9, 7.5, 12)
+
+[node name="MenuUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_bkjke")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 660.0
+offset_bottom = 595.0
+
+[node name="TitleText" type="Label" parent="MenuUI/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "The Last (Lemonade) Stand"
+label_settings = ExtResource("6_77kav")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartGameButton" type="Button" parent="MenuUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("7_k102j")
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="MenuUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("7_k102j")
+text = "Options
+"
+
+[node name="QuitGameButton" type="Button" parent="MenuUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("7_k102j")
+text = "Quit Game"
+
+[connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="MenuUI" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="MenuUI/VBoxContainer/OptionsButton" to="MenuUI" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="MenuUI" method="_on_quit_game_button_pressed"]
