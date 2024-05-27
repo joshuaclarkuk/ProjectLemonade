@@ -11,6 +11,7 @@ extends Node3D
 
 @export var zombie: PackedScene
 @export var zombie_spawn_timer_wait_time: float = 15.0
+@export var lowest_spawn_time: float = 6.0
 
 var tool_manager: ToolManager
 var spawn_points_array: Array = []
@@ -117,7 +118,7 @@ func shuffle_zombies_forward(served_zombie: Zombie) -> void:
 
 func _on_increase_spawn_time_timer_timeout() -> void:
 	zombie_spawn_timer_wait_time -= 1
-	if zombie_spawn_timer_wait_time < 6.0:
-		zombie_spawn_timer_wait_time = 6.0
+	if zombie_spawn_timer_wait_time < lowest_spawn_time:
+		zombie_spawn_timer_wait_time = lowest_spawn_time
 	zombie_spawn_timer.wait_time = zombie_spawn_timer_wait_time
 	print("Zombie spawn timer is now: ", str(zombie_spawn_timer.wait_time), " seconds")

@@ -82,7 +82,7 @@ func update_money_UI() -> void:
 
 
 func update_combo_UI() -> void:
-	combo_label.text = "x%.2f " % current_multiplier
+	combo_label.text = "combo: x%.2f " % current_multiplier
 
 
 func get_paid_and_update_UI(amount: float, was_perfect: bool) -> void:
