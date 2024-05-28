@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://7b4lgevh5krm"]
+[gd_scene load_steps=10 format=3 uid="uid://7b4lgevh5krm"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xuf3f"]
 [ext_resource type="Script" path="res://Scripts/Player/smooth_camera.gd" id="2_vw5h8"]
 [ext_resource type="Texture2D" uid="uid://dy1hydavrxcs0" path="res://Assets/Textures/crosshair001.png" id="3_2ch81"]
 [ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="3_upe0n"]
 [ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="4_76tog"]
+[ext_resource type="PackedScene" uid="uid://bj473wjnr1ry8" path="res://Player/tutorial_panel.tscn" id="6_v4tok"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfkup"]
 radius = 0.4
@@ -59,12 +60,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.5
-offset_top = 160.0
-offset_right = 51.5
-offset_bottom = 183.0
+offset_left = -125.5
+offset_top = 86.0
+offset_right = 125.5
+offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Left-click to interact with: \"TEST\""
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -164,3 +166,5 @@ text = "Fear Amount"
 label_settings = ExtResource("4_76tog")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TutorialPanel" parent="." instance=ExtResource("6_v4tok")]

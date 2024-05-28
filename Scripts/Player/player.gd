@@ -9,6 +9,7 @@ class_name Player extends CharacterBody3D
 @onready var day_timer_label_hours: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelHours
 @onready var day_timer_label_minutes: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelMinutes
 @onready var fear_bar: ProgressBar = $GameUI/FearBar
+@onready var tutorial_panel: PanelContainer = $TutorialPanel
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2
@@ -90,9 +91,9 @@ func cast_for_interactable() -> void:
 
 func update_interact_UI() -> void:
 	if !interact_ui_updated:
-		interact_label.set_visible(true)
-		interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
-		interact_ui_updated = true
+			interact_label.set_visible(true)
+			interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
+			interact_ui_updated = true
 
 
 func update_money_UI() -> void:

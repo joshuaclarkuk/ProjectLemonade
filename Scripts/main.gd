@@ -117,7 +117,7 @@ func _process(delta: float) -> void:
 		if time_left_in_day <= 0.0:
 			end_day()
 	
-	if !day_has_ended:
+	if time_left_in_day > 0.0:
 		# Rotate sun
 		sun_current_rotation += sun_rotation_increment * delta
 		if sun_current_rotation > 360.0:
@@ -174,7 +174,7 @@ func _on_zombie_spawn_timer_timeout() -> void:
 
 
 func spawn_zombie() -> void:
-	if !day_has_ended:
+	if time_left_in_day > 0.0:
 		var zombie_instance = zombie.instantiate()
 		zombies_spawned += 1
 		zombie_manager.add_child(zombie_instance)

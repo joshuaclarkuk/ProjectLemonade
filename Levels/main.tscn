@@ -293,6 +293,7 @@ wait_time = 6.0
 one_shot = true
 
 [node name="BlackFadeScreen" type="TextureRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
