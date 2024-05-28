@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://pjb6mfubypqc" path="res://Assets/Textures/SplashScreens/Waiting Games Splash.png" id="3_qa1px"]
 [ext_resource type="Texture2D" uid="uid://b21mav71ydfuq" path="res://Assets/Textures/SplashScreens/Blank Splash.png" id="4_ooqyi"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="5_vuqt8"]
-[ext_resource type="AudioStream" uid="uid://c6y6xe61eyv45" path="res://Assets/SFX/CrowdNoiseClip.ogg" id="6_hlqu0"]
+[ext_resource type="AudioStream" uid="uid://c6y6xe61eyv45" path="res://Assets/SFX/Ambience/CrowdNoiseClip.ogg" id="6_hlqu0"]
 
 [node name="SplashScreen" type="Control"]
 layout_mode = 3

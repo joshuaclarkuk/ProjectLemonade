@@ -167,9 +167,12 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"play_money_sfx"
+}, {
 "args": [],
 "method": &"update_money_UI"
 }]
@@ -367,3 +370,8 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_3132n")
 }
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="MoneyAudio" type="AudioStreamPlayer" parent="AudioPlayers"]
+volume_db = -12.0

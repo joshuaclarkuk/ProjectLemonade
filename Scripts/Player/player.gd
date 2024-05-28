@@ -1,5 +1,10 @@
 class_name Player extends CharacterBody3D
 
+# Money SFX
+const MONEY_SFX_1 = preload("res://Assets/SFX/Money/MoneySFX1.wav")
+const MONEY_SFX_2 = preload("res://Assets/SFX/Money/MoneySFX2.wav")
+var money_sfx_array: Array[AudioStream] = []
+
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var vision_cast: RayCast3D = $CameraPivot/VisionCast
 @onready var game_ui: Control = $GameUI
@@ -11,6 +16,7 @@ class_name Player extends CharacterBody3D
 @onready var day_timer_label_minutes: Label = $GameUI/TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelMinutes
 @onready var fear_bar: ProgressBar = $GameUI/FearBar
 @onready var tutorial_panel: PanelContainer = $TutorialPanel
+@onready var money_audio: AudioStreamPlayer = $AudioPlayers/MoneyAudio
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
@@ -45,6 +51,10 @@ func _ready() -> void:
 	fear_bar.min_value = 0
 	fear_bar.max_value = max_fear_before_game_over
 	fear_bar.step = 1
+	
+	# Populate money sfx array
+	money_sfx_array.append(MONEY_SFX_1)
+	money_sfx_array.append(MONEY_SFX_2)
 
 
 func _physics_process(delta: float) -> void:
@@ -128,6 +138,13 @@ func delete_combo_after_mistake() -> void:
 	combo_label.set_visible(false)
 	perfect_orders_in_a_row = 0
 	current_multiplier = 1.0
+
+
+func play_money_sfx() -> void:
+	var random_index = randi() % money_sfx_array.size() - 1
+	money_audio.stream = money_sfx_array[random_index]
+	money_audio.pitch_scale = randf_range(0.8, 1.2)
+	money_audio.play()
 
 
 func increase_fear_amount() -> void:

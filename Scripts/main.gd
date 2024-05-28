@@ -23,6 +23,11 @@ extends Node3D
 @onready var mistakes_made_stat: Label = $EndDayScreen/StatsGrid/MistakesMadeStat
 @onready var drinks_binned_stat: Label = $EndDayScreen/StatsGrid/DrinksBinnedStat
 
+#Audio Players
+@onready var ambience_player: AudioStreamPlayer = $AudioPlayers/AmbiencePlayer
+@onready var bgm_player: AudioStreamPlayer = $AudioPlayers/BGMPlayer
+
+
 @onready var sun: DirectionalLight3D = $Environment/Sun
 @onready var black_fade_screen: TextureRect = $BlackFadeScreen
 
@@ -109,8 +114,6 @@ func _ready() -> void:
 	#Initialise day/night variables
 	time_left_in_day = max_time_in_day
 	is_time_running = true
-	sun_rotation_increment = TOTAL_SUN_ROTATION / max_time_in_day
-	sun.rotation_degrees.x = sun_current_rotation
 	
 	#Set game clock to 07:00 at start
 	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
@@ -138,14 +141,6 @@ func _process(delta: float) -> void:
 		decrease_spawn_time_throughout_day() # Decreases the spawn time every hour
 		if time_left_in_day <= 0.0:
 			end_day()
-	
-	if time_left_in_day > 0.0:
-		# Rotate sun
-		sun_current_rotation += sun_rotation_increment * delta
-		if sun_current_rotation > 360.0:
-			sun_current_rotation = 360.0
-		
-		sun.rotation_degrees.x = sun_current_rotation
 
 
 func _input(event: InputEvent) -> void:
