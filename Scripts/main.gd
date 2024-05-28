@@ -8,12 +8,20 @@ extends Node3D
 @onready var leave_points: Node3D = $LeavePoints
 @onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
+
+# End of day timers and screens
 @onready var end_day_screen: Control = $EndDayScreen
 @onready var s_texture: TextureRect = $EndDayScreen/sTexture
 @onready var display_s_timer: Timer = $EndDayScreen/DisplaySTimer
 @onready var money_earned_label: Label = $EndDayScreen/MoneyEarnedLabel
+@onready var stats_box: HBoxContainer = $EndDayScreen/StatsBox
+@onready var end_of_day_buttons: HBoxContainer = $EndDayScreen/EndOfDayButtons
 @onready var display_money_earned_timer: Timer = $EndDayScreen/DisplayMoneyEarnedTimer
+@onready var show_stats_timer: Timer = $EndDayScreen/ShowStatsTimer
+@onready var restart_button_timer: Timer = $EndDayScreen/RestartButtonTimer
+
 @onready var sun: DirectionalLight3D = $Environment/Sun
+@onready var black_fade_screen: TextureRect = $BlackFadeScreen
 
 @export_category("Spawn Variables")
 @export var zombie: PackedScene
@@ -49,6 +57,13 @@ signal day_has_ended()
 
 
 func _ready() -> void:
+	# Fade from black
+	black_fade_screen.modulate.a = 1.0
+	black_fade_screen.set_visible(true)
+	var fade_tween = create_tween()
+	fade_tween.tween_interval(1.0)
+	fade_tween.tween_property(black_fade_screen, "modulate:a", 0.0, 1.0)
+	
 	#Initialise GameManager variables
 	GameManager.set_player(player)
 	GameManager.set_camera(player.get_node("CameraPivot/SmoothCamera"))
@@ -159,33 +174,34 @@ func _on_zombie_spawn_timer_timeout() -> void:
 
 
 func spawn_zombie() -> void:
-	var zombie_instance = zombie.instantiate()
-	zombies_spawned += 1
-	zombie_manager.add_child(zombie_instance)
-	var random_spawn_index = randi_range(0, 1) # Get random spawn point
-	zombie_instance.global_position = spawn_points_array[random_spawn_index].global_position
-	
-	# Determine leave point
-	var random_leave_point_index = randi_range(0, leave_points_array.size() - 1)
-	zombie_instance.point_to_leave = leave_points_array[random_leave_point_index].global_position
-	
-	# Get first available queue point
-	for point in queue_points_array:
-		if !point.is_occupied:
-			zombie_instance.set_queue_point_location(point)
-			point.is_occupied = true # Will need to remember to set this to false once zombie leaves
-			break
-	zombie_instance.is_moving_to_queue_point = true
-	
-	# Populate array
-	zombie_array.append(zombie_instance)
-	
-	# Connect payment signal with player
-	zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
-	zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
-	zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
-	zombie_instance.issue_fear_signal.connect(player.increase_fear_amount)
-	day_has_ended.connect(zombie_instance.end_day)
+	if !day_has_ended:
+		var zombie_instance = zombie.instantiate()
+		zombies_spawned += 1
+		zombie_manager.add_child(zombie_instance)
+		var random_spawn_index = randi_range(0, 1) # Get random spawn point
+		zombie_instance.global_position = spawn_points_array[random_spawn_index].global_position
+		
+		# Determine leave point
+		var random_leave_point_index = randi_range(0, leave_points_array.size() - 1)
+		zombie_instance.point_to_leave = leave_points_array[random_leave_point_index].global_position
+		
+		# Get first available queue point
+		for point in queue_points_array:
+			if !point.is_occupied:
+				zombie_instance.set_queue_point_location(point)
+				point.is_occupied = true # Will need to remember to set this to false once zombie leaves
+				break
+		zombie_instance.is_moving_to_queue_point = true
+		
+		# Populate array
+		zombie_array.append(zombie_instance)
+		
+		# Connect payment signal with player
+		zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
+		zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
+		zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
+		zombie_instance.issue_fear_signal.connect(player.increase_fear_amount)
+		day_has_ended.connect(zombie_instance.end_day)
 
 
 func serve_zombie_at_front_of_queue(ingredients_in_drink: Array[GameManager.LemonadeState]) -> void:
@@ -211,11 +227,18 @@ func shuffle_zombies_forward(served_zombie: Zombie) -> void:
 
 func end_day() -> void:
 	day_has_ended.emit()
-	display_s_timer.start()
-	display_money_earned_timer.start()
+	
+	# Hide all UI so it can be brough in piece by piece
 	s_texture.set_visible(false)
 	money_earned_label.set_visible(false)
+	stats_box.set_visible(false)
+	end_of_day_buttons.set_visible(false)
 	end_day_screen.set_visible(true)
+	
+	display_s_timer.start() # Set timer ticking until red graffiti "s!" is displayed
+	display_money_earned_timer.start() # Do same for money earned
+	show_stats_timer.start()
+	restart_button_timer.start()
 
 
 func _on_display_s_timer_timeout() -> void:
@@ -225,3 +248,31 @@ func _on_display_s_timer_timeout() -> void:
 func _on_display_money_earned_timer_timeout() -> void:
 	money_earned_label.text = "$%.2f" % player.money_made
 	money_earned_label.set_visible(true)
+
+
+func _on_show_stats_timer_timeout() -> void:
+	stats_box.set_visible(true)
+
+
+func _on_restart_button_timer_timeout() -> void:
+	end_of_day_buttons.set_visible(true)
+
+
+func _on_restart_button_pressed() -> void:
+	var fade_tween = create_tween()
+	fade_tween.tween_property(black_fade_screen, "modulate:a", 1.0, 1.0)
+	fade_tween.tween_callback(restart_level).set_delay(1.0)
+
+
+func _on_quit_button_pressed() -> void:
+	var fade_tween = create_tween()
+	fade_tween.tween_property(black_fade_screen, "modulate:a", 1.0, 1.0)
+	fade_tween.tween_callback(quit_game)
+
+
+func restart_level() -> void:
+	get_tree().change_scene_to_file("res://Levels/main.tscn")
+
+
+func quit_game() -> void:
+	get_tree().quit()

@@ -38,6 +38,7 @@ signal issue_fear_signal
 
 
 func _ready() -> void:
+	# Get references
 	character_collider = get_node("Collider")
 	
 	# Create ingredient list (Note first two options always have to be true

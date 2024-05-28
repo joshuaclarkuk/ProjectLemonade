@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7b4lgevh5krm"]
+[gd_scene load_steps=9 format=3 uid="uid://7b4lgevh5krm"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xuf3f"]
 [ext_resource type="Script" path="res://Scripts/Player/smooth_camera.gd" id="2_vw5h8"]
 [ext_resource type="Texture2D" uid="uid://dy1hydavrxcs0" path="res://Assets/Textures/crosshair001.png" id="3_2ch81"]
+[ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="3_upe0n"]
 [ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="4_76tog"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfkup"]
@@ -13,11 +14,14 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
-[sub_resource type="LabelSettings" id="LabelSettings_50nvk"]
-font_size = 72
+[sub_resource type="LabelSettings" id="LabelSettings_kd1fw"]
+font = ExtResource("3_upe0n")
+font_size = 66
+font_color = Color(1, 1, 0.658824, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xuf3f")
+fear_bar_danger_colour = Color(0.825062, 0.0755493, 0.0271334, 1)
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rfkup")
@@ -74,8 +78,8 @@ offset_top = -160.0
 offset_right = 264.0
 offset_bottom = -60.9997
 grow_vertical = 0
-text = "$999"
-label_settings = SubResource("LabelSettings_50nvk")
+text = "$999.99"
+label_settings = SubResource("LabelSettings_kd1fw")
 horizontal_alignment = 1
 vertical_alignment = 1
 

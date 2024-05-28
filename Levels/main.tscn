@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=21 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="7_xslve"]
 [ext_resource type="Texture2D" uid="uid://bser51axymuul" path="res://Assets/Textures/GameOverScreen/End of Days.png" id="10_fpe8g"]
+[ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="11_cu7dw"]
+[ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="11_uujn6"]
 
 [sub_resource type="Gradient" id="Gradient_0pw7q"]
 colors = PackedColorArray(0.00810631, 0.00743411, 0.130104, 1, 0.00351917, 0.00351917, 0.00351917, 1)
@@ -32,7 +34,11 @@ sky = SubResource("Sky_cnt8i")
 font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvaxj"]
+font = ExtResource("11_uujn6")
 font_size = 72
+
+[sub_resource type="Theme" id="Theme_gu2h5"]
+default_font = ExtResource("11_uujn6")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
@@ -162,14 +168,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisplaySTimer" type="Timer" parent="EndDayScreen"]
-wait_time = 2.0
-one_shot = true
-
-[node name="DisplayMoneyEarnedTimer" type="Timer" parent="EndDayScreen"]
-wait_time = 3.0
-one_shot = true
-
 [node name="EndOfDay(s)Label" type="Label" parent="EndDayScreen"]
 layout_mode = 1
 anchors_preset = 8
@@ -216,10 +214,94 @@ offset_right = 230.5
 offset_bottom = -352.0
 grow_horizontal = 2
 grow_vertical = 0
+text = "$999.99"
 label_settings = SubResource("LabelSettings_pvaxj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StatsBox" type="HBoxContainer" parent="EndDayScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -325.0
+offset_right = 77.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StatsTitlesLabel" type="Label" parent="EndDayScreen/StatsBox"]
+layout_mode = 2
+text = "Drinks Served:
+Mistakes Made:
+Drinks Binned:
+Fear Level:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StatsValuesLabel" type="Label" parent="EndDayScreen/StatsBox"]
+layout_mode = 2
+text = "999
+99
+99
+20"
+vertical_alignment = 1
+
+[node name="EndOfDayButtons" type="HBoxContainer" parent="EndDayScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -200.0
+offset_right = 310.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_gu2h5")
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="EndDayScreen/EndOfDayButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Restart Game"
+
+[node name="QuitButton" type="Button" parent="EndDayScreen/EndOfDayButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Quit Game"
+
+[node name="DisplaySTimer" type="Timer" parent="EndDayScreen"]
+wait_time = 2.0
+one_shot = true
+
+[node name="DisplayMoneyEarnedTimer" type="Timer" parent="EndDayScreen"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ShowStatsTimer" type="Timer" parent="EndDayScreen"]
+wait_time = 4.0
+one_shot = true
+
+[node name="RestartButtonTimer" type="Timer" parent="EndDayScreen"]
+wait_time = 6.0
+one_shot = true
+
+[node name="BlackFadeScreen" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("11_cu7dw")
+
 [connection signal="timeout" from="Timers/ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
+[connection signal="pressed" from="EndDayScreen/EndOfDayButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="EndDayScreen/EndOfDayButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="EndDayScreen/DisplaySTimer" to="." method="_on_display_s_timer_timeout"]
 [connection signal="timeout" from="EndDayScreen/DisplayMoneyEarnedTimer" to="." method="_on_display_money_earned_timer_timeout"]
+[connection signal="timeout" from="EndDayScreen/ShowStatsTimer" to="." method="_on_show_stats_timer_timeout"]
+[connection signal="timeout" from="EndDayScreen/RestartButtonTimer" to="." method="_on_restart_button_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://deuwvni3krd5j"]
+[gd_scene load_steps=14 format=3 uid="uid://deuwvni3krd5j"]
 
 [ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_6i5v1"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="5_w0rjq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="7_it1xm"]
 [ext_resource type="Theme" uid="uid://ckgfmtm4f8akv" path="res://Themes/menu_theme.tres" id="7_k102j"]
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="8_l0v2y"]
+[ext_resource type="Texture2D" uid="uid://3tst82wpktye" path="res://Assets/Textures/ZombieUI/cross.png" id="9_qhxur"]
+[ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="10_fxybc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -109,8 +111,8 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 offset_left = 160.0
 offset_top = 160.0
-offset_right = 660.0
-offset_bottom = 595.0
+offset_right = 664.0
+offset_bottom = 353.0
 
 [node name="TitleText" type="Label" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
@@ -127,12 +129,21 @@ layout_mode = 2
 theme = ExtResource("7_k102j")
 text = "Start Game"
 
-[node name="OptionsButton" type="Button" parent="MenuUI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="ToggleInvertedBox" type="HBoxContainer" parent="MenuUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ToggleInvertedButton" type="Button" parent="MenuUI/VBoxContainer/ToggleInvertedBox"]
+custom_minimum_size = Vector2(450, 50)
 layout_mode = 2
 theme = ExtResource("7_k102j")
-text = "Options
+text = "Invert Mouse?
 "
+
+[node name="TickBoxTexture" type="TextureRect" parent="MenuUI/VBoxContainer/ToggleInvertedBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_qhxur")
+expand_mode = 1
 
 [node name="QuitGameButton" type="Button" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -140,6 +151,14 @@ layout_mode = 2
 theme = ExtResource("7_k102j")
 text = "Quit Game"
 
+[node name="BlackFadeScreen" type="TextureRect" parent="MenuUI"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("10_fxybc")
+
 [connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="MenuUI" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="MenuUI/VBoxContainer/OptionsButton" to="MenuUI" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuUI/VBoxContainer/ToggleInvertedBox/ToggleInvertedButton" to="MenuUI" method="_on_toggle_inverted_button_pressed"]
 [connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="MenuUI" method="_on_quit_game_button_pressed"]

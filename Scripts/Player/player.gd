@@ -12,6 +12,9 @@ class_name Player extends CharacterBody3D
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2
+@export_category("Fear Bar")
+@export var fear_bar_normal_colour: Color = Color(226.0, 226.0, 0.0,  255.0)
+@export var fear_bar_danger_colour: Color = Color(210.0, 19.0, 7.0,  255.0)
 @export var max_fear_before_game_over: int = 20
 
 var mouse_motion: Vector2 = Vector2.ZERO
@@ -29,9 +32,6 @@ signal fear_at_max
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameManager.set_player(self)
-	
-	# Needs changing to be set via UI
-	GameManager.is_mouse_inverted = true
 	
 	interact_label.set_visible(false)
 	money_made = 0.0
@@ -61,6 +61,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if event.is_action_pressed("debug3"):
+		increase_fear_amount()
 
 
 func handle_camera_rotation() -> void:
@@ -120,6 +123,9 @@ func increase_fear_amount() -> void:
 	fear_amount += 1
 	fear_bar.value = fear_amount
 	print("Player fear amount: ", str(fear_amount))
+	
+	if fear_amount >= max_fear_before_game_over * 0.8:
+		fear_bar.modulate = fear_bar_danger_colour
 	
 	if fear_amount >= max_fear_before_game_over:
 		fear_at_max.emit()
