@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=23 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -36,6 +36,12 @@ font_size = 72
 [sub_resource type="LabelSettings" id="LabelSettings_pvaxj"]
 font = ExtResource("11_uujn6")
 font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncw84"]
+font = ExtResource("11_uujn6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjr8c"]
+font = ExtResource("11_uujn6")
 
 [sub_resource type="Theme" id="Theme_gu2h5"]
 default_font = ExtResource("11_uujn6")
@@ -219,36 +225,53 @@ label_settings = SubResource("LabelSettings_pvaxj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsBox" type="HBoxContainer" parent="EndDayScreen"]
+[node name="StatsGrid" type="GridContainer" parent="EndDayScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -76.0
-offset_top = -325.0
-offset_right = 77.0
-offset_bottom = -224.0
+offset_left = -82.0
+offset_top = -329.0
+offset_right = 82.0
+offset_bottom = -228.0
 grow_horizontal = 2
 grow_vertical = 0
+columns = 2
 
-[node name="StatsTitlesLabel" type="Label" parent="EndDayScreen/StatsBox"]
+[node name="DrinksServedTitle" type="Label" parent="EndDayScreen/StatsGrid"]
 layout_mode = 2
-text = "Drinks Served:
-Mistakes Made:
-Drinks Binned:
-Fear Level:"
+text = "Correct drinks served:"
+label_settings = SubResource("LabelSettings_ncw84")
 horizontal_alignment = 2
-vertical_alignment = 1
 
-[node name="StatsValuesLabel" type="Label" parent="EndDayScreen/StatsBox"]
+[node name="DrinksServedStat" type="Label" parent="EndDayScreen/StatsGrid"]
 layout_mode = 2
-text = "999
-99
-99
-20"
-vertical_alignment = 1
+text = "999"
+label_settings = SubResource("LabelSettings_kjr8c")
+
+[node name="MistakesMadeTitle" type="Label" parent="EndDayScreen/StatsGrid"]
+layout_mode = 2
+text = "Mistakes made:"
+label_settings = SubResource("LabelSettings_ncw84")
+horizontal_alignment = 2
+
+[node name="MistakesMadeStat" type="Label" parent="EndDayScreen/StatsGrid"]
+layout_mode = 2
+text = "99"
+label_settings = SubResource("LabelSettings_kjr8c")
+
+[node name="DrinksBinnedTitle" type="Label" parent="EndDayScreen/StatsGrid"]
+layout_mode = 2
+text = "Drinks binned:"
+label_settings = SubResource("LabelSettings_ncw84")
+horizontal_alignment = 2
+
+[node name="DrinksBinnedStat" type="Label" parent="EndDayScreen/StatsGrid"]
+layout_mode = 2
+text = "99"
+label_settings = SubResource("LabelSettings_kjr8c")
 
 [node name="EndOfDayButtons" type="HBoxContainer" parent="EndDayScreen"]
 layout_mode = 1

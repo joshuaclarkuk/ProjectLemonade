@@ -1,12 +1,15 @@
 extends PanelContainer
 
-@onready var tutorial_text: Label = $TutorialText
+@onready var title_text: Label = $VBoxContainer/TitleText
+@onready var tutorial_text: Label = $VBoxContainer/TutorialText
 
 const OPENING_TEXT = preload("res://Scripts/TutorialText/opening_text.tres")
 
 var is_displaying_text: bool = false
 var current_text_resource: TutorialTextRes = null
 var current_text_index: int = 0
+
+signal game_has_started
 
 
 func _ready() -> void:
@@ -19,6 +22,8 @@ func display_tutorial_text(text_resource: TutorialTextRes) -> void:
 	current_text_resource = text_resource
 	is_displaying_text = true
 	set_visible(true)
+	
+	title_text.text = text_resource.title_text[current_text_index]
 	tutorial_text.text = text_resource.text_to_display[current_text_index]
 	var tween = create_tween()
 	tween.tween_callback(hide_tutorial_text).set_delay(text_resource.time_to_display)
@@ -35,3 +40,4 @@ func hide_tutorial_text() -> void:
 		set_visible(false)
 		current_text_resource = null
 		current_text_index = 0
+		game_has_started.emit()

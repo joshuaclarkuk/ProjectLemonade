@@ -23,6 +23,8 @@ var stage_4_colour_value: float = 0.8
 var stage_5_colour_value: float = 1.0
 
 signal drink_served(ingredients_served)
+signal mistake_made
+signal binned_drink
 
 
 func _ready() -> void:
@@ -99,7 +101,10 @@ func handle_serving_stand() -> void:
 
 
 func handle_bin() -> void:
+	if serving_stand_empty: return
+	
 	print("Binned drink. Start again")
+	binned_drink.emit()
 	reset_drink()
 
 
@@ -115,6 +120,7 @@ func serve_drink() -> void:
 
 func spill_drink() -> void:
 	print("DRINK SPILLED")
+	mistake_made.emit()
 	# Play spilled animation
 	reset_drink()
 

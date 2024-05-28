@@ -4,11 +4,6 @@
 
 [resource]
 script = ExtResource("1_ngw3t")
-text_to_display = Array[String](["Zombies love lemonade!
-
-Grab a glass, fill it with lemonade and add each of the extra ingredients as per the zombie's request. Quick service means more money!", "Zombies hate mistakes!
-
-Failure to fulfil the correct order will anger the zombie and cause your fear meter to rise. Throw incorrect drinks in the bin instead of serving!", "Zombies hate queueing! 
-
-Leaving one standing in line for too long will make them angry, raising your fear meter"])
+title_text = Array[String](["Zombies love lemonade!", "Zombies hate mistakes!", "Zombies hate waiting!"])
+text_to_display = Array[String](["Grab a glass, fill it with lemonade and add each of the extra ingredients as per the zombie's request. Quick service means more money!", "Failure to fulfil the correct order will anger the zombie and cause your fear meter to rise. Throw incorrect drinks in the bin instead of serving!", "Leaving one standing in line for too long will make them angry, raising your fear meter"])
 time_to_display = 8.0

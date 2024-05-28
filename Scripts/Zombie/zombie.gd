@@ -32,6 +32,8 @@ var final_reward: float = 0.0
 var day_is_ended: bool = false
 
 signal pay_player(amount_to_pay: float, perfect_order: bool)
+signal correct_drink_served
+signal mistake_made
 signal is_at_front_of_queue
 signal is_leaving_front_of_queue
 signal issue_fear_signal
@@ -167,11 +169,14 @@ func drink_and_move_on(drink_correct: bool) -> void:
 		print("Drink correct, ", str("$%.2f" % final_reward), " awarded")
 		if final_reward == max_reward:
 			pay_player.emit(final_reward, true)
+			correct_drink_served.emit()
 		else:
 			pay_player.emit(final_reward, false)
+			correct_drink_served.emit()
 	else:
 		print("Drink NOT correct, ", name, ": emitted fear signal")
 		issue_fear_signal.emit()
+		mistake_made.emit()
 	
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false

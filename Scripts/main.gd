@@ -14,11 +14,14 @@ extends Node3D
 @onready var s_texture: TextureRect = $EndDayScreen/sTexture
 @onready var display_s_timer: Timer = $EndDayScreen/DisplaySTimer
 @onready var money_earned_label: Label = $EndDayScreen/MoneyEarnedLabel
-@onready var stats_box: HBoxContainer = $EndDayScreen/StatsBox
+@onready var stats_box: GridContainer = $EndDayScreen/StatsGrid
 @onready var end_of_day_buttons: HBoxContainer = $EndDayScreen/EndOfDayButtons
 @onready var display_money_earned_timer: Timer = $EndDayScreen/DisplayMoneyEarnedTimer
 @onready var show_stats_timer: Timer = $EndDayScreen/ShowStatsTimer
 @onready var restart_button_timer: Timer = $EndDayScreen/RestartButtonTimer
+@onready var drinks_served_stat: Label = $EndDayScreen/StatsGrid/DrinksServedStat
+@onready var mistakes_made_stat: Label = $EndDayScreen/StatsGrid/MistakesMadeStat
+@onready var drinks_binned_stat: Label = $EndDayScreen/StatsGrid/DrinksBinnedStat
 
 @onready var sun: DirectionalLight3D = $Environment/Sun
 @onready var black_fade_screen: TextureRect = $BlackFadeScreen
@@ -52,6 +55,14 @@ const TOTAL_GAME_MINUTES = END_TIME - START_TIME
 const TOTAL_SUN_ROTATION: float = 180.0
 var sun_current_rotation: float = 180.0
 var sun_rotation_increment: float = 0.0
+
+# Stats to display at end
+var drinks_served: int = 0
+var mistakes_made: int = 0
+var drinks_binned: int = 0
+
+
+var game_has_started: bool = false
 
 signal day_has_ended()
 
@@ -101,6 +112,14 @@ func _ready() -> void:
 	sun_rotation_increment = TOTAL_SUN_ROTATION / max_time_in_day
 	sun.rotation_degrees.x = sun_current_rotation
 	
+	#Set game clock to 07:00 at start
+	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
+	var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
+	hours = int(current_game_minutes) / 60
+	minutes = int(current_game_minutes) % 60
+	player.day_timer_label_minutes.text = "%02d" % minutes
+	player.day_timer_label_hours.text = "%02d" % hours
+	
 	# Initialise UI
 	end_day_screen.set_visible(false)
 	
@@ -108,6 +127,9 @@ func _ready() -> void:
 	tool_manager.drink_served.connect(serve_zombie_at_front_of_queue)
 	day_has_ended.connect(player.end_day)
 	player.fear_at_max.connect(end_day)
+	player.get_node("TutorialPanel").game_has_started.connect(set_game_has_started.bind(true))
+	tool_manager.mistake_made.connect(increase_mistakes_made_stat)
+	tool_manager.binned_drink.connect(increase_drinks_binned_stat)
 
 
 func _process(delta: float) -> void:
@@ -137,28 +159,36 @@ func toggle_debug_cam() -> void:
 		overview_cam.set_current(true)
 
 
+func set_game_has_started(has_started: bool) -> void:
+	game_has_started = has_started
+	print("Game has started:", str(game_has_started))
+
+
 func pass_time_and_update_game_clock(delta: float) -> void:
-	time_left_in_day -= delta
-	if time_left_in_day <= 0.0:
-		is_time_running = false
-		time_left_in_day = 0.0 # End of day
-	
-	# Calculate the elapsed fraction of the game day
-	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
-	
-	# Calculate the current in-game time in minutes since midnight
-	var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
-	
-	# Convert to hours and minutes
-	hours = int(current_game_minutes) / 60
-	minutes = int(current_game_minutes) % 60
-	
-	# Update the labels
-	player.day_timer_label_minutes.text = "%02d" % minutes
-	player.day_timer_label_hours.text = "%02d" % hours
+	if game_has_started:
+		time_left_in_day -= delta
+		if time_left_in_day <= 0.0:
+			is_time_running = false
+			time_left_in_day = 0.0 # End of day
+		
+		# Calculate the elapsed fraction of the game day
+		var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
+		
+		# Calculate the current in-game time in minutes since midnight
+		var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
+		
+		# Convert to hours and minutes
+		hours = int(current_game_minutes) / 60
+		minutes = int(current_game_minutes) % 60
+		
+		# Update the labels
+		player.day_timer_label_minutes.text = "%02d" % minutes
+		player.day_timer_label_hours.text = "%02d" % hours
 
 
 func decrease_spawn_time_throughout_day() -> void:
+	if !game_has_started: return
+	
 	if minutes == 0.0 and !spawn_timer_increased:
 		spawn_timer_increased = true
 		zombie_spawn_timer.wait_time -= 1
@@ -174,7 +204,7 @@ func _on_zombie_spawn_timer_timeout() -> void:
 
 
 func spawn_zombie() -> void:
-	if time_left_in_day > 0.0:
+	if time_left_in_day > 0.0 and game_has_started:
 		var zombie_instance = zombie.instantiate()
 		zombies_spawned += 1
 		zombie_manager.add_child(zombie_instance)
@@ -198,9 +228,12 @@ func spawn_zombie() -> void:
 		
 		# Connect payment signal with player
 		zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
+		zombie_instance.correct_drink_served.connect(increase_drinks_served_stat)
 		zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
 		zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
 		zombie_instance.issue_fear_signal.connect(player.increase_fear_amount)
+		zombie_instance.mistake_made.connect(increase_mistakes_made_stat)
+		zombie_instance.mistake_made.connect(player.delete_combo_after_mistake)
 		day_has_ended.connect(zombie_instance.end_day)
 
 
@@ -239,6 +272,23 @@ func end_day() -> void:
 	display_money_earned_timer.start() # Do same for money earned
 	show_stats_timer.start()
 	restart_button_timer.start()
+	
+	game_has_started = false
+
+
+func increase_drinks_served_stat() -> void:
+	drinks_served += 1
+	print("Drinks served: ", str(drinks_served))
+
+
+func increase_mistakes_made_stat() -> void:
+	mistakes_made += 1
+	print("Mistakes made: ", str(mistakes_made))
+
+
+func increase_drinks_binned_stat() -> void:
+	drinks_binned += 1
+	print("Drinks binned: ", str(drinks_binned))
 
 
 func _on_display_s_timer_timeout() -> void:
@@ -251,6 +301,9 @@ func _on_display_money_earned_timer_timeout() -> void:
 
 
 func _on_show_stats_timer_timeout() -> void:
+	drinks_served_stat.text = str(drinks_served)
+	mistakes_made_stat.text = str(mistakes_made)
+	drinks_binned_stat.text = str(drinks_binned)
 	stats_box.set_visible(true)
 
 

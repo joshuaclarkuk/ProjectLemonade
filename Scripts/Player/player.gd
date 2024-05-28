@@ -5,11 +5,13 @@ class_name Player extends CharacterBody3D
 @onready var game_ui: Control = $GameUI
 @onready var interact_label: Label = $GameUI/InteractLabel
 @onready var money_made_label: Label = $GameUI/MoneyMadeLabel
+@onready var money_made_central_label: Label = $GameUI/MoneyMadeCentralLabel
 @onready var combo_label: Label = $GameUI/MoneyMadeLabel/ComboLabel
-@onready var day_timer_label_hours: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelHours
-@onready var day_timer_label_minutes: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelMinutes
+@onready var day_timer_label_hours: Label = $GameUI/TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelHours
+@onready var day_timer_label_minutes: Label = $GameUI/TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelMinutes
 @onready var fear_bar: ProgressBar = $GameUI/FearBar
 @onready var tutorial_panel: PanelContainer = $TutorialPanel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2
@@ -98,6 +100,7 @@ func update_interact_UI() -> void:
 
 func update_money_UI() -> void:
 	money_made_label.text = "$%.2f" % money_made
+	animation_player.play("earn_money")
 
 
 func update_combo_UI() -> void:
@@ -112,12 +115,19 @@ func get_paid_and_update_UI(amount: float, was_perfect: bool) -> void:
 			update_combo_UI()
 			combo_label.set_visible(true)
 	else:
-		combo_label.set_visible(false)
-		perfect_orders_in_a_row = 0
-		current_multiplier = 1.0
+		delete_combo_after_mistake()
 		
-	money_made += amount * current_multiplier
-	update_money_UI()
+	var total_to_add = amount * current_multiplier
+	money_made += total_to_add
+	money_made_central_label.text = "$%.2f" % total_to_add
+	animation_player.play("money_pop")
+
+
+func delete_combo_after_mistake() -> void:
+	print("setting combo label to false")
+	combo_label.set_visible(false)
+	perfect_orders_in_a_row = 0
+	current_multiplier = 1.0
 
 
 func increase_fear_amount() -> void:
