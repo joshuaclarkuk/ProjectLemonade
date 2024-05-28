@@ -9,6 +9,8 @@ extends Node3D
 @onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
 @onready var sun_pivot: Control = $SunPivot
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
+@onready var day_timer_label_hours: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelHours
+@onready var day_timer_label_minutes: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelMinutes
 
 # End of day timers and screens
 @onready var end_day_screen: Control = $EndDayScreen
@@ -27,8 +29,6 @@ extends Node3D
 #Audio Players
 @onready var bgm_player: AudioStreamPlayer = $AudioPlayers/BGMPlayer
 
-
-@onready var sun: DirectionalLight3D = $Environment/Sun
 @onready var black_fade_screen: TextureRect = $BlackFadeScreen
 
 @export_category("Spawn Variables")
@@ -122,8 +122,8 @@ func _ready() -> void:
 	var current_game_minutes = START_TIME + elapsed_fraction * TOTAL_GAME_MINUTES
 	hours = int(current_game_minutes) / 60
 	minutes = int(current_game_minutes) % 60
-	player.day_timer_label_minutes.text = "%02d" % minutes
-	player.day_timer_label_hours.text = "%02d" % hours
+	day_timer_label_minutes.text = "%02d" % minutes
+	day_timer_label_hours.text = "%02d" % hours
 	
 	# Initialise UI
 	end_day_screen.set_visible(false)
@@ -185,8 +185,8 @@ func pass_time_and_update_game_clock(delta: float) -> void:
 		minutes = int(current_game_minutes) % 60
 		
 		# Update the labels
-		player.day_timer_label_minutes.text = "%02d" % minutes
-		player.day_timer_label_hours.text = "%02d" % hours
+		day_timer_label_minutes.text = "%02d" % minutes
+		day_timer_label_hours.text = "%02d" % hours
 
 
 func rotate_sun_pivot() -> void:

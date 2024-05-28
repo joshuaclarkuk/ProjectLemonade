@@ -3,5 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://spu305m1ipty" path="res://Textures/Prototype/Green/texture_05.png" id="1_g6754"]
 
 [resource]
+resource_local_to_scene = true
+albedo_color = Color(0.513233, 0.513233, 0.513233, 1)
 albedo_texture = ExtResource("1_g6754")
 uv1_triplanar = true
