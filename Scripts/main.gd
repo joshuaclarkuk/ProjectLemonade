@@ -7,6 +7,7 @@ extends Node3D
 @onready var spawn_points: Node3D = $SpawnPoints
 @onready var leave_points: Node3D = $LeavePoints
 @onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
+@onready var sun_pivot: Control = $SunPivot
 @onready var lemonade_stand: CSGBox3D = $LemonadeStand
 
 # End of day timers and screens
@@ -24,7 +25,6 @@ extends Node3D
 @onready var drinks_binned_stat: Label = $EndDayScreen/StatsGrid/DrinksBinnedStat
 
 #Audio Players
-@onready var ambience_player: AudioStreamPlayer = $AudioPlayers/AmbiencePlayer
 @onready var bgm_player: AudioStreamPlayer = $AudioPlayers/BGMPlayer
 
 
@@ -38,6 +38,7 @@ extends Node3D
 
 # Populate Spawn arrays
 var tool_manager: ToolManager
+var tutorial_panel: PanelContainer = null
 var spawn_points_array: Array = []
 var queue_points_array: Array[QueuePoint] = []
 var leave_points_array: Array[Marker3D] = []
@@ -84,10 +85,11 @@ func _ready() -> void:
 	GameManager.set_player(player)
 	GameManager.set_camera(player.get_node("CameraPivot/SmoothCamera"))
 	
-	# Get reference to Tool_Manager
+	# Get references
 	tool_manager = lemonade_stand.get_node("ObjectManager")
 	if !tool_manager:
 		printerr("Couldn't find ToolManager!")
+	tutorial_panel = player.get_node("TutorialPanel")
 	
 	# Populate spawn points array
 	for i in spawn_points.get_children():
@@ -130,7 +132,7 @@ func _ready() -> void:
 	tool_manager.drink_served.connect(serve_zombie_at_front_of_queue)
 	day_has_ended.connect(player.end_day)
 	player.fear_at_max.connect(end_day)
-	player.get_node("TutorialPanel").game_has_started.connect(set_game_has_started.bind(true))
+	tutorial_panel.game_has_started.connect(set_game_has_started.bind(true))
 	tool_manager.mistake_made.connect(increase_mistakes_made_stat)
 	tool_manager.binned_drink.connect(increase_drinks_binned_stat)
 
@@ -138,6 +140,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_time_running:
 		pass_time_and_update_game_clock(delta)
+		rotate_sun_pivot()
 		decrease_spawn_time_throughout_day() # Decreases the spawn time every hour
 		if time_left_in_day <= 0.0:
 			end_day()
@@ -147,11 +150,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug1"):
 		toggle_debug_cam()
 
+
 func toggle_debug_cam() -> void:
 	if overview_cam.is_current():
 			player.get_node("CameraPivot/SmoothCamera").set_current(true)
 	else:
 		overview_cam.set_current(true)
+
+func start_playing_background_audio(audioplayer: AudioStreamPlayer) -> void:
+	audioplayer.volume_db = -6.0
+	audioplayer.play()
 
 
 func set_game_has_started(has_started: bool) -> void:
@@ -179,6 +187,12 @@ func pass_time_and_update_game_clock(delta: float) -> void:
 		# Update the labels
 		player.day_timer_label_minutes.text = "%02d" % minutes
 		player.day_timer_label_hours.text = "%02d" % hours
+
+
+func rotate_sun_pivot() -> void:
+	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
+	var new_rotation = elapsed_fraction * TOTAL_SUN_ROTATION
+	sun_pivot.rotation = deg_to_rad(new_rotation)
 
 
 func decrease_spawn_time_throughout_day() -> void:

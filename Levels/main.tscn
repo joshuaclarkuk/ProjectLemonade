@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=23 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="7_xslve"]
 [ext_resource type="Texture2D" uid="uid://bser51axymuul" path="res://Assets/Textures/GameOverScreen/End of Days.png" id="10_fpe8g"]
+[ext_resource type="Texture2D" uid="uid://cp1wweib5foxc" path="res://Assets/Textures/sun-3337.png" id="10_qtea6"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="11_cu7dw"]
+[ext_resource type="Texture2D" uid="uid://5xcm3460ocn2" path="res://Assets/Textures/SemiCircle.png" id="11_f514r"]
 [ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="11_uujn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g0bop"]
@@ -45,6 +47,7 @@ default_font = ExtResource("11_uujn6")
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
+max_time_in_day = 6.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1cgnf")
@@ -55,7 +58,9 @@ shadow_enabled = true
 
 [node name="AudioPlayers" type="Node" parent="."]
 
-[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+[node name="AmbiencePlayerBirds" type="AudioStreamPlayer" parent="AudioPlayers"]
+
+[node name="AmbiencePlayerTrees" type="AudioStreamPlayer" parent="AudioPlayers"]
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("3_dp8sl")
@@ -159,6 +164,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -1, 4.5)
 [node name="ZombieSpawnTimer" type="Timer" parent="Timers"]
 wait_time = 15.0
 autostart = true
+
+[node name="SunPivot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 168.0
+offset_top = 145.0
+offset_right = 208.0
+offset_bottom = 185.0
+
+[node name="SunTexture" type="TextureRect" parent="SunPivot"]
+layout_mode = 0
+offset_left = -143.0
+offset_top = -19.0
+offset_right = -103.0
+offset_bottom = 21.0
+texture = ExtResource("10_qtea6")
+expand_mode = 1
+
+[node name="SkySemiCircle" type="TextureRect" parent="."]
+clip_children = 2
+offset_left = 35.0
+offset_top = 8.0
+offset_right = 291.0
+offset_bottom = 264.0
+texture = ExtResource("11_f514r")
 
 [node name="EndDayScreen" type="Control" parent="."]
 layout_mode = 3

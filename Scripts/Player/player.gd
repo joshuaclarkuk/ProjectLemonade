@@ -18,6 +18,7 @@ var money_sfx_array: Array[AudioStream] = []
 @onready var tutorial_panel: PanelContainer = $TutorialPanel
 @onready var money_audio: AudioStreamPlayer = $AudioPlayers/MoneyAudio
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sun_pivot: Control = $GameUI/SunPivot
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2
