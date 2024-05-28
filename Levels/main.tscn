@@ -37,7 +37,6 @@ font_size = 72
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
-max_time_in_day = 270.0
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -45,7 +44,7 @@ max_time_in_day = 270.0
 environment = SubResource("Environment_6w4mx")
 
 [node name="Sun" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.866026, -7.57103e-08, 0.5, -8.74228e-08, -1, 0, 0.5, -4.37114e-08, -0.866026, 0, 0, 0)
+transform = Transform3D(0.866026, 7.57103e-08, -0.5, 8.74228e-08, -1, 0, -0.5, -4.37114e-08, -0.866026, 0, 0, 0)
 
 [node name="AudioPlayers" type="Node" parent="."]
 

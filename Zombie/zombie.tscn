@@ -1,14 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy5djbhk8fxak"]
+[gd_scene load_steps=11 format=3 uid="uid://cy5djbhk8fxak"]
 
 [ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="2_li8pc"]
 [ext_resource type="Texture2D" uid="uid://dl84uby2t8gld" path="res://Assets/Textures/ZombieUI/IceCubeSprite.png" id="3_vpgqq"]
 [ext_resource type="Texture2D" uid="uid://buvm2wwtpmlf2" path="res://Assets/Textures/ZombieUI/SugarSprite.png" id="4_o0tst"]
 [ext_resource type="Texture2D" uid="uid://b5m2meaq67fs" path="res://Assets/Textures/ZombieUI/Lemon.png" id="5_g4q8f"]
+[ext_resource type="Texture2D" uid="uid://t66jrqql36ky" path="res://Assets/Textures/ZombieUI/transparent_circle.png" id="6_c0h21"]
+[ext_resource type="Texture2D" uid="uid://nvvesla7g3fl" path="res://Assets/Textures/ZombieUI/red_circle.png" id="7_6ppf5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vt3mw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62t1y"]
 
 [node name="Zombie" type="CharacterBody3D"]
 collision_layer = 8
@@ -72,4 +76,42 @@ layout_mode = 2
 wait_time = 4.0
 one_shot = true
 
+[node name="WaitInQueueTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="WaitInQueueUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaitInQueuePanel" type="PanelContainer" parent="WaitInQueueUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_62t1y")
+
+[node name="WaitInQueueRadial" type="TextureProgressBar" parent="WaitInQueueUI/WaitInQueuePanel"]
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+value = 5.0
+fill_mode = 5
+texture_under = ExtResource("7_6ppf5")
+texture_progress = ExtResource("6_c0h21")
+
 [connection signal="timeout" from="TimeUntilMoneyTicksDown" to="." method="_on_time_until_money_ticks_down_timeout"]
+[connection signal="timeout" from="WaitInQueueTimer" to="." method="_on_wait_in_queue_timer_timeout"]

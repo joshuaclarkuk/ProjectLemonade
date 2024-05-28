@@ -7,11 +7,15 @@ const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
 @onready var sugar_tick: TextureRect = $IngredientRequestUI/Panel/GridContainer/SugarTick
 @onready var lemon_tick: TextureRect = $IngredientRequestUI/Panel/GridContainer/LemonTick
 @onready var time_until_money_ticks_down: Timer = $TimeUntilMoneyTicksDown
-
+@onready var wait_in_queue_timer: Timer = $WaitInQueueTimer
+@onready var wait_in_queue_panel: PanelContainer = $WaitInQueueUI/WaitInQueuePanel
+@onready var wait_in_queue_radial: TextureProgressBar = $WaitInQueueUI/WaitInQueuePanel/WaitInQueueRadial
 
 @export var walk_speed: float = 5.0
 @export var max_reward: float = 0.5
 @export var lowest_reward: float = 0.1
+
+var character_collider: CollisionShape3D
 
 var queue_point: QueuePoint = null
 var queue_point_location: Vector3 = Vector3.ZERO
@@ -25,13 +29,17 @@ var requested_ingredient_list_dict = {}
 
 var is_losing_money: bool = false
 var final_reward: float = 0.0
+var day_is_ended: bool = false
 
 signal pay_player(amount_to_pay: float, perfect_order: bool)
 signal is_at_front_of_queue
 signal is_leaving_front_of_queue
+signal issue_fear_signal
 
 
 func _ready() -> void:
+	character_collider = get_node("Collider")
+	
 	# Create ingredient list (Note first two options always have to be true
 	requested_ingredient_list.append(GameManager.LemonadeState.EMPTY)
 	requested_ingredient_list.append(GameManager.LemonadeState.LEMONADE)
@@ -41,10 +49,12 @@ func _ready() -> void:
 
 	print("Requested ingredients: ", str(requested_ingredient_list))
 	
-	#Initialise recipe dictionary
+	# Initialise recipe dictionary
 	for ingredient in requested_ingredient_list:
 		requested_ingredient_list_dict[ingredient] = false
 	
+	# Initialise UI elements
+	wait_in_queue_radial.set_visible(false)
 	ingredient_request_ui.set_visible(false)
 	final_reward = max_reward
 
@@ -61,10 +71,18 @@ func _physics_process(delta: float) -> void:
 		final_reward -= 0.1 * delta # Removes ten cents every second
 		if final_reward < lowest_reward:
 			final_reward = lowest_reward
-		print(name, ": Max reward: ", str(final_reward))
+	
+	# Update patience timer radial
+	if !wait_in_queue_timer.is_stopped():
+		wait_in_queue_radial.value = wait_in_queue_timer.time_left
+		update_radial_timer_position()
 
 
 func move_to_queue_point_and_display_recipe() -> void:
+	if !wait_in_queue_timer.is_stopped():
+		wait_in_queue_timer.stop()
+		wait_in_queue_radial.set_visible(false)
+	
 	var direction_to_travel = (queue_point_location - global_position).normalized()
 	velocity = direction_to_travel * walk_speed
 		
@@ -76,6 +94,11 @@ func move_to_queue_point_and_display_recipe() -> void:
 			is_at_front_of_queue.emit()
 			display_recipe_request()
 			time_until_money_ticks_down.start()
+		# Queue Timer Stuff
+		else:
+			if !day_is_ended:
+				wait_in_queue_timer.start()
+				wait_in_queue_radial.set_visible(true)
 
 
 func move_to_leave_point_and_disappear() -> void:
@@ -146,7 +169,8 @@ func drink_and_move_on(drink_correct: bool) -> void:
 		else:
 			pay_player.emit(final_reward, false)
 	else:
-		print("Drink NOT correct, no money received")
+		print("Drink NOT correct, ", name, ": emitted fear signal")
+		issue_fear_signal.emit()
 	
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
@@ -174,11 +198,31 @@ func assign_tick_or_cross(ingredient: GameManager.LemonadeState, tick_texture: T
 		tick_texture.texture = CROSS
 
 
+func update_radial_timer_position() -> void:
+	var panel_size = Vector2(wait_in_queue_panel.get_size().x / 2, wait_in_queue_panel.get_size().y)
+	#var height_of_zombie_head: Vector3 = Vector3(global_position + Vector3(0.0, character_collider.get_shape().get_height(), 0.0))
+	var height_of_zombie_head: Vector3 = Vector3(global_position + Vector3(0.0, 0.0, 0.0))
+	wait_in_queue_panel.set_position(GameManager.player_camera.unproject_position(height_of_zombie_head) - panel_size)
+
+
 func _on_time_until_money_ticks_down_timeout() -> void:
 	is_losing_money = true
 
 
+func _on_wait_in_queue_timer_timeout() -> void:
+	if !day_is_ended:
+		issue_fear_signal.emit()
+		print(name, ": emitted fear signal")
+		wait_in_queue_timer.start()
+
+
 func end_day() -> void:
+	day_is_ended = true
+	if !wait_in_queue_timer.is_stopped():
+		wait_in_queue_timer.stop()
+		
+	wait_in_queue_radial.set_visible(false)
+	
 	if ingredient_request_ui.is_visible():
 		ingredient_request_ui.set_visible(false)
 	set_physics_process(false)

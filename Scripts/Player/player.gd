@@ -8,10 +8,11 @@ class_name Player extends CharacterBody3D
 @onready var combo_label: Label = $GameUI/MoneyMadeLabel/ComboLabel
 @onready var day_timer_label_hours: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelHours
 @onready var day_timer_label_minutes: Label = $GameUI/VBoxContainer/DayTimerLabelContainer/DayTimerLabelMinutes
-
+@onready var fear_bar: ProgressBar = $GameUI/FearBar
 
 @export_range(0.001, 0.005) var mouse_sensitivity: float = 0.002
 @export var combo_multiplier_to_add: float = 0.2
+@export var max_fear_before_game_over: int = 20
 
 var mouse_motion: Vector2 = Vector2.ZERO
 var object_to_interact_with: Interactable = null
@@ -20,9 +21,14 @@ var money_made: float = 0.0
 var current_multiplier: float = 1.0
 var perfect_orders_in_a_row: int = 0
 
+var fear_amount: int = 0
+
+signal fear_at_max
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	GameManager.set_player(self)
 	
 	# Needs changing to be set via UI
 	GameManager.is_mouse_inverted = true
@@ -31,6 +37,11 @@ func _ready() -> void:
 	money_made = 0.0
 	combo_label.set_visible(false)
 	update_money_UI()
+	
+	# Initialise fear bar
+	fear_bar.min_value = 0
+	fear_bar.max_value = max_fear_before_game_over
+	fear_bar.step = 1
 
 
 func _physics_process(delta: float) -> void:
@@ -103,6 +114,15 @@ func get_paid_and_update_UI(amount: float, was_perfect: bool) -> void:
 		
 	money_made += amount * current_multiplier
 	update_money_UI()
+
+
+func increase_fear_amount() -> void:
+	fear_amount += 1
+	fear_bar.value = fear_amount
+	print("Player fear amount: ", str(fear_amount))
+	
+	if fear_amount >= max_fear_before_game_over:
+		fear_at_max.emit()
 
 
 func end_day() -> void:

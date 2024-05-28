@@ -19,4 +19,15 @@ enum LemonadeState {
 	LEMON
 }
 
+var player: Player
+var player_camera: Camera3D
+
 var is_mouse_inverted: bool = false
+
+
+func set_player(new_player: Player) -> void:
+	player = new_player
+
+
+func set_camera(new_camera: Camera3D) -> void:
+	player_camera = new_camera

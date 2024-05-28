@@ -49,6 +49,10 @@ signal day_has_ended()
 
 
 func _ready() -> void:
+	#Initialise GameManager variables
+	GameManager.set_player(player)
+	GameManager.set_camera(player.get_node("CameraPivot/SmoothCamera"))
+	
 	# Get reference to Tool_Manager
 	tool_manager = lemonade_stand.get_node("ObjectManager")
 	if !tool_manager:
@@ -88,6 +92,7 @@ func _ready() -> void:
 	# Connect signals
 	tool_manager.drink_served.connect(serve_zombie_at_front_of_queue)
 	day_has_ended.connect(player.end_day)
+	player.fear_at_max.connect(end_day)
 
 
 func _process(delta: float) -> void:
@@ -97,12 +102,13 @@ func _process(delta: float) -> void:
 		if time_left_in_day <= 0.0:
 			end_day()
 	
-	# Rotate sun
-	sun_current_rotation += sun_rotation_increment * delta
-	if sun_current_rotation > 360.0:
-		sun_current_rotation = 360.0
-	
-	sun.rotation_degrees.x = sun_current_rotation
+	if !day_has_ended:
+		# Rotate sun
+		sun_current_rotation += sun_rotation_increment * delta
+		if sun_current_rotation > 360.0:
+			sun_current_rotation = 360.0
+		
+		sun.rotation_degrees.x = sun_current_rotation
 
 
 func _input(event: InputEvent) -> void:
@@ -178,6 +184,7 @@ func spawn_zombie() -> void:
 	zombie_instance.pay_player.connect(player.get_paid_and_update_UI)
 	zombie_instance.is_at_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(true)) # Prevents game-breaking bug where you serve an empty space
 	zombie_instance.is_leaving_front_of_queue.connect(tool_manager.set_can_serve_zombie.bind(false))
+	zombie_instance.issue_fear_signal.connect(player.increase_fear_amount)
 	day_has_ended.connect(zombie_instance.end_day)
 
 

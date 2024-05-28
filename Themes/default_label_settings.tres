@@ -4,5 +4,5 @@
 
 [resource]
 font = ExtResource("1_rlanx")
-font_size = 72
-font_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+font_size = 24
+font_color = Color(0.779291, 0.779291, 0.779291, 1)
