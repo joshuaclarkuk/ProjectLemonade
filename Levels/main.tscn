@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=57 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -68,6 +68,9 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.946768, 0.55358, 0.256422, 1)
 volumetric_fog_emission = Color(0.499752, 0.485661, 0.336321, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okaw3"]
+albedo_color = Color(0.237539, 0.237539, 0.237539, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ge5ri"]
 font = ExtResource("11_uujn6")
@@ -354,6 +357,72 @@ transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 29.
 
 [node name="tree_small4" parent="Level/Trees" instance=ExtResource("37_ge3kt")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 41.5, 0, -12.5)
+
+[node name="Mountains" type="Node3D" parent="Level"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 211, -53.4, -118)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 117.0
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 333.5, -53.4, 4.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 163.0
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 85, -53.4, -197.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 132.0
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -49, -53.4, -183.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 100.0
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -164.5, -53.4, -183.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 117.5
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D7" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -261, -53.4, -102)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 148.5
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D8" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -309.5, -53.4, -16.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 151.5
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGSphere3D9" type="CSGSphere3D" parent="Level/Mountains"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -309.5, -53.4, 68.5)
+material_override = SubResource("StandardMaterial3D_okaw3")
+radius = 183.0
+radial_segments = 5
+rings = 4
+smooth_faces = false
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 

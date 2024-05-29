@@ -27,7 +27,6 @@ var money_sfx_array: Array[AudioStream] = []
 
 var mouse_motion: Vector2 = Vector2.ZERO
 var object_to_interact_with: Interactable = null
-var interact_ui_updated: bool = false
 var money_made: float = 0.0
 var current_multiplier: float = 1.0
 var perfect_orders_in_a_row: int = 0
@@ -83,7 +82,7 @@ func _input(event: InputEvent) -> void:
 
 func handle_camera_rotation() -> void:
 	rotate_y(mouse_motion.x)
-	rotation_degrees.y = clampf(rotation_degrees.y, -80.0, 80.0)
+	rotation_degrees.y = clampf(rotation_degrees.y, -90.0, 90.0)
 	if GameManager.is_mouse_inverted == true:
 		camera_pivot.rotate_x(-mouse_motion.y)
 	else:
@@ -99,16 +98,15 @@ func cast_for_interactable() -> void:
 	else:
 		# This works but needs refactoring so it's not closing the UI every frame
 		interact_label.set_visible(false)
-		interact_ui_updated = false
 		object_to_interact_with = null
 
 
 func update_interact_UI() -> void:
-	if !interact_ui_updated:
-			interact_label.set_visible(true)
-			interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
-			interact_ui_updated = true
-
+	if object_to_interact_with:
+		interact_label.set_visible(true)
+		interact_label.text = str("Left-Click to interact with ", object_to_interact_with.string_name)
+	else:
+		interact_label.set_visible(false)
 
 func update_money_UI() -> void:
 	money_made_label.text = "$%.2f" % money_made
