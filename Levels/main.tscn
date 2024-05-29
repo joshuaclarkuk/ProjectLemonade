@@ -92,6 +92,7 @@ default_font = ExtResource("11_uujn6")
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
+zombie_spawn_timer_wait_time = 12.0
 
 [node name="Environment" type="Node3D" parent="."]
 
