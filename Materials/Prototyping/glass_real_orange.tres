@@ -3,6 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://26s1ilp2ygkr" path="res://Textures/Prototype/Orange/texture_05.png" id="1_h78vw"]
 
 [resource]
-transparency = 1
 albedo_texture = ExtResource("1_h78vw")
 uv1_triplanar = true

@@ -27,7 +27,7 @@ size = Vector3(0.45, 0.35, 0.55)
 size = Vector3(0.35, 0.6, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7p7l"]
-size = Vector3(0.45, 0.1, 0.2)
+size = Vector3(0.45, 0.25, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nq6xd"]
 size = Vector3(0.45, 0.35, 0.35)
@@ -695,7 +695,7 @@ script = ExtResource("2_of71m")
 string_name = "Ice Cubes"
 
 [node name="Collider" type="CollisionShape3D" parent="Ice"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.05, 0.0500002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.125, 0.0500002)
 shape = SubResource("BoxShape3D_u7p7l")
 
 [node name="Ice1" type="CSGBox3D" parent="Ice"]
@@ -983,6 +983,10 @@ volume_db = -24.0
 
 [node name="BinAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.35, 6.6)
+volume_db = -6.0
+
+[node name="SpillAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+stream = ExtResource("18_sres6")
 volume_db = -6.0
 
 [node name="PopAudio" type="AudioStreamPlayer" parent="AudioPlayers"]

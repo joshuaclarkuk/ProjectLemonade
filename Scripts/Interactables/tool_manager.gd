@@ -10,6 +10,9 @@ class_name ToolManager extends Node3D
 @onready var glass_real: CSGCylinder3D = $Glasses/GlassReal
 @onready var cup_holder: CSGCylinder3D = $ServingStand/Mesh/CupHolder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var pop_audio: AudioStreamPlayer = $AudioPlayers/PopAudio
+@onready var glass_audio: AudioStreamPlayer3D = $AudioPlayers/GlassAudio
+@onready var spill_audio: AudioStreamPlayer3D = $AudioPlayers/SpillAudio
 
 var serving_stand_empty: bool = true
 var can_serve_zombie: bool = false
@@ -47,6 +50,8 @@ func _ready() -> void:
 
 func handle_glasses() -> void:
 		if serving_stand_empty:
+			pop_audio.play()
+			glass_audio.play()
 			var position_to_place_glass = cup_holder.global_position
 			position_to_place_glass.y += 0.1 # Adding half the height of mesh so it sits correctly
 			glass_real.global_position = position_to_place_glass
@@ -60,7 +65,6 @@ func handle_jug() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("pour_from_jug")
-
 		print("Lemonade added")
 		update_glass_state(GameManager.LemonadeState.LEMONADE, stage_2_colour_value)
 	else:
@@ -71,7 +75,6 @@ func handle_ice() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("get_ice")
-
 		print("Ice added")
 		update_glass_state(GameManager.LemonadeState.ICE, stage_3_colour_value)
 	else:
@@ -82,7 +85,6 @@ func handle_sugar() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("pour_sugar")
-			
 		print("Sugar added")
 		update_glass_state(GameManager.LemonadeState.SUGAR, stage_4_colour_value)
 	else:
@@ -111,7 +113,6 @@ func handle_bin() -> void:
 	
 	if !animation_player.is_playing():
 		animation_player.play("use_bin")
-	
 	print("Binned drink. Start again")
 	binned_drink.emit()
 	reset_drink()
@@ -119,9 +120,6 @@ func handle_bin() -> void:
 
 func serve_drink() -> void:
 	if can_serve_zombie:
-		if !animation_player.is_playing():
-			animation_player.play("serve_drink")
-		
 		print("DRINK SERVED")
 		drink_served.emit(ingredients_in_glass)
 		# Handle zombie code here
@@ -132,6 +130,7 @@ func serve_drink() -> void:
 
 func spill_drink() -> void:
 	print("DRINK SPILLED")
+	spill_audio.play()
 	mistake_made.emit()
 	# Play spilled animation
 	reset_drink()
