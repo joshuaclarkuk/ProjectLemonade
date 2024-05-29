@@ -17,9 +17,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -410.0
-offset_top = -310.0
+offset_top = -354.0
 offset_right = 390.0
-offset_bottom = -265.0
+offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
@@ -42,3 +42,8 @@ layout_mode = 2
 text = "Tutorial Text: This is tester text to see what the tutorial text will look like when appearing on screen. I need to know how many lines I'm able to write before it starts to look terrible"
 label_settings = SubResource("LabelSettings_s5ogn")
 autowrap_mode = 2
+
+[node name="SkipLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "(press \"Enter\" to skip)"
+horizontal_alignment = 2

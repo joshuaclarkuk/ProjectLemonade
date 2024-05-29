@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dup3wr3a16awv"
+path="res://.godot/imported/Put Down Glass.wav-320220f759a28a03def7c0c818279223.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Tools/Glass/Put Down Glass.wav"
+dest_files=["res://.godot/imported/Put Down Glass.wav-320220f759a28a03def7c0c818279223.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

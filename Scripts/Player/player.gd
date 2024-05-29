@@ -75,7 +75,8 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if event.is_action_pressed("debug3"):
-		increase_fear_amount()
+		#increase_fear_amount()
+		pass
 
 
 func handle_camera_rotation() -> void:

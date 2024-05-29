@@ -18,6 +18,11 @@ func _ready() -> void:
 	display_opening_text_tween.tween_callback(display_tutorial_text.bind(OPENING_TEXT)).set_delay(3.0)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		hide_tutorial_text()
+
+
 func display_tutorial_text(text_resource: TutorialTextRes) -> void:
 	current_text_resource = text_resource
 	is_displaying_text = true

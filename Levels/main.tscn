@@ -1,10 +1,12 @@
-[gd_scene load_steps=54 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=56 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="1_tusvb"]
+[ext_resource type="AudioStream" uid="uid://b6q5uao77uuyl" path="res://Assets/SFX/Ambience/BirdsSeamless.ogg" id="3_0l4qc"]
 [ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_dp8sl"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="4_os8h6"]
+[ext_resource type="AudioStream" uid="uid://c17b5oemn4heh" path="res://Assets/SFX/Ambience/TreeRustleSeamless.ogg" id="4_yuvni"]
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
@@ -47,7 +49,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qpcj"]
 albedo_color = Color(1, 1, 0.572549, 1)
 emission_enabled = true
-emission = Color(1, 1, 0.572549, 1)
+emission = Color(0.804574, 0.481784, 0.2768, 1)
 emission_energy_multiplier = 3.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_674ce"]
@@ -63,9 +65,9 @@ sky = SubResource("Sky_5wt6e")
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(0.752437, 0.865523, 0.86907, 1)
-volumetric_fog_emission = Color(0.407982, 0.572437, 0.578971, 1)
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.946768, 0.55358, 0.256422, 1)
+volumetric_fog_emission = Color(0.499752, 0.485661, 0.336321, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ge5ri"]
 font = ExtResource("11_uujn6")
@@ -94,7 +96,7 @@ zombie = ExtResource("5_1hf5j")
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Sun" type="CSGSphere3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 177.5, 139.06, -99)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 177, 139, -99)
 material_override = SubResource("StandardMaterial3D_7qpcj")
 cast_shadow = 0
 radius = 10.0
@@ -106,14 +108,19 @@ environment = SubResource("Environment_vyt2i")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.515038, -0.479322, 0.710624, 0, 0.829038, 0.559193, -0.857167, 0.288006, -0.426986, 0, 0, 0)
-light_color = Color(0.997352, 0.900682, 0.88774, 1)
+light_color = Color(0.791729, 0.843061, 0.563812, 1)
 shadow_enabled = true
 
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="AmbiencePlayerBirds" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("3_0l4qc")
+volume_db = -13.0
+autoplay = true
 
 [node name="AmbiencePlayerTrees" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("4_yuvni")
+autoplay = true
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("3_dp8sl")

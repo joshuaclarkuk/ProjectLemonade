@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d31eojdklxlqs"
+path="res://.godot/imported/gore - large metal knife muted ring - 13.wav-bbb244285fdf104ea922d82aa35c366d.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Tools/LemonSlice/gore - large metal knife muted ring - 13.wav"
+dest_files=["res://.godot/imported/gore - large metal knife muted ring - 13.wav-bbb244285fdf104ea922d82aa35c366d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

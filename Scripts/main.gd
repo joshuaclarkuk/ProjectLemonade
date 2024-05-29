@@ -12,6 +12,7 @@ extends Node3D
 @onready var day_timer_label_hours: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelHours
 @onready var day_timer_label_minutes: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelMinutes
 
+
 # End of day timers and screens
 @onready var end_day_screen: Control = $EndDayScreen
 @onready var s_texture: TextureRect = $EndDayScreen/sTexture
@@ -28,7 +29,6 @@ extends Node3D
 
 #Audio Players
 @onready var bgm_player: AudioStreamPlayer = $AudioPlayers/BGMPlayer
-
 @onready var black_fade_screen: TextureRect = $BlackFadeScreen
 
 @export_category("Spawn Variables")
@@ -58,7 +58,9 @@ var minutes
 const START_TIME = 7 * 60  # 07:00
 const END_TIME = 19 * 60   # 19:00
 const TOTAL_GAME_MINUTES = END_TIME - START_TIME
-const TOTAL_SUN_ROTATION: float = 180.0
+const TOTAL_SUN_TIMER_ROTATION: float = 180.0
+const TOTAL_SUN_ROTATION: float = 34.0
+const TOTAL_SUN_TIMER_POSITION: float = 139.0
 var sun_current_rotation: float = 180.0
 var sun_rotation_increment: float = 0.0
 
@@ -147,8 +149,9 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug1"):
-		toggle_debug_cam()
+	#if event.is_action_pressed("debug1"):
+		#toggle_debug_cam()
+	pass
 
 
 func toggle_debug_cam() -> void:
@@ -191,7 +194,7 @@ func pass_time_and_update_game_clock(delta: float) -> void:
 
 func rotate_sun_pivot() -> void:
 	var elapsed_fraction = (max_time_in_day - time_left_in_day) / max_time_in_day
-	var new_rotation = elapsed_fraction * TOTAL_SUN_ROTATION
+	var new_rotation = elapsed_fraction * TOTAL_SUN_TIMER_ROTATION
 	sun_pivot.rotation = deg_to_rad(new_rotation)
 
 

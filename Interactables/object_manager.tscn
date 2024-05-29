@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://coh81ds7kdwf3"]
+[gd_scene load_steps=36 format=3 uid="uid://coh81ds7kdwf3"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/tool_manager.gd" id="1_mnp3l"]
 [ext_resource type="Script" path="res://Scripts/Interactables/interactable.gd" id="2_of71m"]
@@ -10,6 +10,15 @@
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="7_cdq56"]
 [ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="8_1xttu"]
 [ext_resource type="Material" uid="uid://c87q21e65qann" path="res://Materials/Prototyping/prototyping_yellow.tres" id="8_2eaq5"]
+[ext_resource type="AudioStream" uid="uid://b5xxp88rjgpfy" path="res://Assets/SFX/Tools/Glass/Pick Up Glass.wav" id="11_0bxvc"]
+[ext_resource type="AudioStream" uid="uid://bhwodfpvxmg8n" path="res://Assets/SFX/Tools/IceCubes/IceShake.wav" id="12_snkpn"]
+[ext_resource type="AudioStream" uid="uid://dkfncnpbj26kl" path="res://Assets/SFX/Tools/IceCubes/IceInGlass.wav" id="13_2xquf"]
+[ext_resource type="AudioStream" uid="uid://clojjbpljgbv" path="res://Assets/SFX/Tools/Jug/Pour.wav" id="14_0a2qi"]
+[ext_resource type="AudioStream" uid="uid://bblen6wv3ssvs" path="res://Assets/SFX/Tools/Sugar/SugarPour.wav" id="15_4lyjg"]
+[ext_resource type="AudioStream" uid="uid://d31eojdklxlqs" path="res://Assets/SFX/Tools/LemonSlice/gore - large metal knife muted ring - 13.wav" id="16_ukbum"]
+[ext_resource type="AudioStream" uid="uid://b3lg1qb3iesq0" path="res://Assets/SFX/Tools/Bin/drop_trashbag_with_bottles_002.wav" id="17_mgr36"]
+[ext_resource type="AudioStream" uid="uid://cbnohqwn2muvh" path="res://Assets/SFX/Pop.wav" id="18_hi4eb"]
+[ext_resource type="AudioStream" uid="uid://ctwvo0oa08i8t" path="res://Assets/SFX/Tools/Glass/KnockOverGlass.wav" id="18_sres6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1clw8"]
 size = Vector3(0.45, 0.35, 0.55)
@@ -28,6 +37,493 @@ size = Vector3(0.2, 0.3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4q7gm"]
 size = Vector3(0.1, 0.3, 0.2)
+
+[sub_resource type="Animation" id="Animation_c3k84"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassReal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.05, 0, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ice/Ice2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.04, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ice/Ice2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jug/LemonadeJug:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Jug/LemonadeJug:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sugar/Mesh:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sugar/Mesh:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.025, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Lemons/Lemon2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, -0.436332, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Bin/Exterior:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Glasses/GlassReal:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.610865, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Glasses/GlassReal:material_override:albedo_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yi0ml"]
+resource_name = "get_ice"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ice/Ice2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0.04, 0), Vector3(0.25, 0.34, 0), Vector3(0.45, 0.34, 0), Vector3(0.45, 0.49, 0), Vector3(0.45, 0.34, 0), Vector3(0.45, 0.49, 0), Vector3(0.45, 0.34, 0), Vector3(0, 0.04, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ice/Ice2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -2.0944), Vector3(0, 0, -2.0944), Vector3(0, 0, -2.0944), Vector3(0, 0, -2.0944), Vector3(0, 0, -2.0944), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioPlayers/IceAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_snkpn")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_snkpn")
+}, {
+"end_offset": 0.2928,
+"start_offset": 0.0,
+"stream": ExtResource("13_2xquf")
+}],
+"times": PackedFloat32Array(0.1, 0.2, 0.25)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_kbwaq"]
+resource_name = "pick_up_glass"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassReal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.55),
+"transitions": PackedFloat32Array(-2, -2, 0, 0),
+"update": 0,
+"values": [Vector3(-0.05, 0, 0.15), Vector3(-0.45, 0.65, 0), Vector3(-0.65, 0.55, -0.15), Vector3(-0.05, 0, 0.15)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioPlayers/GlassAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.7206,
+"start_offset": 0.42,
+"stream": ExtResource("11_0bxvc")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_ks4kf"]
+resource_name = "pour_from_jug"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jug/LemonadeJug:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.55, 0.35, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.65, 0.3, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.3, 0.35, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jug/LemonadeJug:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -2.00713), Vector3(0, 0, -2.00713), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioPlayers/JugAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 3.875,
+"start_offset": 0.5536,
+"stream": ExtResource("14_0a2qi")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_xlk05"]
+resource_name = "pour_sugar"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sugar/Mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0), Vector3(-1.309, -1.5708, 1.63133e-07), Vector3(-1.309, -1.5708, 1.63133e-07), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sugar/Mesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, -0.025, 0), Vector3(0.5, 0.225, -0.45), Vector3(0.5, 0.175, -0.45), Vector3(0.5, 0.225, -0.45), Vector3(0.5, 0.175, -0.45), Vector3(0.5, 0.225, -0.45), Vector3(0, -0.025, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioPlayers/SugarAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0681,
+"start_offset": 0.0191,
+"stream": ExtResource("15_4lyjg")
+}, {
+"end_offset": 0.0681,
+"start_offset": 0.0191,
+"stream": ExtResource("15_4lyjg")
+}],
+"times": PackedFloat32Array(0.15, 0.25)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_2ly52"]
+resource_name = "slice_lemons"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lemons/Lemon2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(1.5708, -0.436332, 0), Vector3(1.5708, 2.96706, 0), Vector3(1.5708, -1.48353, 0), Vector3(1.5708, -0.436332, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioPlayers/LemonAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.4643,
+"start_offset": 0.1451,
+"stream": ExtResource("16_ukbum")
+}, {
+"end_offset": 0.4643,
+"start_offset": 0.1451,
+"stream": ExtResource("16_ukbum")
+}],
+"times": PackedFloat32Array(0.1, 0.2)
+}
+tracks/1/use_blend = false
+
+[sub_resource type="Animation" id="Animation_xocxc"]
+resource_name = "use_bin"
+length = 0.36
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bin/Exterior:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 0.5, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.174533, 0, 0), Vector3(0.0872664, 0, 0), Vector3(-1.49012e-08, 0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioPlayers/BinAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.027,
+"stream": ExtResource("17_mgr36")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_sjlvv"]
+resource_name = "serve_drink"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassReal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.5001, 0.55),
+"transitions": PackedFloat32Array(-2, -2, 0, 0, 0),
+"update": 0,
+"values": [Vector3(-0.65, 0.55, -0.15), Vector3(-0.65, 0.65, -0.25), Vector3(-0.65, 1.15, -0.75), Vector3(-0.65, 1.15, -0.75), Vector3(-0.05, 0, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/GlassReal:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.55),
+"transitions": PackedFloat32Array(-2, -2, -2, 0, 0),
+"update": 0,
+"values": [Vector3(0, -0.610865, 0), Vector3(0, -0.610865, 0), Vector3(-0.421989, -0.67992, 0.319788), Vector3(-0.421989, -0.67992, 0.319788), Vector3(0, -0.610865, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/GlassReal:material_override:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.55),
+"transitions": PackedFloat32Array(-2, -2, 0, 0),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cx7pq"]
+resource_name = "spill_drink"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassReal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, 0, 0),
+"update": 0,
+"values": [Vector3(-0.65, 0.55, -0.15), Vector3(-0.55, 0.5, -0.2), Vector3(-0.55, 0.5, -0.2), Vector3(-0.55, 0.5, -0.2), Vector3(-0.05, 0, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/GlassReal:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35),
+"transitions": PackedFloat32Array(-2, -2, -2, 0, 0),
+"update": 0,
+"values": [Vector3(0, -0.610865, 0), Vector3(-0.610865, 0.436332, -1.5708), Vector3(-0.64546, 0.378088, -1.47175), Vector3(-0.610865, 0.436332, -1.5708), Vector3(0, -0.610865, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioPlayers/GlassAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.1622,
+"start_offset": 0.03,
+"stream": ExtResource("18_sres6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dnrku"]
+_data = {
+"RESET": SubResource("Animation_c3k84"),
+"get_ice": SubResource("Animation_yi0ml"),
+"pick_up_glass": SubResource("Animation_kbwaq"),
+"pour_from_jug": SubResource("Animation_ks4kf"),
+"pour_sugar": SubResource("Animation_xlk05"),
+"serve_drink": SubResource("Animation_sjlvv"),
+"slice_lemons": SubResource("Animation_2ly52"),
+"spill_drink": SubResource("Animation_cx7pq"),
+"use_bin": SubResource("Animation_xocxc")
+}
 
 [node name="Objects" type="Node3D"]
 script = ExtResource("1_mnp3l")
@@ -398,7 +894,6 @@ ToolName = 1
 string_name = "Jug"
 
 [node name="Collider" type="CollisionShape3D" parent="Jug"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, -2.98023e-08, -2.23517e-08)
 shape = SubResource("BoxShape3D_3m73v")
 
 [node name="LemonadeJug" type="CSGCylinder3D" parent="Jug"]
@@ -430,7 +925,7 @@ radial_segments = 4
 rings = 3
 
 [node name="Lemon2" type="CSGSphere3D" parent="Lemons"]
-transform = Transform3D(0.906308, -0.422618, 1.84732e-08, 0, -4.37114e-08, -1, 0.422618, 0.906308, -3.9616e-08, 0, -0.125, 0)
+transform = Transform3D(0.906308, -0.422618, 1.52987e-06, 0, -3.61999e-06, -1, 0.422618, 0.906308, -3.28083e-06, 0, -0.125, 0)
 material_override = ExtResource("8_2eaq5")
 radius = 0.03
 radial_segments = 4
@@ -459,3 +954,36 @@ shape = SubResource("BoxShape3D_4q7gm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
 material_override = ExtResource("8_1xttu")
 size = Vector3(0.05, 0.25, 0.15)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dnrku")
+}
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="GlassAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.2, 6.5)
+volume_db = -6.0
+
+[node name="JugAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 1, 6.35)
+
+[node name="IceAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1, 6.35)
+volume_db = -24.0
+
+[node name="SugarAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1, 6.35)
+volume_db = -6.0
+
+[node name="LemonAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.6, 6.8)
+volume_db = -24.0
+
+[node name="BinAudio" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.35, 6.6)
+volume_db = -6.0
+
+[node name="PopAudio" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("18_hi4eb")
