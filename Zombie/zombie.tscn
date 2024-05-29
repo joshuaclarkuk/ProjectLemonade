@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy5djbhk8fxak"]
+[gd_scene load_steps=13 format=3 uid="uid://cy5djbhk8fxak"]
 
 [ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="2_li8pc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://t66jrqql36ky" path="res://Assets/Textures/ZombieUI/transparent_circle.png" id="6_c0h21"]
 [ext_resource type="Texture2D" uid="uid://nvvesla7g3fl" path="res://Assets/Textures/ZombieUI/red_circle.png" id="7_6ppf5"]
 [ext_resource type="PackedScene" uid="uid://mjifqroreiaf" path="res://Zombie/fart_component.tscn" id="8_jcslk"]
+[ext_resource type="AudioStream" uid="uid://bo2rttjn2rhaq" path="res://Assets/SFX/Boo.wav" id="9_f60b7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
 
@@ -115,6 +116,10 @@ texture_under = ExtResource("7_6ppf5")
 texture_progress = ExtResource("6_c0h21")
 
 [node name="FartComponent" parent="." instance=ExtResource("8_jcslk")]
+
+[node name="BooAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_f60b7")
+volume_db = -12.0
 
 [connection signal="timeout" from="TimeUntilMoneyTicksDown" to="." method="_on_time_until_money_ticks_down_timeout"]
 [connection signal="timeout" from="WaitInQueueTimer" to="." method="_on_wait_in_queue_timer_timeout"]

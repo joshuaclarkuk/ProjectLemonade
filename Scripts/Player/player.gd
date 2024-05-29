@@ -33,6 +33,7 @@ var current_multiplier: float = 1.0
 var perfect_orders_in_a_row: int = 0
 
 var fear_amount: int = 0
+var day_has_ended: bool = false
 
 signal fear_at_max
 
@@ -68,6 +69,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact"):
 		if !object_to_interact_with: return
+		if day_has_ended: return
 		
 		object_to_interact_with.interact()
 	
@@ -160,6 +162,7 @@ func increase_fear_amount() -> void:
 
 
 func end_day() -> void:
+	day_has_ended = true
 	game_ui.set_visible(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	set_physics_process(false)

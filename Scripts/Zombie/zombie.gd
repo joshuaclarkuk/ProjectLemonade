@@ -10,6 +10,8 @@ const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
 @onready var wait_in_queue_timer: Timer = $WaitInQueueTimer
 @onready var wait_in_queue_panel: PanelContainer = $WaitInQueueUI/WaitInQueuePanel
 @onready var wait_in_queue_radial: TextureProgressBar = $WaitInQueueUI/WaitInQueuePanel/WaitInQueueRadial
+@onready var boo_audio: AudioStreamPlayer = $BooAudio
+@onready var fart_component: Node3D = $FartComponent
 
 @export var walk_speed: float = 5.0
 @export var max_reward: float = 0.5
@@ -177,6 +179,9 @@ func drink_and_move_on(drink_correct: bool) -> void:
 		print("Drink NOT correct, ", name, ": emitted fear signal")
 		issue_fear_signal.emit()
 		mistake_made.emit()
+		var random_boo_pitch = randi_range(0.8, 1.2)
+		boo_audio.pitch_scale = random_boo_pitch
+		boo_audio.play()
 	
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
@@ -226,7 +231,9 @@ func end_day() -> void:
 	day_is_ended = true
 	if !wait_in_queue_timer.is_stopped():
 		wait_in_queue_timer.stop()
-		
+	
+	fart_component.fart_timer.stop()
+	
 	wait_in_queue_radial.set_visible(false)
 	
 	if ingredient_request_ui.is_visible():

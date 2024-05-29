@@ -167,6 +167,7 @@ func start_playing_background_audio(audioplayer: AudioStreamPlayer) -> void:
 
 func set_game_has_started(has_started: bool) -> void:
 	game_has_started = has_started
+	spawn_zombie()
 	print("Game has started:", str(game_has_started))
 
 

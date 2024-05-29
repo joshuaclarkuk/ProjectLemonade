@@ -12,6 +12,7 @@ const MED_FART = preload("res://Assets/SFX/Zombie/Farts/MedFart.wav")
 const SHORT_FART = preload("res://Assets/SFX/Zombie/Farts/ShortFart.wav")
 
 var fart_array: Array[AudioStream] = []
+var has_already_farted: bool = false
 
 
 func _ready() -> void:
@@ -24,17 +25,24 @@ func _ready() -> void:
 	fart_array.append(MED_FART)
 	fart_array.append(SHORT_FART)
 	
-	fart_timer.wait_time = randi_range(20.0, 40.0)
+	fart_timer.wait_time = randi_range(10.0, 20.0)
+	print("Fart timer wait time: ", str(fart_timer.wait_time))
 	
 	fart_timer.start()
 
 
 func _on_fart_timer_timeout() -> void:
+	if !has_already_farted:
+		fart()
+
+
+func fart() -> void:
+	has_already_farted = true
 	var random_fart_index = randi_range(0, fart_array.size() - 1)
 	var random_fart_pitch = randi_range(0.8, 1.2)
 	fart_audio.stream = fart_array[random_fart_index]
 	fart_audio.pitch_scale = random_fart_pitch
 	fart_audio.play()
-	var new_wait_time = randi_range(20.0, 40.0)
+	var new_wait_time = randi_range(10.0, 20.0)
 	fart_timer.wait_time = new_wait_time
 	fart_timer.start()

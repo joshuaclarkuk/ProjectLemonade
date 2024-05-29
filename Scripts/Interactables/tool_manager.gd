@@ -65,8 +65,8 @@ func handle_jug() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("pour_from_jug")
-		print("Lemonade added")
-		update_glass_state(GameManager.LemonadeState.LEMONADE, stage_2_colour_value)
+			print("Lemonade added")
+			update_glass_state(GameManager.LemonadeState.LEMONADE, stage_2_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -75,8 +75,8 @@ func handle_ice() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("get_ice")
-		print("Ice added")
-		update_glass_state(GameManager.LemonadeState.ICE, stage_3_colour_value)
+			print("Ice added")
+			update_glass_state(GameManager.LemonadeState.ICE, stage_3_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -85,8 +85,8 @@ func handle_sugar() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("pour_sugar")
-		print("Sugar added")
-		update_glass_state(GameManager.LemonadeState.SUGAR, stage_4_colour_value)
+			print("Sugar added")
+			update_glass_state(GameManager.LemonadeState.SUGAR, stage_4_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -95,8 +95,8 @@ func handle_lemons() -> void:
 	if !serving_stand_empty:
 		if !animation_player.is_playing():
 			animation_player.play("slice_lemons")
-		print("Lemon slices added")
-		update_glass_state(GameManager.LemonadeState.LEMON, stage_5_colour_value)
+			print("Lemon slices added")
+			update_glass_state(GameManager.LemonadeState.LEMON, stage_5_colour_value)
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
