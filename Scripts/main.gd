@@ -8,7 +8,7 @@ extends Node3D
 @onready var leave_points: Node3D = $LeavePoints
 @onready var zombie_spawn_timer: Timer = $Timers/ZombieSpawnTimer
 @onready var sun_pivot: Control = $SunPivot
-@onready var lemonade_stand: CSGBox3D = $LemonadeStand
+@onready var lemonade_stand: Node3D = $LemonadeStand
 @onready var day_timer_label_hours: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelHours
 @onready var day_timer_label_minutes: Label = $TimeOfDayBox/DayTimerLabelContainer/DayTimerLabelMinutes
 
@@ -167,7 +167,6 @@ func start_playing_background_audio(audioplayer: AudioStreamPlayer) -> void:
 
 func set_game_has_started(has_started: bool) -> void:
 	game_has_started = has_started
-	spawn_zombie()
 	print("Game has started:", str(game_has_started))
 
 
