@@ -1,13 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://deuwvni3krd5j"]
 
 [ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_6i5v1"]
+[ext_resource type="PackedScene" uid="uid://cft4tjwodhlq1" path="res://Zombie/main_menu_zombie.tscn" id="3_nj8af"]
+[ext_resource type="Script" path="res://Scripts/Zombie/main_menu_zombie.gd" id="4_3dbg5"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="5_w0rjq"]
-[ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="6_77kav"]
 [ext_resource type="Script" path="res://Scripts/Menu/main_menu_ui.gd" id="6_bkjke"]
-[ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="6_w3q0d"]
-[ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="7_it1xm"]
 [ext_resource type="Theme" uid="uid://ckgfmtm4f8akv" path="res://Themes/menu_theme.tres" id="7_k102j"]
-[ext_resource type="Material" uid="uid://bbpj184144cky" path="res://Materials/Prototyping/prototyping_red.tres" id="8_l0v2y"]
+[ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="9_o15hm"]
 [ext_resource type="Texture2D" uid="uid://3tst82wpktye" path="res://Assets/Textures/ZombieUI/cross.png" id="9_qhxur"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="10_fxybc"]
 
@@ -19,16 +18,21 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_5sd3x")
 
 [sub_resource type="Environment" id="Environment_vqltd"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.426649, 0.511824, 0.488752, 1)
 sky = SubResource("Sky_ii1wc")
+ambient_light_color = Color(0.455053, 0.831599, 0.836578, 1)
 tonemap_mode = 2
-glow_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.513726, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6wmm"]
+font = ExtResource("9_o15hm")
+font_size = 106
 
 [node name="MainMenu" type="Node3D"]
 
 [node name="AudioPlayers" type="Node" parent="."]
-
-[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("3_6i5v1")
@@ -43,59 +47,17 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="MainMenuCam" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74227e-08, 0, -1, 1.3, 1.1, 3.6)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.048, 2.029, 0.36)
+projection = 1
+size = 5.0
 
 [node name="LemonadeStand" parent="." instance=ExtResource("5_w0rjq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 6.425)
+transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, 0.1, 0.5, 6.425)
+visible = false
 
-[node name="Level" type="Node3D" parent="."]
-
-[node name="Roadside" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.25, 5)
-material_override = ExtResource("6_w3q0d")
-size = Vector3(110, 0.5, 10)
-
-[node name="Roadside2" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -15)
-material_override = ExtResource("6_w3q0d")
-size = Vector3(110, 0.5, 10)
-
-[node name="Road" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, -5)
-material_override = ExtResource("7_it1xm")
-size = Vector3(110, 0.25, 10)
-
-[node name="Houses" type="Node3D" parent="Level"]
-
-[node name="House1" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
-
-[node name="House2" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
-
-[node name="House3" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
-
-[node name="House4" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
-
-[node name="House5" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
-
-[node name="House6" type="CSGBox3D" parent="Level/Houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3.75, -26)
-material_override = ExtResource("8_l0v2y")
-size = Vector3(9, 7.5, 12)
+[node name="MainMenuZombie" parent="." instance=ExtResource("3_nj8af")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -2.5, 1, 5)
+script = ExtResource("4_3dbg5")
 
 [node name="MenuUI" type="Control" parent="."]
 layout_mode = 3
@@ -106,22 +68,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_bkjke")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI"]
-custom_minimum_size = Vector2(500, 0)
+[node name="TitleText" type="Label" parent="MenuUI"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
-offset_left = 160.0
-offset_top = 160.0
-offset_right = 664.0
-offset_bottom = 353.0
-
-[node name="TitleText" type="Label" parent="MenuUI/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -419.0
+offset_top = -220.0
+offset_right = 381.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "The Last (Lemonade) Stand"
-label_settings = ExtResource("6_77kav")
+label_settings = SubResource("LabelSettings_a6wmm")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+offset_left = 708.0
+offset_top = 832.0
+offset_right = 1212.0
+offset_bottom = 1025.0
 
 [node name="StartGameButton" type="Button" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -129,27 +102,30 @@ layout_mode = 2
 theme = ExtResource("7_k102j")
 text = "Start Game"
 
-[node name="ToggleInvertedBox" type="HBoxContainer" parent="MenuUI/VBoxContainer"]
-layout_mode = 2
-
-[node name="ToggleInvertedButton" type="Button" parent="MenuUI/VBoxContainer/ToggleInvertedBox"]
-custom_minimum_size = Vector2(450, 50)
-layout_mode = 2
-theme = ExtResource("7_k102j")
-text = "Invert Mouse?
-"
-
-[node name="TickBoxTexture" type="TextureRect" parent="MenuUI/VBoxContainer/ToggleInvertedBox"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_qhxur")
-expand_mode = 1
-
 [node name="QuitGameButton" type="Button" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("7_k102j")
 text = "Quit Game"
+
+[node name="ToggleInvertedBox" type="HBoxContainer" parent="MenuUI"]
+layout_mode = 2
+offset_left = 92.0
+offset_top = 884.0
+offset_right = 596.0
+offset_bottom = 934.0
+
+[node name="ToggleInvertedButton" type="Button" parent="MenuUI/ToggleInvertedBox"]
+layout_mode = 2
+theme = ExtResource("7_k102j")
+text = "Invert Mouse?
+"
+
+[node name="TickBoxTexture" type="TextureRect" parent="MenuUI/ToggleInvertedBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_qhxur")
+expand_mode = 1
 
 [node name="BlackFadeScreen" type="TextureRect" parent="MenuUI"]
 visible = false
@@ -162,6 +138,10 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("10_fxybc")
 
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(20, 1, 1)
+
 [connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="MenuUI" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="MenuUI/VBoxContainer/ToggleInvertedBox/ToggleInvertedButton" to="MenuUI" method="_on_toggle_inverted_button_pressed"]
 [connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="MenuUI" method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="MenuUI/ToggleInvertedBox/ToggleInvertedButton" to="MenuUI" method="_on_toggle_inverted_button_pressed"]

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var black_fade_screen: TextureRect = $BlackFadeScreen
-@onready var tick_box_texture: TextureRect = $VBoxContainer/ToggleInvertedBox/TickBoxTexture
+@onready var tick_box_texture = $ToggleInvertedBox/TickBoxTexture
 
 const CROSS = preload("res://Assets/Textures/ZombieUI/cross.png")
 const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
