@@ -19,7 +19,7 @@ sky_material = SubResource("ProceduralSkyMaterial_5sd3x")
 
 [sub_resource type="Environment" id="Environment_vqltd"]
 background_mode = 1
-background_color = Color(0.426649, 0.511824, 0.488752, 1)
+background_color = Color(0.543621, 0.632857, 0.608414, 1)
 sky = SubResource("Sky_ii1wc")
 ambient_light_color = Color(0.455053, 0.831599, 0.836578, 1)
 tonemap_mode = 2
@@ -47,9 +47,9 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="MainMenuCam" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.048, 2.029, 0.36)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 1.117, 2.544, 0.36)
 projection = 1
-size = 5.0
+size = 6.5
 
 [node name="LemonadeStand" parent="." instance=ExtResource("5_w0rjq")]
 transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, 0.1, 0.5, 6.425)
@@ -77,9 +77,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -419.0
-offset_top = -220.0
+offset_top = -390.0
 offset_right = 381.0
-offset_bottom = 176.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The Last (Lemonade) Stand"
@@ -92,9 +92,9 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 offset_left = 708.0
-offset_top = 832.0
+offset_top = 662.0
 offset_right = 1212.0
-offset_bottom = 1025.0
+offset_bottom = 855.0
 
 [node name="StartGameButton" type="Button" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
