@@ -26,6 +26,7 @@ extends Node3D
 @onready var drinks_served_stat: Label = $EndDayScreen/StatsGrid/DrinksServedStat
 @onready var mistakes_made_stat: Label = $EndDayScreen/StatsGrid/MistakesMadeStat
 @onready var drinks_binned_stat: Label = $EndDayScreen/StatsGrid/DrinksBinnedStat
+@onready var spray_paint_animation: AnimationPlayer = $EndDayScreen/SprayPaintAnimation
 
 #Audio Players
 @onready var bgm_player: AudioStreamPlayer = $AudioPlayers/BGMPlayer
@@ -305,6 +306,7 @@ func increase_drinks_binned_stat() -> void:
 
 func _on_display_s_timer_timeout() -> void:
 	s_texture.set_visible(true)
+	spray_paint_animation.play("spray_paint")
 
 
 func _on_display_money_earned_timer_timeout() -> void:

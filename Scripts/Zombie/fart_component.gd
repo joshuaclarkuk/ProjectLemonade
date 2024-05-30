@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var fart_timer: Timer = $FartTimer
 @onready var fart_audio: AudioStreamPlayer3D = $FartAudio
+@onready var fart_particles: GPUParticles3D = $FartParticles
 
 const FART_7 = preload("res://Assets/SFX/Zombie/Farts/Fart7.wav")
 const FART_17 = preload("res://Assets/SFX/Zombie/Farts/Fart17.wav")
@@ -38,6 +39,7 @@ func _on_fart_timer_timeout() -> void:
 
 func fart() -> void:
 	has_already_farted = true
+	fart_particles.restart()
 	var random_fart_index = randi_range(0, fart_array.size() - 1)
 	var random_fart_pitch = randi_range(0.8, 1.2)
 	fart_audio.stream = fart_array[random_fart_index]

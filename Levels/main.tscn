@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=70 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -49,9 +49,11 @@
 [ext_resource type="ArrayMesh" uid="uid://bkcqbkqdo7mo3" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-bar.obj" id="49_3obhi"]
 [ext_resource type="ArrayMesh" uid="uid://n3atsjd7hvbx" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-border-column.obj" id="50_im6x0"]
 [ext_resource type="ArrayMesh" uid="uid://p0w08qjflq3h" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-border-curve.obj" id="51_3tilv"]
+[ext_resource type="Texture2D" uid="uid://r4bgajcxnfmr" path="res://Assets/Textures/ZombieUI/RequestPanelMask.png" id="52_o5kkh"]
 [ext_resource type="ArrayMesh" uid="uid://dsdysdk3efndv" path="res://Assets/Models/KenneyGraveyard/OBJ format/pine-crooked.obj" id="53_05ji5"]
 [ext_resource type="ArrayMesh" uid="uid://djimvhtjiwtc5" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-damaged.obj" id="53_i52pa"]
 [ext_resource type="ArrayMesh" uid="uid://dwjnt43c57b70" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk.obj" id="54_elqb8"]
+[ext_resource type="AudioStream" uid="uid://chuxo55cyy5l7" path="res://Assets/SFX/Hiss.wav" id="54_qdil2"]
 [ext_resource type="ArrayMesh" uid="uid://bxlaob3rqn80k" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk-long.obj" id="55_8h3ft"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qpcj"]
@@ -82,6 +84,8 @@ albedo_color = Color(0.237539, 0.237539, 0.237539, 1)
 font = ExtResource("11_uujn6")
 font_size = 46
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_cvttv"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_p0r04"]
 font_size = 72
 
@@ -98,10 +102,40 @@ font_size = 72
 [sub_resource type="Theme" id="Theme_gu2h5"]
 default_font = ExtResource("11_uujn6")
 
+[sub_resource type="Animation" id="Animation_3sqnr"]
+resource_name = "spray_paint"
+length = 0.28
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SprayPaintAudio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.4072,
+"start_offset": 1.0763,
+"stream": ExtResource("54_qdil2")
+}, {
+"end_offset": 0.4072,
+"start_offset": 1.0763,
+"stream": ExtResource("54_qdil2")
+}],
+"times": PackedFloat32Array(0, 0.15)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfc82"]
+_data = {
+"spray_paint": SubResource("Animation_3sqnr")
+}
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
 zombie_spawn_timer_wait_time = 12.0
+max_time_in_day = 6.0
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -136,7 +170,7 @@ stream = ExtResource("3_dp8sl")
 volume_db = -6.0
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.1, 7)
 
 [node name="OverviewCam" type="Camera3D" parent="."]
 transform = Transform3D(0.5, 0.296198, -0.813798, 1.49502e-08, 0.939693, 0.34202, 0.866025, -0.17101, 0.469846, -42.9, 11.7, 9.15)
@@ -472,6 +506,11 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 0, 7)
 mesh = ExtResource("53_05ji5")
 skeleton = NodePath("../../..")
 
+[node name="Pine-crooked4" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 11, 0, 7.5)
+mesh = ExtResource("53_05ji5")
+skeleton = NodePath("../../..")
+
 [node name="Pine-crooked2" type="MeshInstance3D" parent="Level/Trees"]
 transform = Transform3D(-1.1365e-07, 0, 2.6, 0, 2.6, 0, -2.6, 0, -1.1365e-07, -6.5, 0, -12.5)
 mesh = ExtResource("53_05ji5")
@@ -668,6 +707,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Mask" type="TextureRect" parent="EndDayScreen"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -677.0
+offset_right = 308.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("52_o5kkh")
+
+[node name="Background" type="TextureRect" parent="EndDayScreen/Mask"]
+modulate = Color(0.592157, 0.592157, 0.592157, 0.756863)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -478.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("CanvasTexture_cvttv")
+
 [node name="EndOfDay(s)Label" type="Label" parent="EndDayScreen"]
 layout_mode = 1
 anchors_preset = 8
@@ -808,6 +878,14 @@ one_shot = true
 [node name="RestartButtonTimer" type="Timer" parent="EndDayScreen"]
 wait_time = 6.0
 one_shot = true
+
+[node name="SprayPaintAudio" type="AudioStreamPlayer" parent="EndDayScreen"]
+volume_db = -12.0
+
+[node name="SprayPaintAnimation" type="AnimationPlayer" parent="EndDayScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_sfc82")
+}
 
 [node name="BlackFadeScreen" type="TextureRect" parent="."]
 visible = false
