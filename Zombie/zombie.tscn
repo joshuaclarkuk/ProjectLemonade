@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b5m2meaq67fs" path="res://Assets/Textures/ZombieUI/Lemon.png" id="5_g4q8f"]
 [ext_resource type="Texture2D" uid="uid://t66jrqql36ky" path="res://Assets/Textures/ZombieUI/transparent_circle.png" id="6_c0h21"]
 [ext_resource type="Texture2D" uid="uid://nvvesla7g3fl" path="res://Assets/Textures/ZombieUI/red_circle.png" id="7_6ppf5"]
-[ext_resource type="PackedScene" uid="uid://mjifqroreiaf" path="res://Zombie/fart_component.tscn" id="8_jcslk"]
+[ext_resource type="PackedScene" uid="uid://mjifqroreiaf" path="res://Zombie/Components/fart_component.tscn" id="8_jcslk"]
 [ext_resource type="AudioStream" uid="uid://bo2rttjn2rhaq" path="res://Assets/SFX/Boo.wav" id="9_f60b7"]
-[ext_resource type="PackedScene" uid="uid://cprui2wc76p31" path="res://Zombie/animated_zombie.tscn" id="10_70dp4"]
+[ext_resource type="PackedScene" uid="uid://cprui2wc76p31" path="res://Zombie/Components/animated_zombie.tscn" id="10_70dp4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
 

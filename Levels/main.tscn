@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=71 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c17b5oemn4heh" path="res://Assets/SFX/Ambience/TreeRustleSeamless.ogg" id="4_yuvni"]
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
-[ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
+[ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/Components/queue_point.tscn" id="6_clnmg"]
 [ext_resource type="PackedScene" uid="uid://cfijjh876n0i6" path="res://Assets/Models/KenneySuburbs/house_type01.glb" id="8_8h6bd"]
 [ext_resource type="PackedScene" uid="uid://b5m0rqufr8ovy" path="res://Assets/Models/KenneySuburbs/house_type02.glb" id="9_um4on"]
 [ext_resource type="PackedScene" uid="uid://drfmkothprq31" path="res://Assets/Models/KenneySuburbs/house_type03.glb" id="10_d861m"]
@@ -55,6 +55,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dwjnt43c57b70" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk.obj" id="54_elqb8"]
 [ext_resource type="AudioStream" uid="uid://chuxo55cyy5l7" path="res://Assets/SFX/Hiss.wav" id="54_qdil2"]
 [ext_resource type="ArrayMesh" uid="uid://bxlaob3rqn80k" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk-long.obj" id="55_8h3ft"]
+[ext_resource type="PackedScene" uid="uid://5h2ixaysdpaa" path="res://Zombie/wandering_zombie.tscn" id="56_c7scb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qpcj"]
 albedo_color = Color(1, 1, 0.572549, 1)
@@ -135,7 +136,6 @@ _data = {
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
 zombie_spawn_timer_wait_time = 12.0
-max_time_in_day = 6.0
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -154,7 +154,7 @@ environment = SubResource("Environment_vyt2i")
 transform = Transform3D(-0.515038, -0.479322, 0.710624, 0, 0.829038, 0.559193, -0.857167, 0.288006, -0.426986, 0, 0, 0)
 shadow_enabled = true
 
-[node name="AudioPlayers" type="Node" parent="."]
+[node name="AudioPlayers" type="Node3D" parent="."]
 
 [node name="AmbiencePlayerBirds" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("3_0l4qc")
@@ -168,6 +168,8 @@ autoplay = true
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("3_dp8sl")
 volume_db = -6.0
+
+[node name="ZombieCrowdNoise" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.1, 7)
@@ -596,6 +598,35 @@ radius = 183.0
 radial_segments = 5
 rings = 4
 smooth_faces = false
+
+[node name="WanderingZombies" type="Node3D" parent="Level"]
+
+[node name="Zombie" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.5, 0.75, -1.65)
+
+[node name="Zombie2" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33, 0.75, -8.15)
+
+[node name="Zombie3" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.5, 0.75, -7.15)
+
+[node name="Zombie4" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 0.75, -2.15)
+
+[node name="Zombie9" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5, 0.75, -0.65)
+
+[node name="Zombie5" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0.75, -8.65)
+
+[node name="Zombie6" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 0.75, -1.65)
+
+[node name="Zombie7" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, 0.75, -6.65)
+
+[node name="Zombie8" parent="Level/WanderingZombies" instance=ExtResource("56_c7scb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32, 0.75, -0.65)
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
