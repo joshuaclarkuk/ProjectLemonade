@@ -76,10 +76,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -419.0
-offset_top = -390.0
-offset_right = 381.0
-offset_bottom = 6.0
+offset_left = -400.0
+offset_top = -343.0
+offset_right = 400.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The Last (Lemonade) Stand"
@@ -91,10 +91,17 @@ autowrap_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuUI"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
-offset_left = 708.0
-offset_top = 662.0
-offset_right = 1212.0
-offset_bottom = 855.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = 100.0
+offset_right = 252.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StartGameButton" type="Button" parent="MenuUI/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -109,11 +116,15 @@ theme = ExtResource("7_k102j")
 text = "Quit Game"
 
 [node name="ToggleInvertedBox" type="HBoxContainer" parent="MenuUI"]
-layout_mode = 2
-offset_left = 92.0
-offset_top = 884.0
-offset_right = 596.0
-offset_bottom = 934.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 145.0
+offset_top = -168.0
+offset_right = 649.0
+offset_bottom = -118.0
+grow_vertical = 0
 
 [node name="ToggleInvertedButton" type="Button" parent="MenuUI/ToggleInvertedBox"]
 layout_mode = 2
