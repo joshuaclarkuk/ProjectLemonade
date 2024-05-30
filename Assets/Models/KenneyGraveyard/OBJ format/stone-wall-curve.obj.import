@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvapv6vksxica"
+path="res://.godot/imported/stone-wall-curve.obj-0b777ec63c0171f8e94ded61d28e5208.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stone-wall-curve.obj-0b777ec63c0171f8e94ded61d28e5208.mesh"]
+
+source_file="res://Assets/Models/KenneyGraveyard/OBJ format/stone-wall-curve.obj"
+dest_files=["res://.godot/imported/stone-wall-curve.obj-0b777ec63c0171f8e94ded61d28e5208.mesh", "res://.godot/imported/stone-wall-curve.obj-0b777ec63c0171f8e94ded61d28e5208.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

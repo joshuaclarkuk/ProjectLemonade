@@ -12,12 +12,14 @@ const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
 @onready var wait_in_queue_radial: TextureProgressBar = $WaitInQueueUI/WaitInQueuePanel/WaitInQueueRadial
 @onready var boo_audio: AudioStreamPlayer = $BooAudio
 @onready var fart_component: Node3D = $FartComponent
+@onready var animated_mesh: Node3D = $AnimatedMesh
 
 @export var walk_speed: float = 5.0
 @export var max_reward: float = 0.5
 @export var lowest_reward: float = 0.1
 
 var character_collider: CollisionShape3D
+var animation_player: AnimationPlayer
 
 var queue_point: QueuePoint = null
 var queue_point_location: Vector3 = Vector3.ZERO
@@ -44,6 +46,7 @@ signal issue_fear_signal
 func _ready() -> void:
 	# Get references
 	character_collider = get_node("Collider")
+	animation_player = animated_mesh.get_node("AnimationPlayer")
 	
 	# Create ingredient list (Note first two options always have to be true
 	requested_ingredient_list.append(GameManager.LemonadeState.EMPTY)
@@ -89,12 +92,16 @@ func move_to_queue_point_and_display_recipe() -> void:
 		wait_in_queue_radial.set_visible(false)
 	
 	var direction_to_travel = (queue_point_location - global_position).normalized()
+	animation_player.play("Zombie_Run")
+	look_at_target(direction_to_travel)
 	velocity = direction_to_travel * walk_speed
 		
 	move_and_slide()
 		
 	if global_position.distance_squared_to(queue_point_location) < 0.01:
 		is_moving_to_queue_point = false
+		animation_player.play("Zombie_Idle")
+		look_at_target(Vector3(0.1, 1.0, 7.0))
 		if queue_point_index == 0:
 			is_at_front_of_queue.emit()
 			display_recipe_request()
@@ -108,6 +115,8 @@ func move_to_queue_point_and_display_recipe() -> void:
 
 func move_to_leave_point_and_disappear() -> void:
 	var direction_to_travel = (point_to_leave - global_position).normalized()
+	animation_player.play("Zombie_Run")
+	look_at_target(direction_to_travel)
 	velocity = direction_to_travel * walk_speed
 	
 	move_and_slide()
@@ -116,6 +125,12 @@ func move_to_leave_point_and_disappear() -> void:
 		is_moving_to_leave_point = false
 		print(name, ": leaving map")
 		queue_free()
+
+
+func look_at_target(direction: Vector3) -> void:
+	var adjusted_direction = direction
+	adjusted_direction.y = 0.0
+	look_at(global_position + adjusted_direction, Vector3.UP)
 
 
 func create_ingredient_request(state_to_add_if_true: GameManager.LemonadeState) -> void:

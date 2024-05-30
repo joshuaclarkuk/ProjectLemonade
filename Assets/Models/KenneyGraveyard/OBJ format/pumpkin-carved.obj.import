@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b0v6lqt760x6o"
+path="res://.godot/imported/pumpkin-carved.obj-5ebb5550301da8d59dd75788f51820bb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pumpkin-carved.obj-5ebb5550301da8d59dd75788f51820bb.mesh"]
+
+source_file="res://Assets/Models/KenneyGraveyard/OBJ format/pumpkin-carved.obj"
+dest_files=["res://.godot/imported/pumpkin-carved.obj-5ebb5550301da8d59dd75788f51820bb.mesh", "res://.godot/imported/pumpkin-carved.obj-5ebb5550301da8d59dd75788f51820bb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

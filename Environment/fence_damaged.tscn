@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://corj348uihwa2"]
+
+[ext_resource type="PackedScene" uid="uid://c1e7iaulcumur" path="res://Assets/Models/KenneyGraveyard/fence-damaged.glb" id="1_1tp4u"]
+[ext_resource type="Material" uid="uid://jhbyva0vpoc7" path="res://Materials/fence_material_override.tres" id="2_u1b0e"]
+
+[node name="fence-damaged2" instance=ExtResource("1_1tp4u")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="fence-damaged" parent="." index="0"]
+material_override = ExtResource("2_u1b0e")

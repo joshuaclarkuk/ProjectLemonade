@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy5djbhk8fxak"]
+[gd_scene load_steps=12 format=3 uid="uid://cy5djbhk8fxak"]
 
 [ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
-[ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="2_li8pc"]
 [ext_resource type="Texture2D" uid="uid://dl84uby2t8gld" path="res://Assets/Textures/ZombieUI/IceCubeSprite.png" id="3_vpgqq"]
 [ext_resource type="Texture2D" uid="uid://buvm2wwtpmlf2" path="res://Assets/Textures/ZombieUI/SugarSprite.png" id="4_o0tst"]
 [ext_resource type="Texture2D" uid="uid://b5m2meaq67fs" path="res://Assets/Textures/ZombieUI/Lemon.png" id="5_g4q8f"]
@@ -9,10 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://nvvesla7g3fl" path="res://Assets/Textures/ZombieUI/red_circle.png" id="7_6ppf5"]
 [ext_resource type="PackedScene" uid="uid://mjifqroreiaf" path="res://Zombie/fart_component.tscn" id="8_jcslk"]
 [ext_resource type="AudioStream" uid="uid://bo2rttjn2rhaq" path="res://Assets/SFX/Boo.wav" id="9_f60b7"]
+[ext_resource type="PackedScene" uid="uid://cprui2wc76p31" path="res://Zombie/animated_zombie.tscn" id="10_70dp4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhe8y"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vt3mw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62t1y"]
 
@@ -21,12 +19,11 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_bxugx")
 
+[node name="AnimatedMesh" parent="." instance=ExtResource("10_70dp4")]
+transform = Transform3D(-0.01, 0, 8.74228e-10, 0, 0.01, 0, -8.74228e-10, 0, -0.01, 0, -0.099743, 0)
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_uhe8y")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-material_override = ExtResource("2_li8pc")
-mesh = SubResource("CapsuleMesh_vt3mw")
 
 [node name="IngredientRequestUI" type="Control" parent="."]
 layout_mode = 3

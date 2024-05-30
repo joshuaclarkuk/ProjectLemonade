@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=65 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -45,6 +45,14 @@
 [ext_resource type="PackedScene" uid="uid://bl2mb2o31iyep" path="res://Assets/Models/Kenney Suburbs/tree_large.glb" id="36_jdf03"]
 [ext_resource type="PackedScene" uid="uid://dkpkyb1ejuah6" path="res://Assets/Models/Kenney Suburbs/fence_wide.glb" id="36_savag"]
 [ext_resource type="PackedScene" uid="uid://oprtnxjoo2ib" path="res://Assets/Models/Kenney Suburbs/tree_small.glb" id="37_ge3kt"]
+[ext_resource type="PackedScene" uid="uid://corj348uihwa2" path="res://Environment/fence_damaged.tscn" id="46_x01fi"]
+[ext_resource type="PackedScene" uid="uid://b7aq7bj7vvo44" path="res://Environment/fence_complete.tscn" id="47_6e40f"]
+[ext_resource type="PackedScene" uid="uid://cd0c1xcx5omui" path="res://Environment/fence_gate.tscn" id="48_4evku"]
+[ext_resource type="ArrayMesh" uid="uid://bkcqbkqdo7mo3" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-bar.obj" id="49_3obhi"]
+[ext_resource type="ArrayMesh" uid="uid://n3atsjd7hvbx" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-border-column.obj" id="50_im6x0"]
+[ext_resource type="ArrayMesh" uid="uid://p0w08qjflq3h" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-border-curve.obj" id="51_3tilv"]
+[ext_resource type="ArrayMesh" uid="uid://dsdysdk3efndv" path="res://Assets/Models/KenneyGraveyard/OBJ format/pine-crooked.obj" id="53_05ji5"]
+[ext_resource type="ArrayMesh" uid="uid://djimvhtjiwtc5" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-damaged.obj" id="53_i52pa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qpcj"]
 albedo_color = Color(1, 1, 0.572549, 1)
@@ -66,8 +74,6 @@ tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
-volumetric_fog_albedo = Color(0.946768, 0.55358, 0.256422, 1)
-volumetric_fog_emission = Color(0.499752, 0.485661, 0.336321, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okaw3"]
 albedo_color = Color(0.237539, 0.237539, 0.237539, 1)
@@ -112,7 +118,6 @@ environment = SubResource("Environment_vyt2i")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.515038, -0.479322, 0.710624, 0, 0.829038, 0.559193, -0.857167, 0.288006, -0.426986, 0, 0, 0)
-light_color = Color(0.791729, 0.843061, 0.563812, 1)
 shadow_enabled = true
 
 [node name="AudioPlayers" type="Node" parent="."]
@@ -340,12 +345,6 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.7585, 0, 10.5)
 
 [node name="Trees" type="Node3D" parent="Level"]
 
-[node name="tree_large2" parent="Level/Trees" instance=ExtResource("36_jdf03")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 0, -12.5)
-
-[node name="tree_small2" parent="Level/Trees" instance=ExtResource("37_ge3kt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -9.5, 0, -12)
-
 [node name="tree_large3" parent="Level/Trees" instance=ExtResource("36_jdf03")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -31, 0, -12)
 
@@ -401,7 +400,7 @@ rings = 4
 smooth_faces = false
 
 [node name="CSGSphere3D7" type="CSGSphere3D" parent="Level/Mountains"]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -261, -53.4, -102)
+transform = Transform3D(-0.5, 0, -0.866025, -0.433012, 0.866025, 0.25, 0.75, 0.5, -0.433013, -261, -53.4, -102)
 material_override = SubResource("StandardMaterial3D_okaw3")
 radius = 148.5
 radial_segments = 5
@@ -427,35 +426,35 @@ smooth_faces = false
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="SpawnPointA" type="Marker3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1, 1, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1, -0.5, -2.5)
 
 [node name="SpawnPointB" type="Marker3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, 1, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, -0.5, -2.5)
 
 [node name="QueuePoints" type="Node3D" parent="."]
 
 [node name="QueuePointA" parent="QueuePoints" instance=ExtResource("6_clnmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1, 5.55)
 
 [node name="QueuePointB" parent="QueuePoints" instance=ExtResource("6_clnmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 1, 4.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 1, 4.8)
 
 [node name="QueuePointC" parent="QueuePoints" instance=ExtResource("6_clnmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 3.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 4.35)
 
 [node name="QueuePointD" parent="QueuePoints" instance=ExtResource("6_clnmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1, 3.55)
 
 [node name="QueuePointE" parent="QueuePoints" instance=ExtResource("6_clnmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1, 3.55)
 
 [node name="LeavePoints" type="Node3D" parent="."]
 
 [node name="LeavePointA" type="Marker3D" parent="LeavePoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -1, 4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, 5.4)
 
 [node name="LeavePointB" type="Marker3D" parent="LeavePoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -1, 4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0.5, 5)
 
 [node name="ZombieManager" type="Node3D" parent="."]
 
@@ -681,6 +680,113 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("11_cu7dw")
+
+[node name="fence-damaged2" parent="." instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 9.5)
+
+[node name="fence-damaged3" parent="." instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 8, 0, 5.5)
+
+[node name="fence-damaged4" parent="." instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 5.5)
+
+[node name="fence2" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 7.5)
+
+[node name="fence3" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 1.5)
+
+[node name="fence13" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 3.5)
+
+[node name="fence16" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -4.5, 0, -0.5)
+
+[node name="fence17" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -6.5, 0, -0.5)
+
+[node name="fence18" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -8.5, 0, -0.5)
+
+[node name="fence19" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -16, 0, -0.5)
+
+[node name="fence20" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -18, 0, -0.5)
+
+[node name="fence21" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -20, 0, -0.5)
+
+[node name="fence14" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 7.5)
+
+[node name="fence15" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 9.5)
+
+[node name="fence4" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 8, 0, -0.5)
+
+[node name="fence5" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 10, 0, -0.5)
+
+[node name="fence6" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 12, 0, -0.5)
+
+[node name="fence7" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 14, 0, -0.5)
+
+[node name="fence8" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 16, 0, -0.5)
+
+[node name="fence9" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 18, 0, -0.5)
+
+[node name="fence10" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 20, 0, -0.5)
+
+[node name="fence11" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 22, 0, -0.5)
+
+[node name="fence12" parent="." instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 24, 0, -0.5)
+
+[node name="fence-gate2" parent="." instance=ExtResource("48_4evku")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 3.5)
+
+[node name="fence-gate3" parent="." instance=ExtResource("48_4evku")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -2.5, 0, 1.5)
+
+[node name="Iron-fence-bar" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.5, 0, -10)
+mesh = ExtResource("49_3obhi")
+
+[node name="Iron-fence-border-column" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0.5, 0, -11)
+mesh = ExtResource("50_im6x0")
+
+[node name="Iron-fence-border-column2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -4, 0, -9.2)
+mesh = ExtResource("50_im6x0")
+
+[node name="Iron-fence-border-curve" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -8, 0, -11)
+mesh = ExtResource("51_3tilv")
+
+[node name="Iron-fence-damaged" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2, 0, 1.74846e-07, 4.52534e-08, 1.93185, 0.517638, -1.68888e-07, 0.517638, -1.93185, 2.5, 0, -11)
+mesh = ExtResource("53_i52pa")
+
+[node name="Iron-fence-damaged2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52534e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, -6, -0.35, -11)
+mesh = ExtResource("53_i52pa")
+
+[node name="Pine-crooked" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 0, -16.5)
+mesh = ExtResource("53_05ji5")
+
+[node name="Pine-crooked2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.1365e-07, 0, 2.6, 0, 2.6, 0, -2.6, 0, -1.1365e-07, -6.5, 0, -12.5)
+mesh = ExtResource("53_05ji5")
 
 [connection signal="timeout" from="Timers/ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
 [connection signal="pressed" from="EndDayScreen/EndOfDayButtons/RestartButton" to="." method="_on_restart_button_pressed"]

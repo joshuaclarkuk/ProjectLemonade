@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7aq7bj7vvo44"]
+
+[ext_resource type="PackedScene" uid="uid://f5fkmprf08lb" path="res://Assets/Models/KenneyGraveyard/fence.glb" id="1_bxqjo"]
+[ext_resource type="Material" uid="uid://jhbyva0vpoc7" path="res://Materials/fence_material_override.tres" id="2_ppm3b"]
+
+[node name="fence2" instance=ExtResource("1_bxqjo")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="fence" parent="." index="0"]
+material_override = ExtResource("2_ppm3b")
