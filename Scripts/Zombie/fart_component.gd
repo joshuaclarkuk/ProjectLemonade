@@ -26,7 +26,7 @@ func _ready() -> void:
 	fart_array.append(MED_FART)
 	fart_array.append(SHORT_FART)
 	
-	fart_timer.wait_time = randi_range(10.0, 120.0)
+	fart_timer.wait_time = randi_range(10.0, 30.0)
 	print("Fart timer wait time: ", str(fart_timer.wait_time))
 	
 	fart_timer.start()
@@ -45,6 +45,6 @@ func fart() -> void:
 	fart_audio.stream = fart_array[random_fart_index]
 	fart_audio.pitch_scale = random_fart_pitch
 	fart_audio.play()
-	var new_wait_time = randi_range(10.0, 120.0)
+	var new_wait_time = randi_range(10.0, 30.0)
 	fart_timer.wait_time = new_wait_time
 	fart_timer.start()

@@ -137,6 +137,7 @@ _data = {
 script = ExtResource("1_t6mj7")
 zombie = ExtResource("5_1hf5j")
 zombie_spawn_timer_wait_time = 12.0
+max_time_in_day = 6.0
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -751,32 +752,33 @@ grow_vertical = 2
 [node name="Mask" type="TextureRect" parent="EndDayScreen"]
 clip_children = 1
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -292.0
-offset_top = -677.0
-offset_right = 308.0
-offset_bottom = -199.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -239.0
+offset_right = 300.0
+offset_bottom = 239.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 texture = ExtResource("52_o5kkh")
 
 [node name="Background" type="TextureRect" parent="EndDayScreen/Mask"]
 modulate = Color(0.592157, 0.592157, 0.592157, 0.756863)
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -478.0
+offset_top = -239.0
 offset_right = 300.0
+offset_bottom = 239.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 texture = SubResource("CanvasTexture_cvttv")
 
 [node name="EndOfDay(s)Label" type="Label" parent="EndDayScreen"]
@@ -787,9 +789,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -186.5
-offset_top = -49.5
+offset_top = -200.0
 offset_right = 186.5
-offset_bottom = 49.5
+offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "End of Day"
@@ -804,27 +806,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 160.0
-offset_top = -77.0
-offset_right = 288.0
-offset_bottom = 51.0
+offset_left = 143.0
+offset_top = -216.0
+offset_right = 271.0
+offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_fpe8g")
 
 [node name="StatsGrid" type="GridContainer" parent="EndDayScreen"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -82.0
-offset_top = -329.0
-offset_right = 82.0
-offset_bottom = -228.0
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -15.0
+offset_right = 108.0
+offset_bottom = 86.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 columns = 2
 
 [node name="DrinksServedTitle" type="Label" parent="EndDayScreen/StatsGrid"]
@@ -862,17 +864,17 @@ label_settings = SubResource("LabelSettings_kjr8c")
 
 [node name="MoneyEarnedLabel" type="Label" parent="EndDayScreen"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -230.5
-offset_top = -451.0
+offset_top = -110.0
 offset_right = 230.5
-offset_bottom = -352.0
+offset_bottom = -11.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "$999.99"
 label_settings = SubResource("LabelSettings_pvaxj")
 horizontal_alignment = 1
@@ -880,17 +882,17 @@ vertical_alignment = 1
 
 [node name="EndOfDayButtons" type="HBoxContainer" parent="EndDayScreen"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -310.0
-offset_top = -200.0
+offset_top = 158.0
 offset_right = 310.0
-offset_bottom = -160.0
+offset_bottom = 198.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme = SubResource("Theme_gu2h5")
 theme_override_constants/separation = 20
 
