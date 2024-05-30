@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy5djbhk8fxak"]
+[gd_scene load_steps=14 format=3 uid="uid://cy5djbhk8fxak"]
 
 [ext_resource type="Script" path="res://Scripts/Zombie/zombie.gd" id="1_bxugx"]
+[ext_resource type="Texture2D" uid="uid://crbx5wsud3ppw" path="res://Assets/Models/Zombie/Mask/ZombieMask_pexels-ron-lach-10526880.jpg" id="3_dssj0"]
+[ext_resource type="Texture2D" uid="uid://r4bgajcxnfmr" path="res://Assets/Textures/ZombieUI/RequestPanelMask.png" id="3_tkiy2"]
 [ext_resource type="Texture2D" uid="uid://dl84uby2t8gld" path="res://Assets/Textures/ZombieUI/IceCubeSprite.png" id="3_vpgqq"]
 [ext_resource type="Texture2D" uid="uid://buvm2wwtpmlf2" path="res://Assets/Textures/ZombieUI/SugarSprite.png" id="4_o0tst"]
 [ext_resource type="Texture2D" uid="uid://b5m2meaq67fs" path="res://Assets/Textures/ZombieUI/Lemon.png" id="5_g4q8f"]
@@ -35,19 +37,34 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="IngredientRequestUI"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -520.0
-offset_top = 100.0
-offset_right = -520.0
-offset_bottom = 100.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RequestPanelMask" type="Sprite2D" parent="IngredientRequestUI/Panel"]
+clip_children = 1
+position = Vector2(-281, -302)
+texture = ExtResource("3_tkiy2")
+
+[node name="TextureRect" type="TextureRect" parent="IngredientRequestUI/Panel/RequestPanelMask"]
+modulate = Color(1, 1, 1, 0.67451)
+offset_left = -181.0
+offset_top = -236.0
+offset_right = 177.0
+offset_bottom = 242.0
+texture = ExtResource("3_dssj0")
+expand_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="IngredientRequestUI/Panel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -427.0
+offset_top = -498.0
+offset_right = -295.0
+offset_bottom = -106.0
 columns = 2
 
 [node name="IceSprite" type="TextureRect" parent="IngredientRequestUI/Panel/GridContainer"]

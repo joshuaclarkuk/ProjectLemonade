@@ -10,41 +10,39 @@
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/queue_point.tscn" id="6_clnmg"]
-[ext_resource type="PackedScene" uid="uid://cfijjh876n0i6" path="res://Assets/Models/Kenney Suburbs/house_type01.glb" id="8_8h6bd"]
-[ext_resource type="PackedScene" uid="uid://b5m0rqufr8ovy" path="res://Assets/Models/Kenney Suburbs/house_type02.glb" id="9_um4on"]
-[ext_resource type="PackedScene" uid="uid://drfmkothprq31" path="res://Assets/Models/Kenney Suburbs/house_type03.glb" id="10_d861m"]
+[ext_resource type="PackedScene" uid="uid://cfijjh876n0i6" path="res://Assets/Models/KenneySuburbs/house_type01.glb" id="8_8h6bd"]
+[ext_resource type="PackedScene" uid="uid://b5m0rqufr8ovy" path="res://Assets/Models/KenneySuburbs/house_type02.glb" id="9_um4on"]
+[ext_resource type="PackedScene" uid="uid://drfmkothprq31" path="res://Assets/Models/KenneySuburbs/house_type03.glb" id="10_d861m"]
 [ext_resource type="Texture2D" uid="uid://bser51axymuul" path="res://Assets/Textures/GameOverScreen/End of Days.png" id="10_fpe8g"]
 [ext_resource type="Texture2D" uid="uid://cp1wweib5foxc" path="res://Assets/Textures/sun-3337.png" id="10_qtea6"]
-[ext_resource type="PackedScene" uid="uid://c2sw8is4d07mb" path="res://Assets/Models/Kenney Suburbs/house_type04.glb" id="11_0uqs4"]
+[ext_resource type="PackedScene" uid="uid://c2sw8is4d07mb" path="res://Assets/Models/KenneySuburbs/house_type04.glb" id="11_0uqs4"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="11_cu7dw"]
 [ext_resource type="Texture2D" uid="uid://5xcm3460ocn2" path="res://Assets/Textures/SemiCircle.png" id="11_f514r"]
 [ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="11_uujn6"]
-[ext_resource type="PackedScene" uid="uid://bhjvgplmcyi8o" path="res://Assets/Models/Kenney Suburbs/house_type05.glb" id="12_21u0d"]
-[ext_resource type="PackedScene" uid="uid://dfxdf18nxq8kx" path="res://Assets/Models/Kenney Suburbs/house_type06.glb" id="13_0j205"]
-[ext_resource type="PackedScene" uid="uid://csu522a0n5l1l" path="res://Assets/Models/Kenney Suburbs/house_type07.glb" id="14_vth8y"]
-[ext_resource type="PackedScene" uid="uid://cfjmwx42i8j6k" path="res://Assets/Models/Kenney Suburbs/house_type08.glb" id="15_82ruu"]
-[ext_resource type="PackedScene" uid="uid://bjyijqinyl28n" path="res://Assets/Models/Kenney Suburbs/house_type09.glb" id="16_nng57"]
-[ext_resource type="PackedScene" uid="uid://wu23meccquwh" path="res://Assets/Models/Kenney Suburbs/house_type10.glb" id="17_fjb03"]
-[ext_resource type="PackedScene" uid="uid://cixmanqawtabe" path="res://Assets/Models/Kenney Suburbs/house_type11.glb" id="18_nl0wc"]
-[ext_resource type="PackedScene" uid="uid://bxlw2lclw1dpa" path="res://Assets/Models/Kenney Suburbs/house_type12.glb" id="19_cxiil"]
-[ext_resource type="PackedScene" uid="uid://c1xaq0k8xrnbl" path="res://Assets/Models/Kenney Suburbs/house_type13.glb" id="20_q7v06"]
-[ext_resource type="PackedScene" uid="uid://dbu11n27ay54s" path="res://Assets/Models/Kenney Suburbs/house_type14.glb" id="21_l71cc"]
-[ext_resource type="PackedScene" uid="uid://dakfragryug8r" path="res://Assets/Models/Kenney Suburbs/house_type15.glb" id="22_3ej5c"]
-[ext_resource type="PackedScene" uid="uid://7bryord887nl" path="res://Assets/Models/Kenney Suburbs/house_type16.glb" id="23_b3v8h"]
-[ext_resource type="PackedScene" uid="uid://cx1fq5j66q76w" path="res://Assets/Models/Kenney Suburbs/house_type17.glb" id="24_wgopq"]
-[ext_resource type="PackedScene" uid="uid://d4ln4pi2yr11t" path="res://Assets/Models/Kenney Suburbs/house_type18.glb" id="25_kpdnt"]
-[ext_resource type="PackedScene" uid="uid://usv2xeap05d4" path="res://Assets/Models/Kenney Suburbs/house_type19.glb" id="26_7u2bt"]
-[ext_resource type="PackedScene" uid="uid://cxwfw1xaudxv" path="res://Assets/Models/Kenney Suburbs/house_type20.glb" id="27_lallt"]
-[ext_resource type="PackedScene" uid="uid://7j6o0d7svhay" path="res://Assets/Models/Kenney Suburbs/house_type21.glb" id="28_i1vvk"]
-[ext_resource type="PackedScene" uid="uid://chgoo38q1wluu" path="res://Assets/Models/Kenney Suburbs/driveway_long.glb" id="29_a5evd"]
-[ext_resource type="PackedScene" uid="uid://8w5c4ansu68u" path="res://Assets/Models/Kenney Suburbs/path_long.glb" id="30_qgiti"]
-[ext_resource type="PackedScene" uid="uid://descbmgkkg1ee" path="res://Assets/Models/Kenney Suburbs/fence_open.glb" id="32_axw5q"]
-[ext_resource type="PackedScene" uid="uid://dbgkhxix3enul" path="res://Assets/Models/Kenney Suburbs/fence_rectangle.glb" id="33_u8d3d"]
-[ext_resource type="PackedScene" uid="uid://vxalywfv6as4" path="res://Assets/Models/Kenney Suburbs/fence_short.glb" id="34_rverg"]
-[ext_resource type="PackedScene" uid="uid://cyfmkam7nq400" path="res://Assets/Models/Kenney Suburbs/fence_small.glb" id="35_o6lgc"]
-[ext_resource type="PackedScene" uid="uid://bl2mb2o31iyep" path="res://Assets/Models/Kenney Suburbs/tree_large.glb" id="36_jdf03"]
-[ext_resource type="PackedScene" uid="uid://dkpkyb1ejuah6" path="res://Assets/Models/Kenney Suburbs/fence_wide.glb" id="36_savag"]
-[ext_resource type="PackedScene" uid="uid://oprtnxjoo2ib" path="res://Assets/Models/Kenney Suburbs/tree_small.glb" id="37_ge3kt"]
+[ext_resource type="PackedScene" uid="uid://bhjvgplmcyi8o" path="res://Assets/Models/KenneySuburbs/house_type05.glb" id="12_21u0d"]
+[ext_resource type="PackedScene" uid="uid://dfxdf18nxq8kx" path="res://Assets/Models/KenneySuburbs/house_type06.glb" id="13_0j205"]
+[ext_resource type="PackedScene" uid="uid://csu522a0n5l1l" path="res://Assets/Models/KenneySuburbs/house_type07.glb" id="14_vth8y"]
+[ext_resource type="PackedScene" uid="uid://cfjmwx42i8j6k" path="res://Assets/Models/KenneySuburbs/house_type08.glb" id="15_82ruu"]
+[ext_resource type="PackedScene" uid="uid://bjyijqinyl28n" path="res://Assets/Models/KenneySuburbs/house_type09.glb" id="16_nng57"]
+[ext_resource type="PackedScene" uid="uid://wu23meccquwh" path="res://Assets/Models/KenneySuburbs/house_type10.glb" id="17_fjb03"]
+[ext_resource type="PackedScene" uid="uid://cixmanqawtabe" path="res://Assets/Models/KenneySuburbs/house_type11.glb" id="18_nl0wc"]
+[ext_resource type="PackedScene" uid="uid://bxlw2lclw1dpa" path="res://Assets/Models/KenneySuburbs/house_type12.glb" id="19_cxiil"]
+[ext_resource type="PackedScene" uid="uid://c1xaq0k8xrnbl" path="res://Assets/Models/KenneySuburbs/house_type13.glb" id="20_q7v06"]
+[ext_resource type="PackedScene" uid="uid://dbu11n27ay54s" path="res://Assets/Models/KenneySuburbs/house_type14.glb" id="21_l71cc"]
+[ext_resource type="PackedScene" uid="uid://dakfragryug8r" path="res://Assets/Models/KenneySuburbs/house_type15.glb" id="22_3ej5c"]
+[ext_resource type="PackedScene" uid="uid://7bryord887nl" path="res://Assets/Models/KenneySuburbs/house_type16.glb" id="23_b3v8h"]
+[ext_resource type="PackedScene" uid="uid://cx1fq5j66q76w" path="res://Assets/Models/KenneySuburbs/house_type17.glb" id="24_wgopq"]
+[ext_resource type="PackedScene" uid="uid://d4ln4pi2yr11t" path="res://Assets/Models/KenneySuburbs/house_type18.glb" id="25_kpdnt"]
+[ext_resource type="PackedScene" uid="uid://usv2xeap05d4" path="res://Assets/Models/KenneySuburbs/house_type19.glb" id="26_7u2bt"]
+[ext_resource type="PackedScene" uid="uid://cxwfw1xaudxv" path="res://Assets/Models/KenneySuburbs/house_type20.glb" id="27_lallt"]
+[ext_resource type="PackedScene" uid="uid://7j6o0d7svhay" path="res://Assets/Models/KenneySuburbs/house_type21.glb" id="28_i1vvk"]
+[ext_resource type="PackedScene" uid="uid://chgoo38q1wluu" path="res://Assets/Models/KenneySuburbs/driveway_long.glb" id="29_a5evd"]
+[ext_resource type="PackedScene" uid="uid://8w5c4ansu68u" path="res://Assets/Models/KenneySuburbs/path_long.glb" id="30_qgiti"]
+[ext_resource type="PackedScene" uid="uid://descbmgkkg1ee" path="res://Assets/Models/KenneySuburbs/fence_open.glb" id="32_axw5q"]
+[ext_resource type="PackedScene" uid="uid://dbgkhxix3enul" path="res://Assets/Models/KenneySuburbs/fence_rectangle.glb" id="33_u8d3d"]
+[ext_resource type="PackedScene" uid="uid://cyfmkam7nq400" path="res://Assets/Models/KenneySuburbs/fence_small.glb" id="35_o6lgc"]
+[ext_resource type="PackedScene" uid="uid://bl2mb2o31iyep" path="res://Assets/Models/KenneySuburbs/tree_large.glb" id="36_jdf03"]
+[ext_resource type="PackedScene" uid="uid://oprtnxjoo2ib" path="res://Assets/Models/KenneySuburbs/tree_small.glb" id="37_ge3kt"]
 [ext_resource type="PackedScene" uid="uid://corj348uihwa2" path="res://Environment/fence_damaged.tscn" id="46_x01fi"]
 [ext_resource type="PackedScene" uid="uid://b7aq7bj7vvo44" path="res://Environment/fence_complete.tscn" id="47_6e40f"]
 [ext_resource type="PackedScene" uid="uid://cd0c1xcx5omui" path="res://Environment/fence_gate.tscn" id="48_4evku"]
@@ -53,6 +51,8 @@
 [ext_resource type="ArrayMesh" uid="uid://p0w08qjflq3h" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-border-curve.obj" id="51_3tilv"]
 [ext_resource type="ArrayMesh" uid="uid://dsdysdk3efndv" path="res://Assets/Models/KenneyGraveyard/OBJ format/pine-crooked.obj" id="53_05ji5"]
 [ext_resource type="ArrayMesh" uid="uid://djimvhtjiwtc5" path="res://Assets/Models/KenneyGraveyard/OBJ format/iron-fence-damaged.obj" id="53_i52pa"]
+[ext_resource type="ArrayMesh" uid="uid://dwjnt43c57b70" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk.obj" id="54_elqb8"]
+[ext_resource type="ArrayMesh" uid="uid://bxlaob3rqn80k" path="res://Assets/Models/KenneyGraveyard/OBJ format/trunk-long.obj" id="55_8h3ft"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qpcj"]
 albedo_color = Color(1, 1, 0.572549, 1)
@@ -85,15 +85,15 @@ font_size = 46
 [sub_resource type="LabelSettings" id="LabelSettings_p0r04"]
 font_size = 72
 
-[sub_resource type="LabelSettings" id="LabelSettings_pvaxj"]
-font = ExtResource("11_uujn6")
-font_size = 72
-
 [sub_resource type="LabelSettings" id="LabelSettings_ncw84"]
 font = ExtResource("11_uujn6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kjr8c"]
 font = ExtResource("11_uujn6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvaxj"]
+font = ExtResource("11_uujn6")
+font_size = 72
 
 [sub_resource type="Theme" id="Theme_gu2h5"]
 default_font = ExtResource("11_uujn6")
@@ -334,14 +334,119 @@ transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -32
 [node name="fence_rectangle2" parent="Level/Fences" instance=ExtResource("33_u8d3d")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 13.5, 0, -16)
 
-[node name="fence_short2" parent="Level/Fences" instance=ExtResource("34_rverg")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4, 0, 12)
-
 [node name="fence_small2" parent="Level/Fences" instance=ExtResource("35_o6lgc")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -11.5, 0, -19)
 
-[node name="fence_wide2" parent="Level/Fences" instance=ExtResource("36_savag")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.7585, 0, 10.5)
+[node name="fence-damaged2" parent="Level/Fences" instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 9.5)
+
+[node name="fence-damaged3" parent="Level/Fences" instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 8, 0, 5.5)
+
+[node name="fence-damaged4" parent="Level/Fences" instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.44439e-08, -0.517638, -1.93185, -2.26267e-08, 1.93185, -0.517638, 2, 0, -8.74228e-08, -4.5, -0.5, 5.5)
+
+[node name="fence-damaged5" parent="Level/Fences" instance=ExtResource("46_x01fi")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 11.5)
+
+[node name="fence-damaged6" parent="Level/Fences" instance=ExtResource("46_x01fi")]
+transform = Transform3D(2.53332e-07, -0.517638, 1.93185, 6.788e-08, 1.93185, 0.517638, -2, 0, 2.62268e-07, -2.5, 0, 13.5)
+
+[node name="fence2" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 7.5)
+
+[node name="fence3" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 1.5)
+
+[node name="fence13" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.44439e-08, 0.517638, -1.93185, 2.26267e-08, 1.93185, 0.517638, 2, 0, -8.74228e-08, -4.5, 0, 3.5)
+
+[node name="fence16" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -4.5, 0, -0.5)
+
+[node name="fence17" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -6.5, 0, -0.5)
+
+[node name="fence18" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52535e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, -8.5, -0.5, -0.5)
+
+[node name="fence19" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -16, 0, -0.5)
+
+[node name="fence20" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -18, 0, -0.5)
+
+[node name="fence21" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -20, 0, -0.5)
+
+[node name="fence14" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.44439e-08, 0.517638, -1.93185, 2.26267e-08, 1.93185, 0.517638, 2, 0, -8.74228e-08, -4.5, 0, 7.5)
+
+[node name="fence15" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-8.44439e-08, 0.517638, -1.93185, 2.26267e-08, 1.93185, 0.517638, 2, 0, -8.74228e-08, -4.5, 0, 9.5)
+
+[node name="fence4" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52535e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, 8, -0.5, -0.5)
+
+[node name="fence5" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52535e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, 10, -0.5, -0.5)
+
+[node name="fence6" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52535e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, 12, -0.5, -0.5)
+
+[node name="fence7" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 7.10543e-15, 2, 0, -1.74846e-07, 0, -2, 14, 0, -0.5)
+
+[node name="fence8" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52535e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, 16, -0.5, -0.5)
+
+[node name="fence9" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 18, 0, -0.5)
+
+[node name="fence10" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 20, 0, -0.5)
+
+[node name="fence11" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 22, 0, -0.5)
+
+[node name="fence12" parent="Level/Fences" instance=ExtResource("47_6e40f")]
+transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 24, 0, -0.5)
+
+[node name="fence-gate2" parent="Level/Fences" instance=ExtResource("48_4evku")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 3.5)
+
+[node name="fence-gate3" parent="Level/Fences" instance=ExtResource("48_4evku")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -2.5, 0, 1.5)
+
+[node name="Iron-fence-bar" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.5, 0, -10)
+mesh = ExtResource("49_3obhi")
+skeleton = NodePath("../../..")
+
+[node name="Iron-fence-border-column" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0.5, 0, -11)
+mesh = ExtResource("50_im6x0")
+skeleton = NodePath("../../..")
+
+[node name="Iron-fence-border-column2" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -4, 0, -9.2)
+mesh = ExtResource("50_im6x0")
+skeleton = NodePath("../../..")
+
+[node name="Iron-fence-border-curve" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -8, 0, -11)
+mesh = ExtResource("51_3tilv")
+skeleton = NodePath("../../..")
+
+[node name="Iron-fence-damaged" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(-2, 0, 1.74846e-07, 4.52534e-08, 1.93185, 0.517638, -1.68888e-07, 0.517638, -1.93185, 2.5, 0, -11)
+mesh = ExtResource("53_i52pa")
+skeleton = NodePath("../../..")
+
+[node name="Iron-fence-damaged2" type="MeshInstance3D" parent="Level/Fences"]
+transform = Transform3D(-2, 0, 1.74846e-07, -4.52534e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, -6, -0.35, -11)
+mesh = ExtResource("53_i52pa")
+skeleton = NodePath("../../..")
 
 [node name="Trees" type="Node3D" parent="Level"]
 
@@ -356,6 +461,36 @@ transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 29.
 
 [node name="tree_small4" parent="Level/Trees" instance=ExtResource("37_ge3kt")]
 transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 41.5, 0, -12.5)
+
+[node name="Pine-crooked" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 0, -16.5)
+mesh = ExtResource("53_05ji5")
+skeleton = NodePath("../../..")
+
+[node name="Pine-crooked3" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6, 0, 7)
+mesh = ExtResource("53_05ji5")
+skeleton = NodePath("../../..")
+
+[node name="Pine-crooked2" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(-1.1365e-07, 0, 2.6, 0, 2.6, 0, -2.6, 0, -1.1365e-07, -6.5, 0, -12.5)
+mesh = ExtResource("53_05ji5")
+skeleton = NodePath("../../..")
+
+[node name="Trunk-long" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 23, 0, 2)
+mesh = ExtResource("55_8h3ft")
+skeleton = NodePath("../../..")
+
+[node name="Trunk-long2" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8.5, 0, -10.95)
+mesh = ExtResource("55_8h3ft")
+skeleton = NodePath("../../..")
+
+[node name="Trunk" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14, 0, 11.5)
+mesh = ExtResource("54_elqb8")
+skeleton = NodePath("../../..")
 
 [node name="Mountains" type="Node3D" parent="Level"]
 
@@ -566,24 +701,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_fpe8g")
 
-[node name="MoneyEarnedLabel" type="Label" parent="EndDayScreen"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -230.5
-offset_top = -451.0
-offset_right = 230.5
-offset_bottom = -352.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "$999.99"
-label_settings = SubResource("LabelSettings_pvaxj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StatsGrid" type="GridContainer" parent="EndDayScreen"]
 layout_mode = 1
 anchors_preset = 7
@@ -632,6 +749,24 @@ layout_mode = 2
 text = "99"
 label_settings = SubResource("LabelSettings_kjr8c")
 
+[node name="MoneyEarnedLabel" type="Label" parent="EndDayScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.5
+offset_top = -451.0
+offset_right = 230.5
+offset_bottom = -352.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "$999.99"
+label_settings = SubResource("LabelSettings_pvaxj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="EndOfDayButtons" type="HBoxContainer" parent="EndDayScreen"]
 layout_mode = 1
 anchors_preset = 7
@@ -676,117 +811,13 @@ one_shot = true
 
 [node name="BlackFadeScreen" type="TextureRect" parent="."]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("11_cu7dw")
-
-[node name="fence-damaged2" parent="." instance=ExtResource("46_x01fi")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 9.5)
-
-[node name="fence-damaged3" parent="." instance=ExtResource("46_x01fi")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 8, 0, 5.5)
-
-[node name="fence-damaged4" parent="." instance=ExtResource("46_x01fi")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 5.5)
-
-[node name="fence2" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 7.5)
-
-[node name="fence3" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 1.5)
-
-[node name="fence13" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 3.5)
-
-[node name="fence16" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -4.5, 0, -0.5)
-
-[node name="fence17" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -6.5, 0, -0.5)
-
-[node name="fence18" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -8.5, 0, -0.5)
-
-[node name="fence19" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -16, 0, -0.5)
-
-[node name="fence20" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -18, 0, -0.5)
-
-[node name="fence21" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, -20, 0, -0.5)
-
-[node name="fence14" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 7.5)
-
-[node name="fence15" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -4.5, 0, 9.5)
-
-[node name="fence4" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 8, 0, -0.5)
-
-[node name="fence5" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 10, 0, -0.5)
-
-[node name="fence6" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 12, 0, -0.5)
-
-[node name="fence7" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 14, 0, -0.5)
-
-[node name="fence8" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 16, 0, -0.5)
-
-[node name="fence9" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 18, 0, -0.5)
-
-[node name="fence10" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 20, 0, -0.5)
-
-[node name="fence11" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 22, 0, -0.5)
-
-[node name="fence12" parent="." instance=ExtResource("47_6e40f")]
-transform = Transform3D(-2, 0, 1.74846e-07, 0, 2, 0, -1.74846e-07, 0, -2, 24, 0, -0.5)
-
-[node name="fence-gate2" parent="." instance=ExtResource("48_4evku")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, 3.5)
-
-[node name="fence-gate3" parent="." instance=ExtResource("48_4evku")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -2.5, 0, 1.5)
-
-[node name="Iron-fence-bar" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.5, 0, -10)
-mesh = ExtResource("49_3obhi")
-
-[node name="Iron-fence-border-column" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0.5, 0, -11)
-mesh = ExtResource("50_im6x0")
-
-[node name="Iron-fence-border-column2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 3.49691e-07, 0, 2, 0, -3.49691e-07, 0, 2, -4, 0, -9.2)
-mesh = ExtResource("50_im6x0")
-
-[node name="Iron-fence-border-curve" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -8, 0, -11)
-mesh = ExtResource("51_3tilv")
-
-[node name="Iron-fence-damaged" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2, 0, 1.74846e-07, 4.52534e-08, 1.93185, 0.517638, -1.68888e-07, 0.517638, -1.93185, 2.5, 0, -11)
-mesh = ExtResource("53_i52pa")
-
-[node name="Iron-fence-damaged2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2, 0, 1.74846e-07, -4.52534e-08, 1.93185, -0.517638, -1.68888e-07, -0.517638, -1.93185, -6, -0.35, -11)
-mesh = ExtResource("53_i52pa")
-
-[node name="Pine-crooked" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 0, -16.5)
-mesh = ExtResource("53_05ji5")
-
-[node name="Pine-crooked2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.1365e-07, 0, 2.6, 0, 2.6, 0, -2.6, 0, -1.1365e-07, -6.5, 0, -12.5)
-mesh = ExtResource("53_05ji5")
 
 [connection signal="timeout" from="Timers/ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
 [connection signal="pressed" from="EndDayScreen/EndOfDayButtons/RestartButton" to="." method="_on_restart_button_pressed"]
