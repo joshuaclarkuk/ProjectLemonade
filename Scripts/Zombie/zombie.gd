@@ -2,6 +2,13 @@ class_name Zombie extends CharacterBody3D
 
 const CROSS = preload("res://Assets/Textures/ZombieUI/cross.png")
 const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
+
+# Zombie audio
+const TOM_ZOMBIE_ANGRY = preload("res://Assets/SFX/Zombie/Tom/Tom Zombie angry.ogg")
+const TOM_ZOMBIE_ECSTATIC = preload("res://Assets/SFX/Zombie/Tom/Tom Zombie ecstatic.ogg")
+const TOM_ZOMBIE_HAPPY = preload("res://Assets/SFX/Zombie/Tom/Tom Zombie happy.ogg")
+const TOM_ZOMBIE_NORMAL = preload("res://Assets/SFX/Zombie/Tom/Tom Zombie normal.ogg")
+
 @onready var ingredient_request_ui: Control = $IngredientRequestUI
 @onready var ice_tick: TextureRect = $IngredientRequestUI/Panel/GridContainer/IceTick
 @onready var sugar_tick: TextureRect = $IngredientRequestUI/Panel/GridContainer/SugarTick
@@ -13,6 +20,7 @@ const TICK = preload("res://Assets/Textures/ZombieUI/tick.png")
 @onready var boo_audio: AudioStreamPlayer = $BooAudio
 @onready var fart_component: Node3D = $FartComponent
 @onready var animated_mesh: Node3D = $AnimatedMesh
+@onready var zombie_noise_audio: AudioStreamPlayer3D = $ZombieNoiseAudio
 
 @export var walk_speed: float = 5.0
 @export var max_reward: float = 0.5
@@ -30,6 +38,12 @@ var point_to_leave: Vector3 = Vector3.ZERO
 
 var requested_ingredient_list: Array[GameManager.LemonadeState] = []
 var requested_ingredient_list_dict = {}
+
+# Zombie sound arrays
+var zombie_normal_sound_array: Array[AudioStream] = []
+var zombie_happy_sound_array: Array[AudioStream] = []
+var zombie_ecstatic_sound_array: Array[AudioStream] = []
+var zombie_angry_sound_array: Array[AudioStream] = []
 
 var is_losing_money: bool = false
 var final_reward: float = 0.0
@@ -56,6 +70,12 @@ func _ready() -> void:
 	create_ingredient_request(GameManager.LemonadeState.LEMON)
 
 	print("Requested ingredients: ", str(requested_ingredient_list))
+	
+	# Load audio
+	zombie_normal_sound_array.append(TOM_ZOMBIE_NORMAL)
+	zombie_happy_sound_array.append(TOM_ZOMBIE_HAPPY)
+	zombie_ecstatic_sound_array.append(TOM_ZOMBIE_ECSTATIC)
+	zombie_angry_sound_array.append(TOM_ZOMBIE_ANGRY)
 	
 	# Initialise recipe dictionary
 	for ingredient in requested_ingredient_list:
@@ -106,6 +126,7 @@ func move_to_queue_point_and_display_recipe() -> void:
 			is_at_front_of_queue.emit()
 			display_recipe_request()
 			time_until_money_ticks_down.start()
+			play_zombie_noise(zombie_normal_sound_array)
 		# Queue Timer Stuff
 		else:
 			if !day_is_ended:
@@ -187,9 +208,11 @@ func drink_and_move_on(drink_correct: bool) -> void:
 		if final_reward == max_reward:
 			pay_player.emit(final_reward, true)
 			correct_drink_served.emit()
+			play_zombie_noise(zombie_ecstatic_sound_array)
 		else:
 			pay_player.emit(final_reward, false)
 			correct_drink_served.emit()
+			play_zombie_noise(zombie_happy_sound_array)
 	else:
 		print("Drink NOT correct, ", name, ": emitted fear signal")
 		issue_fear_signal.emit()
@@ -197,6 +220,7 @@ func drink_and_move_on(drink_correct: bool) -> void:
 		var random_boo_pitch = randi_range(0.8, 1.2)
 		boo_audio.pitch_scale = random_boo_pitch
 		boo_audio.play()
+		play_zombie_noise(zombie_angry_sound_array)
 	
 	queue_point.is_occupied = false
 	is_moving_to_queue_point = false
@@ -207,6 +231,14 @@ func drink_and_move_on(drink_correct: bool) -> void:
 	is_losing_money = false
 	if !time_until_money_ticks_down.is_stopped():
 		time_until_money_ticks_down.stop()
+
+
+func play_zombie_noise(sound_array: Array) -> void:
+	zombie_noise_audio.pitch_scale = 1 # Need to reset this for some reason otherwise it gets lower and lower
+	var random_pitch = randf_range(0.6, 1.0)
+	zombie_noise_audio.pitch_scale = random_pitch
+	zombie_noise_audio.stream = sound_array[randi_range(0, sound_array.size() - 1)]
+	zombie_noise_audio.play()
 
 
 func display_recipe_request() -> void:

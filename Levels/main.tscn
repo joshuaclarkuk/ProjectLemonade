@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dyxqckep43v6s"]
+[gd_scene load_steps=72 format=3 uid="uid://dyxqckep43v6s"]
 
 [ext_resource type="PackedScene" uid="uid://7b4lgevh5krm" path="res://Player/player.tscn" id="1_ddeo3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/Components/queue_point.tscn" id="6_clnmg"]
+[ext_resource type="AudioStream" uid="uid://bbqbayv1e6ut5" path="res://Assets/SFX/Zombie/ZombieCrowd.wav" id="6_ttgy6"]
 [ext_resource type="PackedScene" uid="uid://cfijjh876n0i6" path="res://Assets/Models/KenneySuburbs/house_type01.glb" id="8_8h6bd"]
 [ext_resource type="PackedScene" uid="uid://b5m0rqufr8ovy" path="res://Assets/Models/KenneySuburbs/house_type02.glb" id="9_um4on"]
 [ext_resource type="PackedScene" uid="uid://drfmkothprq31" path="res://Assets/Models/KenneySuburbs/house_type03.glb" id="10_d861m"]
@@ -170,6 +171,10 @@ stream = ExtResource("3_dp8sl")
 volume_db = -6.0
 
 [node name="ZombieCrowdNoise" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+stream = ExtResource("6_ttgy6")
+volume_db = -20.0
+autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.1, 7)
@@ -510,6 +515,11 @@ skeleton = NodePath("../../..")
 
 [node name="Pine-crooked4" type="MeshInstance3D" parent="Level/Trees"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 11, 0, 7.5)
+mesh = ExtResource("53_05ji5")
+skeleton = NodePath("../../..")
+
+[node name="Pine-crooked5" type="MeshInstance3D" parent="Level/Trees"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6, 0, 15)
 mesh = ExtResource("53_05ji5")
 skeleton = NodePath("../../..")
 

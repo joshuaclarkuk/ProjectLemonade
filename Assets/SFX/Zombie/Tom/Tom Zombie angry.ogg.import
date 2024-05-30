@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://de4apmr4paium"
+path="res://.godot/imported/Tom Zombie angry.ogg-ce0af9160bc9bcaeead1e8cc7c6d567c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Zombie/Tom/Tom Zombie angry.ogg"
+dest_files=["res://.godot/imported/Tom Zombie angry.ogg-ce0af9160bc9bcaeead1e8cc7c6d567c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
