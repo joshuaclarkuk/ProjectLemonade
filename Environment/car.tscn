@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://chp070u6hamak"]
+
+[ext_resource type="PackedScene" uid="uid://ck2pn7i63ogb6" path="res://Assets/Models/Car.gltf" id="1_n8ekn"]
+
+[node name="Car" instance=ExtResource("1_n8ekn")]

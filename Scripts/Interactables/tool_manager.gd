@@ -7,12 +7,19 @@ class_name ToolManager extends Node3D
 @onready var jug: Interactable = $Jug
 @onready var sugar: Interactable = $Sugar
 @onready var lemons: Interactable = $Lemons
-@onready var glass_real: CSGCylinder3D = $Glasses/GlassReal
+@onready var glass_real: Node3D = $Glasses/GlassReal
 @onready var cup_holder: CSGCylinder3D = $ServingStand/Mesh/CupHolder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var pop_audio: AudioStreamPlayer = $AudioPlayers/PopAudio
 @onready var glass_audio: AudioStreamPlayer3D = $AudioPlayers/GlassAudio
 @onready var spill_audio: AudioStreamPlayer3D = $AudioPlayers/SpillAudio
+@onready var cup_place_particles: GPUParticles3D = $CupPlaceParticles
+@onready var ice_pickup_particles: GPUParticles3D = $Ice/IcePickupParticles
+@onready var jug_pickup_particles: GPUParticles3D = $Jug/JugPickupParticles
+@onready var sugar_pickup_particles: GPUParticles3D = $Sugar/SugarPickupParticles
+@onready var serve_drink_particles: GPUParticles3D = $ServeDrinkParticles
+@onready var spill_drink_particles: GPUParticles3D = $SpillDrinkParticles
+
 
 var serving_stand_empty: bool = true
 var can_serve_zombie: bool = false
@@ -52,9 +59,8 @@ func handle_glasses() -> void:
 		if serving_stand_empty:
 			pop_audio.play()
 			glass_audio.play()
-			var position_to_place_glass = cup_holder.global_position
-			position_to_place_glass.y += 0.1 # Adding half the height of mesh so it sits correctly
-			glass_real.global_position = position_to_place_glass
+			glass_real.global_position = cup_holder.global_position
+			cup_place_particles.restart()
 			serving_stand_empty = false
 			update_glass_state(GameManager.LemonadeState.EMPTY, stage_1_colour_value)
 		else:
@@ -67,6 +73,7 @@ func handle_jug() -> void:
 			animation_player.play("pour_from_jug")
 			print("Lemonade added")
 			update_glass_state(GameManager.LemonadeState.LEMONADE, stage_2_colour_value)
+			#jug_pickup_particles.restart()
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -77,6 +84,7 @@ func handle_ice() -> void:
 			animation_player.play("get_ice")
 			print("Ice added")
 			update_glass_state(GameManager.LemonadeState.ICE, stage_3_colour_value)
+			#ice_pickup_particles.restart()
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -87,6 +95,7 @@ func handle_sugar() -> void:
 			animation_player.play("pour_sugar")
 			print("Sugar added")
 			update_glass_state(GameManager.LemonadeState.SUGAR, stage_4_colour_value)
+			#sugar_pickup_particles.restart()
 	else:
 		print("Serving Stand empty. Grab a glass!")
 
@@ -122,6 +131,7 @@ func serve_drink() -> void:
 	if can_serve_zombie:
 		print("DRINK SERVED")
 		drink_served.emit(ingredients_in_glass)
+		serve_drink_particles.restart()
 		# Handle zombie code here
 		print("Drink contained: ", str(ingredients_in_glass))
 		# Reset values
@@ -132,12 +142,12 @@ func spill_drink() -> void:
 	print("DRINK SPILLED")
 	spill_audio.play()
 	mistake_made.emit()
+	spill_drink_particles.restart()
 	# Play spilled animation
 	reset_drink()
 
 
 func update_glass_state(lemonade_state: GameManager.LemonadeState, glass_colour: float) -> void:
-	glass_real.get_material_override().albedo_color = Color(glass_colour, glass_colour, glass_colour)
 	current_lemonade_state = lemonade_state
 	if !ingredients_in_glass.has(lemonade_state):
 		ingredients_in_glass.append(lemonade_state)

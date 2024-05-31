@@ -1,15 +1,14 @@
-[gd_scene load_steps=36 format=3 uid="uid://coh81ds7kdwf3"]
+[gd_scene load_steps=42 format=3 uid="uid://coh81ds7kdwf3"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/tool_manager.gd" id="1_mnp3l"]
 [ext_resource type="Script" path="res://Scripts/Interactables/interactable.gd" id="2_of71m"]
-[ext_resource type="Material" uid="uid://cx72jblfdswgf" path="res://Materials/Prototyping/glass_real_orange.tres" id="3_o1713"]
+[ext_resource type="PackedScene" uid="uid://cgpsske3ke4mg" path="res://Assets/Models/LemonadeStand/Objects/Glass.gltf" id="3_j042l"]
 [ext_resource type="Material" uid="uid://dstbifqaok2u4" path="res://Materials/Prototyping/prototyping_purple.tres" id="4_fttbq"]
-[ext_resource type="Texture2D" uid="uid://26s1ilp2ygkr" path="res://Textures/Prototype/Orange/texture_05.png" id="4_jlp8x"]
 [ext_resource type="Material" uid="uid://b2ccgyqmfsw0x" path="res://Materials/Prototyping/prototyping_blue.tres" id="5_8i6qt"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="6_taey8"]
-[ext_resource type="Material" uid="uid://c87q21e65qann" path="res://Materials/Prototyping/prototyping_yellow.tres" id="8_2eaq5"]
-[ext_resource type="Texture2D" uid="uid://spu305m1ipty" path="res://Textures/Prototype/Green/texture_05.png" id="8_hg25f"]
-[ext_resource type="Texture2D" uid="uid://b8djpeqf8siqj" path="res://Textures/Prototype/Red/texture_05.png" id="10_c68ux"]
+[ext_resource type="PackedScene" uid="uid://nrkv1bumjlnd" path="res://Assets/Models/LemonadeStand/Objects/Lemon.gltf" id="8_ncjeb"]
+[ext_resource type="PackedScene" uid="uid://bcnky0yod4jw7" path="res://Assets/Models/LemonadeStand/Objects/Jug.gltf" id="8_qmhdc"]
+[ext_resource type="PackedScene" uid="uid://clk62nug1xhen" path="res://Assets/Models/LemonadeStand/Objects/SugarBag.gltf" id="9_1fk41"]
 [ext_resource type="AudioStream" uid="uid://bhwodfpvxmg8n" path="res://Assets/SFX/Tools/IceCubes/IceShake.wav" id="12_snkpn"]
 [ext_resource type="AudioStream" uid="uid://dkfncnpbj26kl" path="res://Assets/SFX/Tools/IceCubes/IceInGlass.wav" id="13_2xquf"]
 [ext_resource type="AudioStream" uid="uid://clojjbpljgbv" path="res://Assets/SFX/Tools/Jug/Pour.wav" id="14_0a2qi"]
@@ -23,16 +22,38 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1clw8"]
 size = Vector3(0.35, 0.7, 0.4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6pi4"]
-resource_local_to_scene = true
-albedo_texture = ExtResource("4_jlp8x")
-uv1_triplanar = true
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_3217i"]
 size = Vector3(0.35, 0.5, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7p7l"]
 size = Vector3(0.5, 0.25, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtjg0"]
+albedo_color = Color(0.521569, 0.709804, 0.952941, 1)
+
+[sub_resource type="Curve" id="Curve_rjr6h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.507246, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6kd7r"]
+curve = SubResource("Curve_rjr6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ae0rd"]
+angle_min = 20.0
+angle_max = 90.0
+direction = Vector3(0, 1, 1)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.6
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_6kd7r")
+
+[sub_resource type="SphereMesh" id="SphereMesh_uk85o"]
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nq6xd"]
 size = Vector3(0.4, 0.55, 0.35)
@@ -40,19 +61,14 @@ size = Vector3(0.4, 0.55, 0.35)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3m73v"]
 size = Vector3(0.3, 0.45, 0.3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3yc8"]
-resource_local_to_scene = true
-albedo_color = Color(0.513233, 0.513233, 0.513233, 1)
-albedo_texture = ExtResource("8_hg25f")
-uv1_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8krv"]
+albedo_color = Color(0, 0.729412, 0.0901961, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4q7gm"]
 size = Vector3(0.35, 0.3, 0.55)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4ldh"]
-resource_local_to_scene = true
-albedo_texture = ExtResource("10_c68ux")
-uv1_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6sa8"]
+albedo_color = Color(0.882548, 0, 0.0964724, 1)
 
 [sub_resource type="Animation" id="Animation_yom47"]
 length = 0.001
@@ -83,19 +99,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sugar/Mesh:position")
+tracks/2/path = NodePath("Jug/Mesh:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.025, 0)]
+"values": [Vector3(0, -0.15, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sugar/Mesh:rotation")
+tracks/3/path = NodePath("Jug/Mesh:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -107,38 +123,74 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Lemons/Lemon:rotation")
+tracks/4/path = NodePath("Lemons/Lemon4:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.5708, 0.174533, 0)]
+"values": [Vector3(0, -1.5708, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Lemons/Lemon3:rotation")
+tracks/5/path = NodePath("Sugar/SugarBag:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.5708, 0.785398, 0)]
+"values": [Vector3(0, 1.91986, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Lemons/Lemon2:rotation")
+tracks/6/path = NodePath("Sugar/SugarBag:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(-2),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.5708, -0.436332, 0)]
+"values": [Vector3(0, -0.15, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ice/IcePickupParticles:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Jug/JugPickupParticles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sugar/SugarPickupParticles:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_yi0ml"]
@@ -188,42 +240,30 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.1, 0.15)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ice/IcePickupParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_ks4kf"]
 resource_name = "pour_from_jug"
 length = 0.3
 step = 0.05
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Jug/LemonadeJug:position")
+tracks/0/path = NodePath("AudioPlayers/JugAudio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.55, 0.35, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.65, 0.3, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.3, 0.35, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Jug/LemonadeJug:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -2.00713), Vector3(0, 0, -2.00713), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioPlayers/JugAudio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "clips": [{
 "end_offset": 3.875,
 "start_offset": 0.5536,
@@ -231,43 +271,55 @@ tracks/2/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_xlk05"]
-resource_name = "pour_sugar"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sugar/Mesh:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.130901, -1.5708, -7.93415e-07), Vector3(-1.00357, -1.5708, 1.30843e-06), Vector3(-1.00357, -1.5708, 1.30843e-06), Vector3(-1.1781, -1.5708, 2.51832e-06), Vector3(0.0436315, -1.5708, -9.98727e-07), Vector3(0, 0, 0)]
-}
+tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sugar/Mesh:position")
+tracks/1/path = NodePath("Jug/Mesh:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
 "update": 0,
-"values": [Vector3(0, -0.025, 0), Vector3(0.961111, 0.669445, -0.45), Vector3(0.961111, 0.519444, -0.45), Vector3(0.961111, 0.519444, -0.45), Vector3(0.961111, 0.469444, -0.45), Vector3(0.961111, 0.669444, -0.45), Vector3(0, -0.025, 0)]
+"values": [Vector3(0, -0.15, 0), Vector3(-0.55, 0.35, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.65, 0.3, 0), Vector3(-0.65, 0.35, 0), Vector3(-0.3, 0.35, 0), Vector3(0, -0.15, 0)]
 }
-tracks/2/type = "audio"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioPlayers/SugarAudio")
+tracks/2/path = NodePath("Jug/Mesh:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -2.00713), Vector3(0, 0, -2.00713), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jug/JugPickupParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_xlk05"]
+resource_name = "pour_sugar"
+length = 0.3
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioPlayers/SugarAudio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0681,
 "start_offset": 0.0191,
@@ -279,30 +331,54 @@ tracks/2/keys = {
 }],
 "times": PackedFloat32Array(0.05, 0.15)
 }
-tracks/2/use_blend = true
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sugar/SugarBag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 1.91986, 0), Vector3(0, 0, -0.174533), Vector3(0, 0, -0.959931), Vector3(0, 0, -0.959931), Vector3(0, 0, -1.13446), Vector3(0, 0, -8.9407e-08), Vector3(0, 1.91986, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sugar/SugarBag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, -0.15, 0), Vector3(0.95, 0.55, -0.45), Vector3(0.9, 0.45, -0.45), Vector3(0.9, 0.45, -0.45), Vector3(0.9, 0.4, -0.45), Vector3(0.95, 0.55, -0.45), Vector3(0, -0.15, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sugar/SugarPickupParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_nunok"]
 resource_name = "slice_lemons"
 length = 0.3
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Lemons/Lemon2:rotation")
+tracks/0/path = NodePath("AudioPlayers/LemonAudio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
-"update": 0,
-"values": [Vector3(1.5708, -0.436332, 0), Vector3(1.5708, 0.872665, 0), Vector3(1.5708, -0.959931, 0), Vector3(1.5708, -0.436332, 0)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioPlayers/LemonAudio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.1669,
@@ -314,7 +390,19 @@ tracks/1/keys = {
 }],
 "times": PackedFloat32Array(0.1, 0.2)
 }
-tracks/1/use_blend = true
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lemons/Lemon4:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -4.71239, 0), Vector3(0, -0.523599, 0), Vector3(0, -1.5708, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xocxc"]
 resource_name = "use_bin"
@@ -358,6 +446,17 @@ _data = {
 "use_bin": SubResource("Animation_xocxc")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhsxy"]
+albedo_color = Color(1, 0.568627, 0.0784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abmjr"]
+albedo_color = Color(1, 0, 0.152941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtijp"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
 [node name="ObjectManager" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -6.425)
 script = ExtResource("1_mnp3l")
@@ -374,95 +473,77 @@ string_name = "Glasses"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275, 0.25, -0.0499997)
 shape = SubResource("BoxShape3D_1clw8")
 
-[node name="GlassReal" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.45, 0, -0.1)
-material_override = ExtResource("3_o1713")
-radius = 0.05
-height = 0.2
+[node name="GlassReal" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.45, -0.1, -0.1)
 
-[node name="Glass12" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -0.05, 0, -0.0499997)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.45, -0.1, -0.1)
 
-[node name="Glass6" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.45, 0, -0.0999999)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass2" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.35, -0.1, -0.1)
 
-[node name="Glass7" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.35, 0, -0.0999999)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass3" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.25, -0.1, -0.1)
 
-[node name="Glass20" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-0.573577, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.573577, -0.35, 0, -0.2)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass4" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.15, -0.1, -0.1)
 
-[node name="Glass8" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, -0.15, 0, -0.0999999)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass5" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.05, -0.1, -0.0999999)
 
-[node name="Glass9" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.45, 0, -0.25)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass6" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.05, -0.1, -0.0999999)
 
-[node name="Glass10" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.25, 0, -0.15)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass8" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, -0.1, -0.2)
 
-[node name="Glass11" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 0.05, 0, 0)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass13" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.05, -0.1, -0.3)
 
-[node name="Glass14" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.05, 0, -0.0999999)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass14" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.15, -0.1, -0.3)
 
-[node name="Glass15" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0.05, 0, -0.2)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass15" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.25, -0.1, -0.3)
 
-[node name="Glass16" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -0.05, 0, -0.15)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass16" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.35, -0.1, -0.3)
 
-[node name="Glass17" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.05, 0, -0.25)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass17" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.35, 0.1, -0.2)
 
-[node name="Glass18" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(0.422618, 0, 0.906308, 0, 1, 0, -0.906308, 0, 0.422618, -0.15, 0, -0.199999)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass18" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.25, 0.1, -0.2)
 
-[node name="Glass19" type="CSGCylinder3D" parent="Glasses"]
-transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, -0.25, 0, -0.25)
-material_override = SubResource("StandardMaterial3D_d6pi4")
-radius = 0.05
-height = 0.2
+[node name="Glass19" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.15, 0.1, -0.2)
+
+[node name="Glass20" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.05, 0.1, -0.2)
+
+[node name="Glass21" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.1, 0.1, -0.0999999)
+
+[node name="Glass22" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.2, 0.1, -0.0999999)
+
+[node name="Glass23" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.3, 0.1, -0.0999999)
+
+[node name="Glass9" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.1, -0.1, -0.2)
+
+[node name="Glass10" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.2, -0.1, -0.2)
+
+[node name="Glass11" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.3, -0.1, -0.2)
+
+[node name="Glass12" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.4, -0.1, -0.2)
+
+[node name="Glass7" parent="Glasses" instance=ExtResource("3_j042l")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.45, -0.1, -0.0999999)
 
 [node name="ServingStand" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.9, 6.35)
@@ -661,6 +742,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.00999999, -0.02)
 operation = 2
 size = Vector3(0.03, 0.04, 0.03)
 
+[node name="IcePickupParticles" type="GPUParticles3D" parent="Ice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, -1.11759e-08, 0.0999999)
+material_override = SubResource("StandardMaterial3D_vtjg0")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")
+
 [node name="Bin" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.25, 6.425)
 collision_layer = 4
@@ -691,25 +783,23 @@ script = ExtResource("2_of71m")
 ToolName = 1
 string_name = "Jug"
 
+[node name="Mesh" parent="Jug" instance=ExtResource("8_qmhdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+
 [node name="Collider" type="CollisionShape3D" parent="Jug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.075, 0)
 shape = SubResource("BoxShape3D_3m73v")
 
-[node name="LemonadeJug" type="CSGCylinder3D" parent="Jug"]
-material_override = SubResource("StandardMaterial3D_b3yc8")
-radius = 0.08
-height = 0.3
-
-[node name="Handle" type="CSGTorus3D" parent="Jug/LemonadeJug"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.1, 0.05, 0)
-inner_radius = 0.025
-outer_radius = 0.05
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Jug/LemonadeJug"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-operation = 2
-radius = 0.05
-height = 0.2
+[node name="JugPickupParticles" type="GPUParticles3D" parent="Jug"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.025, -0.15, 0.0499999)
+material_override = SubResource("StandardMaterial3D_a8krv")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")
 
 [node name="Lemons" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.65, 6.9)
@@ -723,26 +813,14 @@ string_name = "Lemons"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
 shape = SubResource("BoxShape3D_3m73v")
 
-[node name="Lemon" type="CSGSphere3D" parent="Lemons"]
-transform = Transform3D(0.984808, 0.173648, -6.28605e-07, 0, -3.61999e-06, -1, -0.173648, 0.984808, -3.56499e-06, 0.05, -0.125, 0.0500002)
-material_override = ExtResource("8_2eaq5")
-radius = 0.03
-radial_segments = 4
-rings = 3
+[node name="Lemon4" parent="Lemons" instance=ExtResource("8_ncjeb")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0, -0.15, 0)
 
-[node name="Lemon2" type="CSGSphere3D" parent="Lemons"]
-transform = Transform3D(0.906308, -0.422618, 1.52987e-06, 0, -3.61999e-06, -1, 0.422618, 0.906308, -3.28083e-06, 0, -0.125, 0)
-material_override = ExtResource("8_2eaq5")
-radius = 0.03
-radial_segments = 4
-rings = 3
+[node name="Lemon5" parent="Lemons" instance=ExtResource("8_ncjeb")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.1, -0.15, 0.05)
 
-[node name="Lemon3" type="CSGSphere3D" parent="Lemons"]
-transform = Transform3D(0.707107, 0.707107, -2.55972e-06, 0, -3.61999e-06, -1, -0.707107, 0.707107, -2.55972e-06, 0.05, -0.125, -0.0500002)
-material_override = ExtResource("8_2eaq5")
-radius = 0.03
-radial_segments = 4
-rings = 3
+[node name="Lemon6" parent="Lemons" instance=ExtResource("8_ncjeb")]
+transform = Transform3D(0.258819, 0, -0.965926, 0.482963, 0.866025, 0.129409, 0.836516, -0.5, 0.224144, 0.1, -0.142594, -0.0276192)
 
 [node name="Sugar" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.725, 6.8)
@@ -756,10 +834,19 @@ string_name = "Sugar"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0.0250001)
 shape = SubResource("BoxShape3D_4q7gm")
 
-[node name="Mesh" type="CSGBox3D" parent="Sugar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
-material_override = SubResource("StandardMaterial3D_r4ldh")
-size = Vector3(0.05, 0.25, 0.15)
+[node name="SugarBag" parent="Sugar" instance=ExtResource("9_1fk41")]
+transform = Transform3D(-0.342018, 0, 0.939694, 0, 1, 0, -0.939694, 0, -0.342018, 0, -0.15, 0)
+
+[node name="SugarPickupParticles" type="GPUParticles3D" parent="Sugar"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.025, -0.15, -8.9407e-08)
+material_override = SubResource("StandardMaterial3D_b6sa8")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -800,3 +887,36 @@ volume_db = -6.0
 
 [node name="PopAudio" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("18_hi4eb")
+
+[node name="CupPlaceParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.95, 6.35)
+material_override = SubResource("StandardMaterial3D_nhsxy")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")
+
+[node name="SpillDrinkParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.95, 6.35)
+material_override = SubResource("StandardMaterial3D_abmjr")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")
+
+[node name="ServeDrinkParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0.95, 6.35)
+material_override = SubResource("StandardMaterial3D_jtijp")
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ae0rd")
+draw_pass_1 = SubResource("SphereMesh_uk85o")

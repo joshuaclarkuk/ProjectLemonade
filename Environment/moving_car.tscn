@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct0nj35p0i7w8"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/moving_car.gd" id="1_4e3wx"]
+[ext_resource type="PackedScene" uid="uid://chp070u6hamak" path="res://Environment/car.tscn" id="1_mxfn2"]
+[ext_resource type="PackedScene" uid="uid://c64x3tlvkv15u" path="res://Zombie/car_zombie.tscn" id="2_kbdrv"]
+[ext_resource type="AudioStream" uid="uid://ompt7bm3lpba" path="res://Assets/SFX/CarLoop.wav" id="4_gde7v"]
+
+[node name="MovingCar" type="Node3D"]
+script = ExtResource("1_4e3wx")
+
+[node name="Car" parent="." instance=ExtResource("1_mxfn2")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="CarZombie" parent="." instance=ExtResource("2_kbdrv")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -1.55, 1.8, -0.7)
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CarAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_gde7v")
+attenuation_model = 2
+autoplay = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

@@ -42,8 +42,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.9999
+offset_top = 30.0
+offset_right = 19.9999
+offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.55555, 1.55555)
 
 [node name="RequestPanelMask" type="Sprite2D" parent="IngredientRequestUI/Panel"]
 clip_children = 1

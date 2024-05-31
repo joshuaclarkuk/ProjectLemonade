@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://book6dvavvejh"]
+[gd_scene load_steps=6 format=3 uid="uid://book6dvavvejh"]
 
 [ext_resource type="PackedScene" uid="uid://coh81ds7kdwf3" path="res://Interactables/object_manager.tscn" id="2_sqden"]
 [ext_resource type="PackedScene" uid="uid://bbae0dgtouuir" path="res://Assets/Models/LemonadeStand/Lemonade Stand Textured.gltf" id="2_xe1w5"]
+[ext_resource type="Texture2D" uid="uid://cfydqudp74fc8" path="res://Assets/Textures/Lemonade Intructions.png" id="3_g6bgv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v621y"]
+albedo_texture = ExtResource("3_g6bgv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h504t"]
+material = SubResource("StandardMaterial3D_v621y")
+size = Vector2(0.2, 0.2)
 
 [node name="LemonadeStand" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6.425)
@@ -10,3 +18,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6.425)
 
 [node name="Lemonade Stand Textured" parent="." instance=ExtResource("2_xe1w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.075)
+
+[node name="InstructionBoardMesh" type="MeshInstance3D" parent="Lemonade Stand Textured"]
+transform = Transform3D(1.38952, 0.173483, 0.0450916, 0.0307869, 0.00758347, -1.97719, -0.245014, 0.984808, 0.00728201, -0.684482, 1.20585, -0.405233)
+mesh = SubResource("PlaneMesh_h504t")
+skeleton = NodePath("../..")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64x3tlvkv15u"]
+
+[ext_resource type="PackedScene" uid="uid://5h2ixaysdpaa" path="res://Zombie/wandering_zombie.tscn" id="1_211u0"]
+[ext_resource type="Script" path="res://Scripts/Zombie/CarZombie.gd" id="2_t4s0k"]
+
+[node name="CarZombie" instance=ExtResource("1_211u0")]
+script = ExtResource("2_t4s0k")
