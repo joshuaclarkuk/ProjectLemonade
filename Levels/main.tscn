@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_t6mj7"]
 [ext_resource type="Material" uid="uid://nnawri3dhxv8" path="res://Materials/Prototyping/prototyping_dark.tres" id="1_tusvb"]
 [ext_resource type="AudioStream" uid="uid://b6q5uao77uuyl" path="res://Assets/SFX/Ambience/BirdsSeamless.ogg" id="3_0l4qc"]
-[ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_dp8sl"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="4_os8h6"]
 [ext_resource type="AudioStream" uid="uid://c17b5oemn4heh" path="res://Assets/SFX/Ambience/TreeRustleSeamless.ogg" id="4_yuvni"]
 [ext_resource type="Material" uid="uid://b8iivym2k1tue" path="res://Materials/Prototyping/prototyping_green.tres" id="5_0d6hp"]
 [ext_resource type="PackedScene" uid="uid://cy5djbhk8fxak" path="res://Zombie/zombie.tscn" id="5_1hf5j"]
+[ext_resource type="AudioStream" uid="uid://bpocj24q0tbqp" path="res://Assets/Music/Project Lemonade Music.ogg" id="5_ieig1"]
 [ext_resource type="PackedScene" uid="uid://bj3sf7s4cywbv" path="res://Zombie/Components/queue_point.tscn" id="6_clnmg"]
 [ext_resource type="AudioStream" uid="uid://bbqbayv1e6ut5" path="res://Assets/SFX/Zombie/ZombieCrowd.wav" id="6_ttgy6"]
 [ext_resource type="PackedScene" uid="uid://cfijjh876n0i6" path="res://Assets/Models/KenneySuburbs/house_type01.glb" id="8_8h6bd"]
@@ -169,13 +169,13 @@ stream = ExtResource("4_yuvni")
 autoplay = true
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
-stream = ExtResource("3_dp8sl")
-volume_db = -6.0
+stream = ExtResource("5_ieig1")
+volume_db = -5.0
 
 [node name="ZombieCrowdNoise" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
 stream = ExtResource("6_ttgy6")
-volume_db = -6.0
+volume_db = -14.0
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_ddeo3")]
