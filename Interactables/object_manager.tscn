@@ -59,7 +59,7 @@ rings = 8
 size = Vector3(0.4, 0.55, 0.35)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3m73v"]
-size = Vector3(0.3, 0.45, 0.3)
+size = Vector3(0.3, 0.45, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8krv"]
 albedo_color = Color(0, 0.729412, 0.0901961, 1)
@@ -810,7 +810,7 @@ ToolName = 6
 string_name = "Lemons"
 
 [node name="Collider" type="CollisionShape3D" parent="Lemons"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
 shape = SubResource("BoxShape3D_3m73v")
 
 [node name="Lemon4" parent="Lemons" instance=ExtResource("8_ncjeb")]
