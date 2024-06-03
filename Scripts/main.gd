@@ -150,8 +150,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("debug1"):
-		#toggle_debug_cam()
+	if event.is_action_pressed("debug1"):
+		toggle_debug_cam()
 	pass
 
 
@@ -168,8 +168,14 @@ func start_playing_background_audio(audioplayer: AudioStreamPlayer) -> void:
 
 func set_game_has_started(has_started: bool) -> void:
 	game_has_started = has_started
-	bgm_player.play()
+	var tween = create_tween()
+	tween.tween_interval(4.0)
+	tween.tween_callback(start_bgm)
 	print("Game has started:", str(game_has_started))
+
+
+func start_bgm() -> void:
+	bgm_player.play()
 
 
 func pass_time_and_update_game_clock(delta: float) -> void:

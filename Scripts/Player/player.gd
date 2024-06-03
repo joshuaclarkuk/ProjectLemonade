@@ -148,7 +148,7 @@ func play_money_sfx() -> void:
 
 
 func increase_fear_amount() -> void:
-	fear_amount += 1
+	fear_amount += 4
 	fear_bar.value = fear_amount
 	print("Player fear amount: ", str(fear_amount))
 	

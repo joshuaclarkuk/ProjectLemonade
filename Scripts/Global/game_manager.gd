@@ -31,8 +31,3 @@ func set_player(new_player: Player) -> void:
 
 func set_camera(new_camera: Camera3D) -> void:
 	player_camera = new_camera
-
-
-func set_is_mouse_inverted(is_inverted: bool) -> void:
-	is_mouse_inverted = is_inverted;
-	print("Mouse inversion changed to: ", str(is_mouse_inverted))

@@ -182,7 +182,7 @@ autoplay = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.1, 7)
 
 [node name="OverviewCam" type="Camera3D" parent="."]
-transform = Transform3D(0.5, 0.296198, -0.813798, 1.49502e-08, 0.939693, 0.34202, 0.866025, -0.17101, 0.469846, -42.9, 11.7, 9.15)
+transform = Transform3D(0.725385, 0.00600262, 0.688317, 0, 0.999962, -0.0087204, -0.688343, 0.00632565, 0.725358, 0.960662, 1.65854, 6.84904)
 
 [node name="LemonadeStand" parent="." instance=ExtResource("4_os8h6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.5, 6.425)

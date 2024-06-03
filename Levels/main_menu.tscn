@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://deuwvni3krd5j"]
+[gd_scene load_steps=15 format=3 uid="uid://deuwvni3krd5j"]
 
-[ext_resource type="AudioStream" uid="uid://jcekognqyp34" path="res://Assets/Music/MainLoop.wav" id="3_6i5v1"]
+[ext_resource type="Script" path="res://Scripts/Menu/main_menu_controls.gd" id="1_dwhgb"]
 [ext_resource type="PackedScene" uid="uid://cft4tjwodhlq1" path="res://Zombie/main_menu_zombie.tscn" id="3_nj8af"]
 [ext_resource type="Script" path="res://Scripts/Zombie/main_menu_zombie.gd" id="4_3dbg5"]
 [ext_resource type="PackedScene" uid="uid://book6dvavvejh" path="res://Interactables/lemonade_stand.tscn" id="5_w0rjq"]
-[ext_resource type="Script" path="res://Scripts/Menu/main_menu_ui.gd" id="6_bkjke"]
 [ext_resource type="Theme" uid="uid://ckgfmtm4f8akv" path="res://Themes/menu_theme.tres" id="7_k102j"]
 [ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="9_o15hm"]
 [ext_resource type="Texture2D" uid="uid://3tst82wpktye" path="res://Assets/Textures/ZombieUI/cross.png" id="9_qhxur"]
+[ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="9_wsp5m"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="10_fxybc"]
+[ext_resource type="LabelSettings" uid="uid://cbj6st44ixp0g" path="res://UI/credit_label_settings.tres" id="10_o4wu7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5sd3x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,13 +34,12 @@ font_size = 106
 font_color = Color(0.210817, 0.357169, 0.377705, 1)
 
 [node name="MainMenu" type="Node3D"]
+script = ExtResource("1_dwhgb")
 
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
-stream = ExtResource("3_6i5v1")
 volume_db = -6.0
-autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vqltd")
@@ -69,7 +69,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_bkjke")
 
 [node name="TitleText" type="Label" parent="MenuUI"]
 custom_minimum_size = Vector2(800, 0)
@@ -152,6 +151,251 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("10_fxybc")
 
-[connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="MenuUI" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="MenuUI" method="_on_quit_game_button_pressed"]
-[connection signal="pressed" from="MenuUI/ToggleInvertedBox/ToggleInvertedButton" to="MenuUI" method="_on_toggle_inverted_button_pressed"]
+[node name="CreditsButton" type="Button" parent="MenuUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 146.0
+offset_top = -241.0
+offset_right = 270.0
+offset_bottom = -193.0
+grow_vertical = 0
+theme = ExtResource("7_k102j")
+text = "Credits"
+
+[node name="CreditsUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReturnToMenuButton" type="Button" parent="CreditsUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 145.0
+offset_top = -167.0
+offset_right = 271.0
+offset_bottom = -118.0
+grow_vertical = 0
+theme = ExtResource("7_k102j")
+text = "Quit Credits"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="CreditsTitle" type="Label" parent="CreditsUI/VBoxContainer"]
+layout_mode = 2
+text = "A Game by Waiting Games"
+label_settings = ExtResource("9_wsp5m")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CreditsUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="LeftLabel2" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Godot Splash Screen:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel2" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Kenney.nl"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel3" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Zombie Mesh & Animations:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel3" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Mixamo"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel4" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bird Ambience:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel4" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sonniss GDC Free Download"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel5" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Tree Ambience:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel5" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sonniss GDC Free Download"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel6" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Zombie Crowd Ambience:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel6" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sonniss GDC Free Download"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel12" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Glass, Jug, Ice, Sugar & Lemon SFX:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel12" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Soniss GDC Free Download"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel14" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Fart SFX:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel14" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Soniss GDC Free Download"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel15" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Boo SFX:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel15" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Pixabay"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel7" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Suburb Asset Pack: "
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel7" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Kenney.nl"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel8" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Graveyard Asset Pack: "
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel8" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Kenney.nl"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel9" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Montserrat (SemiBold) Font:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel9" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Google Fonts"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel10" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Day Timer UI:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel10" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Kenney.nl"
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel11" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Lemonade Song Censor Beep:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel11" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Pixabay \"Censor Beep\""
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel13" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Lemonade Stand Cloth Texture:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel13" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Freepik.com \"vichy-background-red-classic-vichy-style\""
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel18" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Lemonade Stand Wood Texture:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel18" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Polyhaven.com \"brown_planks_09\""
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel16" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Zombie Mask Paper Texture:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel16" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Pexels.com \"green-pexels-ron-lach-10526880\""
+label_settings = ExtResource("10_o4wu7")
+
+[node name="LeftLabel17" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Zombie Mask Cardboard Texture:"
+label_settings = ExtResource("10_o4wu7")
+horizontal_alignment = 2
+
+[node name="RightLabel17" type="Label" parent="CreditsUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Pexels.com \"pexels-jonathan-west-339535484-14129745\""
+label_settings = ExtResource("10_o4wu7")
+
+[connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="MenuUI/ToggleInvertedBox/ToggleInvertedButton" to="." method="_on_toggle_inverted_button_pressed"]
+[connection signal="pressed" from="MenuUI/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CreditsUI/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

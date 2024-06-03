@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cbj6st44ixp0g"]
+
+[ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="1_t82qi"]
+
+[resource]
+font = ExtResource("1_t82qi")
+font_color = Color(0.211765, 0.356863, 0.376471, 1)

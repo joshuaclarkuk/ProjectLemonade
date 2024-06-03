@@ -208,6 +208,7 @@ fear_bar_danger_colour = Color(0.825062, 0.0755493, 0.0271334, 1)
 shape = SubResource("CapsuleShape3D_rfkup")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_igm17")
 
 [node name="CameraPivot" type="Node3D" parent="."]
