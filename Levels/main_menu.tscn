@@ -23,6 +23,7 @@ background_color = Color(0.941176, 0.984314, 1, 1)
 sky = SubResource("Sky_ii1wc")
 ambient_light_color = Color(0.455053, 0.831599, 0.836578, 1)
 tonemap_mode = 2
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.513726, 1, 1, 1)
 
@@ -45,6 +46,7 @@ environment = SubResource("Environment_vqltd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.6
 shadow_enabled = true
 
 [node name="MainMenuCam" type="Camera3D" parent="."]
@@ -149,10 +151,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("10_fxybc")
-
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-size = Vector3(20, 1, 1)
 
 [connection signal="pressed" from="MenuUI/VBoxContainer/StartGameButton" to="MenuUI" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="MenuUI/VBoxContainer/QuitGameButton" to="MenuUI" method="_on_quit_game_button_pressed"]

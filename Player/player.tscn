@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7b4lgevh5krm"]
+[gd_scene load_steps=15 format=3 uid="uid://7b4lgevh5krm"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_xuf3f"]
 [ext_resource type="Script" path="res://Scripts/Player/smooth_camera.gd" id="2_vw5h8"]
@@ -14,6 +14,9 @@ height = 1.8
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_igm17"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="LabelSettings" id="LabelSettings_fuwx2"]
+font = ExtResource("3_upe0n")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kd1fw"]
 font = ExtResource("3_upe0n")
@@ -244,6 +247,7 @@ offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Left-click to interact with: \"TEST\""
+label_settings = SubResource("LabelSettings_fuwx2")
 horizontal_alignment = 1
 vertical_alignment = 1
 

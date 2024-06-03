@@ -13,8 +13,8 @@ class_name SplashScreen extends Control
 @onready var final_timer: Timer = $FinalTimer
 
 @onready var crowd_audio_player: AudioStreamPlayer = $CrowdAudioPlayer
+@onready var splash_music: AudioStreamPlayer = $SplashMusic
 
-@export var time: float = 3.0
 @export var fade_time: float = 1.0
 
 
@@ -24,10 +24,11 @@ func _ready() -> void:
 	godot_splash.set_visible(false)
 	waiting_games_splash.set_visible(true)
 	black_timer.start()
+	splash_music.play()
 	
 	crowd_audio_player.volume_db = -60.0
 	var tween = create_tween()
-	tween.tween_property(crowd_audio_player, "volume_db", -12.0, 1.6)
+	tween.tween_property(crowd_audio_player, "volume_db", -16.0, 0.8)
 
 
 func _on_black_timer_timeout() -> void:
@@ -72,7 +73,6 @@ func fade_black_screen_back_in() -> void:
 
 func go_to_main_menu() -> void:
 	final_timer.start()
-	
 
 
 func _on_final_timer_timeout() -> void:

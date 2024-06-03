@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl333wp7sb2nk"]
+[gd_scene load_steps=8 format=3 uid="uid://dl333wp7sb2nk"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/splash_screen.gd" id="1_lawjl"]
 [ext_resource type="Texture2D" uid="uid://iphtya7xy1kr" path="res://Assets/Textures/SplashScreens/Godot Splash.png" id="2_5f1gf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b21mav71ydfuq" path="res://Assets/Textures/SplashScreens/Blank Splash.png" id="4_ooqyi"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="5_vuqt8"]
 [ext_resource type="AudioStream" uid="uid://c6y6xe61eyv45" path="res://Assets/SFX/Ambience/CrowdNoiseClip.ogg" id="6_hlqu0"]
+[ext_resource type="AudioStream" uid="uid://vih7m56pnuom" path="res://Assets/Music/SplashScreen2.ogg" id="7_7s8hs"]
 
 [node name="SplashScreen" type="Control"]
 layout_mode = 3
@@ -71,6 +72,9 @@ one_shot = true
 stream = ExtResource("6_hlqu0")
 volume_db = -21.549
 autoplay = true
+
+[node name="SplashMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7s8hs")
 
 [connection signal="timeout" from="GodotSplash/GodotTimer" to="." method="_on_godot_timer_timeout"]
 [connection signal="timeout" from="WaitingGamesSplash/WaitingTimer" to="." method="_on_waiting_timer_timeout"]

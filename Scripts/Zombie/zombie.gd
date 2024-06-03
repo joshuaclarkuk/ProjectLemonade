@@ -73,8 +73,8 @@ func _ready() -> void:
 	
 	# Load audio
 	zombie_normal_sound_array.append(TOM_ZOMBIE_NORMAL)
-	zombie_happy_sound_array.append(TOM_ZOMBIE_HAPPY)
-	zombie_ecstatic_sound_array.append(TOM_ZOMBIE_ECSTATIC)
+	zombie_happy_sound_array.append(TOM_ZOMBIE_ECSTATIC)
+	zombie_ecstatic_sound_array.append(TOM_ZOMBIE_HAPPY)
 	zombie_angry_sound_array.append(TOM_ZOMBIE_ANGRY)
 	
 	# Initialise recipe dictionary
