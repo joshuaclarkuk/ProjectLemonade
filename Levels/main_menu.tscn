@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://ckgfmtm4f8akv" path="res://Themes/menu_theme.tres" id="7_k102j"]
 [ext_resource type="FontFile" uid="uid://nuspnysmmlfs" path="res://Assets/Fonts/Montserrat-SemiBold.ttf" id="9_o15hm"]
 [ext_resource type="Texture2D" uid="uid://3tst82wpktye" path="res://Assets/Textures/ZombieUI/cross.png" id="9_qhxur"]
-[ext_resource type="LabelSettings" uid="uid://d4fl2tpapuv5y" path="res://Themes/default_label_settings.tres" id="9_wsp5m"]
 [ext_resource type="Texture2D" uid="uid://c5pdexm3hrp8y" path="res://Assets/Textures/SplashScreens/Black Splash.png" id="10_fxybc"]
 [ext_resource type="LabelSettings" uid="uid://cbj6st44ixp0g" path="res://UI/credit_label_settings.tres" id="10_o4wu7"]
 
@@ -32,6 +31,12 @@ volumetric_fog_albedo = Color(0.513726, 1, 1, 1)
 font = ExtResource("9_o15hm")
 font_size = 106
 font_color = Color(0.210817, 0.357169, 0.377705, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qopu"]
+line_spacing = 24.0
+font = ExtResource("9_o15hm")
+font_size = 24
+font_color = Color(0.529067, 0.529067, 0.529067, 1)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_dwhgb")
@@ -140,17 +145,6 @@ layout_mode = 2
 texture = ExtResource("9_qhxur")
 expand_mode = 1
 
-[node name="BlackFadeScreen" type="TextureRect" parent="MenuUI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("10_fxybc")
-
 [node name="CreditsButton" type="Button" parent="MenuUI"]
 layout_mode = 1
 anchors_preset = 2
@@ -163,6 +157,17 @@ offset_bottom = -193.0
 grow_vertical = 0
 theme = ExtResource("7_k102j")
 text = "Credits"
+
+[node name="BlackFadeScreen" type="TextureRect" parent="MenuUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_fxybc")
 
 [node name="CreditsUI" type="Control" parent="."]
 layout_mode = 3
@@ -199,7 +204,7 @@ theme_override_constants/separation = 20
 [node name="CreditsTitle" type="Label" parent="CreditsUI/VBoxContainer"]
 layout_mode = 2
 text = "A Game by Waiting Games"
-label_settings = ExtResource("9_wsp5m")
+label_settings = SubResource("LabelSettings_6qopu")
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="CreditsUI/VBoxContainer"]
